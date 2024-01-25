@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Automation.BDaq">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/back/SGE-back/lib/Automation.BDaq.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

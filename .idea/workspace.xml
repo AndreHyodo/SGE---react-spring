@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fb7a95bd-0809-4b5b-9589-0acf0318d103" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/back/SGE-back/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/SGE-back/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/SGE-back/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/SGE-back/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/SGE-back/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/SGE-back/src/main/java/sge/sgeback/SgeBackApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/SGE-back/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/SGE-back/src/test/java/sge/sgeback/SgeBackApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/front/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Class" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/front" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2ZXdk7P7C57mWVkK8UHfnObmlNq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;21.3.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.11.5&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SC22381/Desktop/NEW SGE/SGE - react + spring&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\SC22381\\Desktop\\NEW SGE\\SGE web\\front\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\src" />
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\src\pages" />
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\src\Components\dashboard" />
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\back\SGE-back\lib" />
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\back\SGE-back\src\Advantech" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\bk" />
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\src\Images\Logo" />
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\src\Components\Card" />
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\back\SGE-back\src\main\java\sge\sgeback" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="sge.sgeback.repository" />
+      <recent name="sge.sgeback.controller" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JAR Application.Automation.BDaq.jar">
+    <configuration name="Automation.BDaq.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/../NEW_SGE/src/Automation.BDaq.jar!/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SgeBackApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="SGE-back" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="sge.sgeback.SgeBackApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JAR Application.Automation.BDaq.jar" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb7a95bd-0809-4b5b-9589-0acf0318d103" name="Changes" comment="" />
+      <created>1702572497864</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702572497864</updated>
+      <workItem from="1702572498864" duration="993000" />
+      <workItem from="1702573932259" duration="3266000" />
+      <workItem from="1702667439661" duration="676000" />
+      <workItem from="1703003542241" duration="7052000" />
+      <workItem from="1703073302479" duration="16123000" />
+      <workItem from="1703158799763" duration="1221000" />
+      <workItem from="1703160034634" duration="31612000" />
+      <workItem from="1703247042720" duration="4920000" />
+      <workItem from="1703591428576" duration="926000" />
+      <workItem from="1703676075434" duration="7444000" />
+      <workItem from="1703762446083" duration="18857000" />
+      <workItem from="1703853132483" duration="5343000" />
+      <workItem from="1704372895357" duration="8284000" />
+      <workItem from="1704468369930" duration="10124000" />
+      <workItem from="1704717033883" duration="8638000" />
+      <workItem from="1704799167740" duration="16463000" />
+      <workItem from="1704992497015" duration="1828000" />
+      <workItem from="1705072062163" duration="1483000" />
+      <workItem from="1705603599929" duration="8980000" />
+      <workItem from="1705685446545" duration="984000" />
+      <workItem from="1705687450764" duration="1734000" />
+      <workItem from="1706191407166" duration="2964000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/front/src/index.js" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+      <path value="$PROJECT_DIR$/back/SGE-back" />
+      <path value="$PROJECT_DIR$/front" />
+    </ignored-roots>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
