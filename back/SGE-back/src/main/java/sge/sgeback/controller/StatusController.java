@@ -67,6 +67,19 @@ public class StatusController {
         }
     }
 
+    @PutMapping(path="/update/{id}/{status}")
+    public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @PathVariable Boolean status) {
+        Optional<Status> statusData = StatusRepository.findById(id);
+
+        if (statusData.isPresent()) {
+            Status _status = statusData.get();
+            _status.setStatus(status);
+            return new ResponseEntity<>(StatusRepository.save(_status), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Status> createStatus(@RequestBody Status status) {
         Status newstatus = StatusRepository.save(status);

@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import '../../App.css'
-import {Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from "reactstrap";
+import {Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem} from "reactstrap";
 import { Link } from 'react-router-dom';
 
-const HeaderComponent = () => {
+const eaderComponent = () => {
     const [collapsed, setCollapsed] = useState(true);
 
     const toggleNavbar = () => setCollapsed(!collapsed);

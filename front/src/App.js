@@ -1,9 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
-import StatusSalas from './pages/StatusSalas_MOTORES/index.js';
-import HeaderComponent from "./Components/Header/HeaderFile";
-import FooterComponent from "./Components/Footer/FooterFile";
-import React, { Component }  from 'react';
+// import logo from './logo.svg';
+// import './App.css';
+import StatusSalas from '../../front/src/pages/StatusSalas_MOTORES/index.js';
+import HeaderComponent from "../../front/src/Components/Header/HeaderFile";
+import FooterComponent from "../../front/src/Components/Footer/FooterFile";
+// import React, { Component }  from 'react';
 
 function App() {
   return (

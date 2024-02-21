@@ -1,8 +1,8 @@
 import axios from "axios";
-import {SPM} from "../pages/StatusSalas_MOTORES/index";
+// import {SPM} from "../pages/StatusSalas_MOTORES";
 
-// const url_base = 'http://172.28.226.246:8080'
-const url_base = 'http://192.168.2.101:8080'
+const url_base = 'http://172.28.240.144:8080'
+// const url_base = 'http://192.168.0.167:3000'
 
 const Status_Api = '/Status/all';
 const List_Causais = '/causaisList'

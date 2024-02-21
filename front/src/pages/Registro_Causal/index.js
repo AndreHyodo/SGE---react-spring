@@ -1,8 +1,8 @@
 import '../../App.css';
 import Registro from './Registro';
-import HeaderComponent from "../../Components//Header/HeaderFile";
+import HeaderComponent from "../../Components/Header/HeaderFile";
 import FooterComponent from "../../Components/Footer/FooterFile";
-import React, { Component }  from 'react';
+import React  from 'react';
 
 const Home = () => {
     return(

@@ -1,14 +1,11 @@
-// import 'front/src/App.css';
-
 import React, {useEffect,useState} from "react";
-import {export_causais, listStatus} from "../../services/StatusService";
+import { listStatus} from "../../services/StatusService";
 // import {Card} from "../../Components/Card/Card";
 import Card from "../../Components/Card/Card"
 import './StatusSalas.module.css'
 // import axios from "axios";
 
-import styles from "./StatusSalas.module.css";
-import {set} from "express/lib/application";
+
 
 const StatusSalas = () => {
 

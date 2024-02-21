@@ -1,9 +1,8 @@
 // import 'bootstrap/dist/css/bootstrap.css';
 import './Card.css'
-import React, {Component, useEffect, useState} from 'react';
+import React, {Component} from 'react';
 import {Card, CardBody, CardFooter, CardHeader, CardText, CardTitle, Col, Row} from "reactstrap";
-import {CausalAtual} from "../Causal/CausalComponent";
-import {export_causais} from "../../services/StatusService";
+// import {CausalAtual} from "../Causal/CausalComponent";
 
 
 class MyComponent extends Component {
@@ -57,10 +56,10 @@ class MyComponent extends Component {
 }
 
 
-function Stop(sala){
-
-
-    return sala
-}
+// function Stop(sala){
+//
+//
+//     return sala
+// }
 
 export default MyComponent;

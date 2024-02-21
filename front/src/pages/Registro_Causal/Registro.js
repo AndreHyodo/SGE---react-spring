@@ -3,18 +3,18 @@ import {list_Causais} from "../../services/StatusService";
 
 
 
-const hideNextSiblings = () => {
-    const toggleButtons = document.querySelectorAll('.toggle-data-btn');
+// const hideNextSiblings = () => {
+//     const toggleButtons = document.querySelectorAll('.toggle-data-btn');
+//
+//     toggleButtons.forEach((toggleButton) => {
+//         const cardBody = toggleButton.parentNode.nextElementSibling;
+//         cardBody.style.display = 'none';
+//     });
+// };
 
-    toggleButtons.forEach((toggleButton) => {
-        const cardBody = toggleButton.parentNode.nextElementSibling;
-        cardBody.style.display = 'none';
-    });
-};
-
-const renderData = (data) => {
-    // Função renderData permanece sem alterações
-};
+// const renderData = (data) => {
+//     // Função renderData permanece sem alterações
+// };
 
 // const App = () => {
 //     const [data, setData] = useState([]);

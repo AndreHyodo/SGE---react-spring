@@ -2,12 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Registro from '../src/pages/Registro_Causal/index'
+import Registro from '../../front/src/pages/Registro_Causal/index'
 import reportWebVitals from './reportWebVitals';
 import Home from './App'
+import {render} from "@testing-library/react";
 
 import {
     createBrowserRouter, RouterProvider,
+} from "react-router-dom";
+
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route, Redirect,Navigate
 } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -33,3 +40,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+

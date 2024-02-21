@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from "react";
 import {export_causais} from "../../services/StatusService";
-import Card from "../../Components/Card/Card"
+// import Card from "../../Components/Card/Card"
 
 
 const CausalAtual = () => {
