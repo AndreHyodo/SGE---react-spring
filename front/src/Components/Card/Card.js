@@ -25,7 +25,7 @@ class MyComponent extends Component {
                                 {/*{this.props.status_bool ? "Running" : Stop(this.props.testCell)}*/}
                                 {this.props.status}
                             </CardTitle>
-                            <CardText>
+                            <CardText tag="div">
                                 <Row className="my-2 align-content-center card-data">
                                     <Col className="card-percent">
                                         <h2>100%</h2>

@@ -24,7 +24,7 @@ const StatusSalas = () => {
                 <div className='container-fluid row '>
                     {
                         Salas.map(sala =>
-                                <div className="col-2 mb-4">
+                                <div className="col-2 mb-4" key={sala.id}>
                                     <Card testCell={sala.testCell} status={sala.status ? "Running" : sala.causal} status_bool={sala.status}/>
                                 </div>
                             // Causais.map(causal =>
