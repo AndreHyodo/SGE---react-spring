@@ -25,7 +25,7 @@ const StatusSalas = () => {
                     {
                         Salas.map(sala =>
                                 <div className="col-2 mb-4" key={sala.id}>
-                                    <Card testCell={sala.testCell} status={sala.status ? "Running" : sala.causal} status_bool={sala.status}/>
+                                    <Card testCell={sala.testCell} status={sala.status ? "Running" : sala.causal} status_bool={sala.status} />
                                 </div>
                             // Causais.map(causal =>
                             //

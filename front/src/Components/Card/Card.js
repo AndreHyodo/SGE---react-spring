@@ -7,6 +7,9 @@ import {Card, CardBody, CardFooter, CardHeader, CardText, CardTitle, Col, Row} f
 
 class MyComponent extends Component {
     render() {
+        const {status} = this.props;
+        const cardHeaderClass = status === "Running" ? "card-header-green" : "card-header-red";
+
         return (
             <div className="container">
                 <div>
@@ -17,7 +20,7 @@ class MyComponent extends Component {
                             height: '27vh'
                         }}
                     >
-                        <CardHeader className="card-title">
+                        <CardHeader className={cardHeaderClass} >
                             {this.props.testCell}
                         </CardHeader>
                         <CardBody className="card-body">

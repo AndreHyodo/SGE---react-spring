@@ -919,8 +919,8 @@
     </schema>
     <schema id="292" parent="1" name="sge">
       <Current>1</Current>
-      <IntrospectionTimestamp>2024-02-19.11:50:31</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-02-19.17:50:31</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2024-02-21.14:46:04</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-02-21.20:46:04</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="teste">
@@ -1096,7 +1096,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="335" parent="303" name="ID">
-      <AutoIncrement>28</AutoIncrement>
+      <AutoIncrement>47</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1141,7 +1141,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="345" parent="304" name="ID">
-      <AutoIncrement>13</AutoIncrement>
+      <AutoIncrement>22</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1186,7 +1186,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="355" parent="305" name="ID">
-      <AutoIncrement>4642</AutoIncrement>
+      <AutoIncrement>4666</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1231,7 +1231,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="365" parent="306" name="ID">
-      <AutoIncrement>2332</AutoIncrement>
+      <AutoIncrement>2343</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1276,7 +1276,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="375" parent="307" name="ID">
-      <AutoIncrement>13</AutoIncrement>
+      <AutoIncrement>12</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1321,7 +1321,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="385" parent="308" name="ID">
-      <AutoIncrement>10</AutoIncrement>
+      <AutoIncrement>9</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1366,7 +1366,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="395" parent="309" name="ID">
-      <AutoIncrement>10</AutoIncrement>
+      <AutoIncrement>9</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1456,7 +1456,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="415" parent="311" name="ID">
-      <AutoIncrement>1191</AutoIncrement>
+      <AutoIncrement>1192</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1596,7 +1596,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="446" parent="314" name="ID">
-      <AutoIncrement>606</AutoIncrement>
+      <AutoIncrement>609</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1641,7 +1641,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="456" parent="315" name="ID">
-      <AutoIncrement>294</AutoIncrement>
+      <AutoIncrement>296</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1686,7 +1686,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="466" parent="316" name="ID">
-      <AutoIncrement>6</AutoIncrement>
+      <AutoIncrement>8</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1731,7 +1731,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="476" parent="317" name="ID">
-      <AutoIncrement>9</AutoIncrement>
+      <AutoIncrement>30</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1776,7 +1776,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="486" parent="318" name="ID">
-      <AutoIncrement>4</AutoIncrement>
+      <AutoIncrement>13</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1821,7 +1821,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="496" parent="319" name="ID">
-      <AutoIncrement>4636</AutoIncrement>
+      <AutoIncrement>4655</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1882,7 +1882,7 @@
       <Position>4</Position>
     </column>
     <column id="510" parent="321" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>42</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1912,8 +1912,7 @@
       <Position>6</Position>
     </column>
     <column id="516" parent="321" name="DATE">
-      <DasType>date|0s</DasType>
-      <NotNull>1</NotNull>
+      <DasType>datetime(6)|0s</DasType>
       <Position>7</Position>
     </column>
     <index id="517" parent="321" name="PRIMARY">
@@ -1981,7 +1980,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="531" parent="323" name="ID">
-      <AutoIncrement>25</AutoIncrement>
+      <AutoIncrement>24</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -2042,20 +2041,32 @@
       <DasType>varchar(100)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="545" parent="324" name="time">
-      <DasType>time|0s</DasType>
+    <column id="545" parent="324" name="Motor">
+      <DasType>int|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="546" parent="324" name="date">
-      <DasType>datetime(6)|0s</DasType>
+    <column id="546" parent="324" name="Projeto">
+      <DasType>varchar(20)|0s</DasType>
       <Position>7</Position>
     </column>
-    <index id="547" parent="324" name="PRIMARY">
+    <column id="547" parent="324" name="Teste">
+      <DasType>varchar(20)|0s</DasType>
+      <Position>8</Position>
+    </column>
+    <column id="548" parent="324" name="time">
+      <DasType>time|0s</DasType>
+      <Position>9</Position>
+    </column>
+    <column id="549" parent="324" name="date">
+      <DasType>datetime(6)|0s</DasType>
+      <Position>10</Position>
+    </column>
+    <index id="550" parent="324" name="PRIMARY">
       <ColNames>Id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="548" parent="324" name="PRIMARY">
+    <key id="551" parent="324" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

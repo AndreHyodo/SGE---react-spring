@@ -3,7 +3,10 @@ import axios from "axios";
 
 // const url_base = 'http://172.28.240.144:8080'
 // const url_base = 'http://192.168.0.167:3000'
-const url_base = 'http://localhost:8080'
+
+// const url_base = 'http://localhost:8080'
+const url_base = 'http://192.168.15.5:8080'
+
 
 const Status_Api = '/Status/all';
 const List_Causais = '/causaisList'

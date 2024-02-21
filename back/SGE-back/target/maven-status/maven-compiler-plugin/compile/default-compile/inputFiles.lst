@@ -5,10 +5,13 @@ C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\jav
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\repository\RegistroCausaisRepository.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\repository\StatusRepository.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\repository\CausaisRepository.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\controller\DadosController.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\repository\DadosRepository.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\securingweb\MvcConfig.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\securingweb\CorsConfiguration.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\model\UpdateStatus.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\SgeBackApplication.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\controller\StatusController.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\model\Dados.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\model\Registro_Causal.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\controller\RegistroCausaisController.java

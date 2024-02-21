@@ -4,7 +4,10 @@ sge\sgeback\controller\RegistroCausaisController.class
 sge\sgeback\model\Causais.class
 sge\sgeback\controller\StatusController.class
 sge\sgeback\repository\StatusRepository.class
+sge\sgeback\model\Dados.class
 sge\sgeback\model\Status.class
 sge\sgeback\repository\CausaisRepository.class
+sge\sgeback\repository\DadosRepository.class
 sge\sgeback\controller\CausaisController.class
+sge\sgeback\controller\DadosController.class
 sge\sgeback\repository\RegistroCausaisRepository.class

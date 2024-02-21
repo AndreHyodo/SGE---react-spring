@@ -13,13 +13,29 @@
 
 }
 
-.card-title {
+
+.card-header-green {
     font-weight: bold;
     align-items: center;
     text-align: center;
     font-size: xx-large;
     margin: 0;
     padding: 0;
+    border-top-left-radius: 0.4em !important;
+    border-top-right-radius: 0.4em !important;
+    background-color: green;
+}
+
+.card-header-red {
+    font-weight: bold;
+    align-items: center;
+    text-align: center;
+    font-size: xx-large;
+    margin: 0;
+    padding: 0;
+    border-top-left-radius: 0.4em !important;
+    border-top-right-radius: 0.4em !important;
+    background-color: red;
 }
 
 
