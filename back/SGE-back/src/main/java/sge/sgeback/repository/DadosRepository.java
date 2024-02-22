@@ -5,4 +5,6 @@ import sge.sgeback.model.Dados;
 
 public interface DadosRepository extends CrudRepository<Dados, Integer> {
 
+    Iterable<Dados> findFirstByTestCellOrderByIdDesc(String testCell);
+
 }

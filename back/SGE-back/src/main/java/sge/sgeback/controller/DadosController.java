@@ -2,12 +2,12 @@ package sge.sgeback.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import sge.sgeback.model.Dados;
+import sge.sgeback.model.Status;
 import sge.sgeback.repository.DadosRepository;
+
+import java.util.Optional;
 
 
 @Controller
@@ -26,5 +26,9 @@ public class DadosController {
         return DadosRepository.findAll();
     }
 
+    @GetMapping(path="/last/{testCell}")
+    public @ResponseBody Iterable<Dados> getData(@PathVariable String testCell) {
+        return DadosRepository.findFirstByTestCellOrderByIdDesc(testCell);
+    }
 
 }
