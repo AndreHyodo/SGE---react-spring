@@ -145,31 +145,30 @@ const App = () => {
     return (
         <div id="data-container">
             {groupedData.map((groupData, index) => (
-                <div key={index} className="col-md-3">
+                <div key={index} className="col-md-3 d-inline-flex w-25">
                     <div className="card mb-3">
                         <div className="card-body">
                             <h5 className="card-title">
-                                {groupData.Type}
                                 <button
-                                    className="btn btn-primary btn-sm toggle-data-btn"
+                                    className="btn btn-primary btn-sm toggle-data-btn m-xl-2"
                                     onClick={handleToggleButtonClick}
                                 >
                                     +
                                 </button>
+                                {groupData.type}
                             </h5>
                             <ul style={{ display: 'none' }}>
 
                                 {groupData.items.map((item, itemIndex) => (
-                                    <li key={index}>
+                                    <li key={itemIndex}>
                                         <input
                                             type="checkbox"
-                                            value={groupData.causal}
+                                            value={item.causal}
                                             onChange={() => {
                                                 // Sua lógica de manipulação do estado aqui
                                             }}
                                         />
-                                        <span>{` ${groupData.Code} ${groupData.causal} `}</span>
-                                        {/* Restante do seu código de renderização */}
+                                        <span>{` ${item.code} ${item.causal} `}</span>
                                     </li>
                                 ))}
                             </ul>

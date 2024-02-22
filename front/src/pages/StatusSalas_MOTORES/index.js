@@ -10,6 +10,7 @@ import './StatusSalas.module.css'
 const StatusSalas = () => {
 
     const[Salas, setSalas] = useState([])
+    // const[Dados, setDados] = useState([])
 
     useEffect(() => {
         listStatus().then((response) => {
@@ -18,6 +19,8 @@ const StatusSalas = () => {
             console.log(error);
         })
     }, [Salas])
+
+
 
         return(
             <div className="my-2">
