@@ -1,0 +1,21 @@
+#data-container{
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+#card-causal{
+    padding: 5px;
+}
+
+.form{
+    position: absolute;
+    bottom:5%;
+    width: 100vw;
+    text-align: center;
+}
+
+.form-input{
+    width: 75%;
+    text-align: center;
+}

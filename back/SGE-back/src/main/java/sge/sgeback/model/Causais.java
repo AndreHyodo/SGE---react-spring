@@ -13,6 +13,7 @@ public class Causais {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String Type;
     private String causal;
     private String description;
@@ -21,12 +22,20 @@ public class Causais {
     public Causais() {
     }
 
-    public Causais(String Type, String causal, String description, float Code) {
-
-        this.Type = Type;
+    public Causais(Integer id, String type, String causal, String description, float code) {
+        this.id = id;
+        Type = type;
         this.causal = causal;
         this.description = description;
-        this.Code = Code;
+        Code = code;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getType() {

@@ -16,11 +16,9 @@ public class CausaisController {
     @Autowired
     private CausaisRepository CausaisRepository;
 
-    private Causais causal;
-
 
     @GetMapping
-    public @ResponseBody Iterable<Causais> getAll(){
+    public @ResponseBody Iterable<Causais> getAllCausais(){
         return CausaisRepository.findAll();
     }
 

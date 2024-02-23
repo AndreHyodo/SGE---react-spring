@@ -1,4 +1,5 @@
 import '../../App.css';
+import './RegistroCausal.css'
 import Registro from './Registro';
 import HeaderComponent from "../../Components/Header/HeaderFile";
 import FooterComponent from "../../Components/Footer/FooterFile";
