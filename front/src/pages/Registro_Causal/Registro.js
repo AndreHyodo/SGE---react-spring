@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import {list_Causais} from "../../services/StatusService";
-import indexUmd from "bootstrap/js/index.umd";
-import {Button} from "reactstrap";
+import GetIP from "./getIP";
 
 
 const App = () => {
@@ -61,18 +60,6 @@ const App = () => {
         setFilteredData(filtered);
     };
 
-    // function checkboxCausal(causal, code) {
-    //
-    //     console.log(causal)
-    //     if (causal_selected.checked) {
-    //         console.log("causa: " + causal + " e codigo: " + code)
-    //         document.getElementById('causal').value = causal;
-    //         document.getElementById('Code').value = code;
-    //     } else {
-    //         document.getElementById('causal').value = '';
-    //         document.getElementById('Code').value = '';
-    //     }
-    // }
 
     function checkboxCausal(causal, code) {
         // Obtenha os elementos do DOM
@@ -91,6 +78,42 @@ const App = () => {
     }
 
 
+    const [checkedState, setCheckedState] = useState(
+        new Array(30).fill(false)
+    );
+
+    // function checkboxOFF(position){
+    //     checkedState.map((item, index) =>
+    //         index !== position ? setCheckedState(false) : null
+    //     );
+    //     console.log(checkedState);
+    // }
+
+    const handleOnChange = (code,causal,position) => {
+
+        console.log(position + " - "+ checkedState[position] + " e " + causal + "------" + checkedState)
+        // const updatedCheckedState = checkedState.map((item, index) =>
+        //     index === position ? !item : item
+        // );
+
+        for (let index in checkedState)
+            if(index == position){
+                checkedState[index] = !checkedState[index]
+            }
+
+        // setCheckedState(updatedCheckedState);
+
+        // setCheckedState(!checkedState[item]);
+        if(checkedState[position]){
+            document.getElementById('causal').value = causal
+            document.getElementById('Code').value = code
+        }else{
+            document.getElementById('causal').value = ""
+            document.getElementById('Code').value = ""
+        }
+
+    }
+
 
     return (
         <div id="data-container">
@@ -98,10 +121,14 @@ const App = () => {
                 <input className="w-25 text-center" type="text" id="busca" placeholder="Pesquise o Causal..." onChange={handleSearchChange}/>
                 {filteredData.length > 0 && (
                     <div className="w-100 text-center">
-                        {filteredData.map((item) => (
+                        {filteredData.map((item,index) => (
                             <div>
-                                <input type="checkbox" className="m-1"/>
-                                <span className="text-center" key={item.id}>{item.causal}</span>
+                                <input id="checkboxCausal"
+                                       type="checkbox"
+                                       name="checkboxCausal"
+                                       checked={checkedState[index]}
+                                       onChange={() => handleOnChange(item.code,item.causal,index)} className="m-1"/>
+                                <span className="text-center" key={item.id}>{item.code + " - " +item.causal}</span>
                             </div>
                         ))}
                     </div>
@@ -125,11 +152,12 @@ const App = () => {
                                 {groupData.items.map((item, itemIndex) => (
                                     <li key={itemIndex}>
                                         <input
-                                            id="checkbox_causal"
+                                            id="checkboxCausal"
                                             type="checkbox"
                                             value={item.causal}
-                                            // onChange={() => checkboxCausal(item.causal, item.code)}
-
+                                            name="checkboxCausal"
+                                            checked={checkedState[item]}
+                                            onChange={() => handleOnChange(item.code,item.causal,itemIndex)}
                                         />
                                         <span>{` ${item.code} ${item.causal} `}</span>
                                     </li>
@@ -147,7 +175,7 @@ const App = () => {
                                 <label htmlFor="TestCell">TestCell:</label>
                             </div>
                             <div className="row" id="inputs">
-                                <input type="text" name="TestCell" id="TestCell" value="<?php echo $GLOBALS['valor']; ?>"/>
+                                <input type="text" name="TestCell" id="TestCell" value={GetIP()}/>
                             </div>
                         </div>
                         <div className="col-md-1">
@@ -155,7 +183,7 @@ const App = () => {
                                 <label htmlFor="Code">Código:</label>
                             </div>
                             <div className="row" id="inputs">
-                                <input type="text" name="Code" id="Code" value=""/>
+                                <input type="text" name="Code" id="Code"/>
                             </div>
                         </div>
                         <div className="col-md-4">
