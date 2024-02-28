@@ -43,7 +43,8 @@
     display: grid;
     font-weight: bold;
     text-align: center;
-    font-size: x-large;
+    font-size: 130%;
+    overflow: auto;
     margin: 0;
     padding: 0;
 }
@@ -51,16 +52,20 @@
 .card-data {
     text-align: center;
     margin: 0;
-    vertical-align: text-top;
+    vertical-align: text-bottom;
 }
 
 .card-footer {
     display: grid;
     text-align: center;
+    width: auto;
+    height: 15%;
 }
 
 .card-percent{
-    vertical-align: bottom;
+    padding-top: 2%;
+    vertical-align: middle;
+
 }
 
 .card-body{

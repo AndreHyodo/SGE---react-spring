@@ -17,26 +17,28 @@ class MyComponent extends Component {
                         className="my-0"
                         style={{
                             width: '15.5vw',
-                            height: '27vh'
+                            height: '100%',
+                            minHeight: '28vh'
                         }}
                     >
                         <CardHeader className={cardHeaderClass} >
                             {this.props.testCell}
                         </CardHeader>
                         <CardBody className="card-body">
-                            <CardTitle tag="p" className="card-status my-0 p-0 border-0">
+                            <CardTitle tag="p" className="card-status my-0 p-0 border-0 w-auto h-auto">
                                 {/*{this.props.status_bool ? "Running" : Stop(this.props.testCell)}*/}
                                 {this.props.status}
                             </CardTitle>
                             <CardText tag="div">
-                                <Row className="my-2 align-content-center card-data">
-                                    <Col className="card-percent">
-                                        <h2>100%</h2>
+                                <Row className="my-2 align-content-center card-data w-auto h-auto">
+                                    <Col className="card-percent w-auto h-auto">
+                                        <p className="p-0 m-0 w-auto h-auto">Efficiency</p>
+                                        <span className="display-6 w-auto h-auto">100%</span>
                                     </Col>
                                     <Col>
-                                        <Row>Motor: </Row>
-                                        <Row>Prova: </Row>
-                                        <Row>Projeto: </Row>
+                                        <Row>Motor: {this.props.motor}</Row>
+                                        <Row>Prova: {this.props.teste}</Row>
+                                        <Row>Projeto: {this.props.projeto}</Row>
                                     </Col>
                                 </Row>
                             </CardText>

@@ -23,17 +23,23 @@ public class Status {
     private Boolean Status;
     private Float Code;
     private String Causal;
+    private int Motor;
+    private String Projeto;
+    private String Teste;
     private Date date;
     private Time time;
 
     public Status(){}
 
-    public Status(int id, String Sala, Boolean Status, Float Code, String Causal, Date date, Time time) {
+    public Status(int id, String testCell, Boolean status, Float code, String causal, int motor, String projeto, String teste, Date date, Time time) {
         this.id = id;
-        this.testCell = Sala;
-        this.Status = Status;
-        this.Code = Code;
-        this.Causal = Causal;
+        this.testCell = testCell;
+        Status = status;
+        Code = code;
+        Causal = causal;
+        Motor = motor;
+        Projeto = projeto;
+        Teste = teste;
         this.date = date;
         this.time = time;
     }
@@ -76,6 +82,30 @@ public class Status {
 
     public void setCausal(String causal) {
         Causal = causal;
+    }
+
+    public int getMotor() {
+        return Motor;
+    }
+
+    public void setMotor(int motor) {
+        Motor = motor;
+    }
+
+    public String getProjeto() {
+        return Projeto;
+    }
+
+    public void setProjeto(String projeto) {
+        Projeto = projeto;
+    }
+
+    public String getTeste() {
+        return Teste;
+    }
+
+    public void setTeste(String teste) {
+        Teste = teste;
     }
 
     public Date getDate() {
