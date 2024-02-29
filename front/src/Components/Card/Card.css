@@ -50,13 +50,17 @@
 }
 
 .card-data {
+    display: flex;
+    justify-content: center;
     text-align: center;
     margin: 0;
     vertical-align: text-bottom;
+    width: 100%;
 }
 
 .card-footer {
-    display: grid;
+    display: flex;
+    justify-content: center;
     text-align: center;
     width: auto;
     height: 15%;
@@ -75,9 +79,12 @@
 
 
 .card-text {
+    /*display: flex;*/
+    /*justify-content: center;*/
     border-top: 1px solid #000;
     padding: 0;
-    width: auto;
+    width: 100%;
+    height: 70%;
 }
 
 .card-title {

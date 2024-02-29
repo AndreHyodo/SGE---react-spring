@@ -1,10 +1,14 @@
 import React, {useState} from 'react'
 import '../../App.css'
-import {Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem} from "reactstrap";
+import {Collapse, Nav, Navbar, NavbarBrand, NavbarToggler} from "reactstrap";
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../../img/logoAutomAH.png';
+import logo from '../../img/logoAutomAH_3.png';
 import styled from 'styled-components';
+import home from '../../img/icons/home.png';
+import registry from '../../img/icons/registry.png';
+import app from '../../img/icons/app.png';
+
 
 const HeaderComponent = () => {
     const [collapsed, setCollapsed] = useState(true);
@@ -32,12 +36,15 @@ const HeaderComponent = () => {
                     <Collapse isOpen={!collapsed} navbar>
                         <Nav navbar className="" id="menu">
                             <StyledNavItem className="navi-tem">
+                                <img src={home} alt="" className="logo-icon me-auto"/>
                                 <a href="/" className="me-auto text-decoration-none text-black p-2">Home</a>
                             </StyledNavItem>
                             <StyledNavItem className="navi-tem">
+                                <img src={registry} alt="" className="logo-icon me-auto"/>
                                 <Link to="/registro" className="text-decoration-none text-black p-2">Registro Causal</Link>
                             </StyledNavItem>
                             <StyledNavItem>
+                                <img src={app} alt="" className="logo-icon me-auto"/>
                                 {/*<Link to="/dashboard">Dashboard salas</Link>*/}
                                 <Link to="https://bit.ly/3w1SIEH" className="text-decoration-none text-black p-2">App Tech Dyno</Link>
                             </StyledNavItem>

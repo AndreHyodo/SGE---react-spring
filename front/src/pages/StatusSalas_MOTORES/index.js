@@ -20,22 +20,22 @@ const StatusSalas = () => {
         })
     }, [Salas])
 
-        return(
-            <div className="my-2">
-                <div className='container-fluid row '>
-                    {
-                        Salas.map(sala =>
-                                <div className="col-2 mb-4" key={sala.id}>
-                                    <Card testCell={sala.testCell} status={sala.status ? "Running" : sala.causal} motor={sala.motor} projeto={sala.projeto} teste={sala.teste} />
-                                </div>
-                            // Causais.map(causal =>
-                            //
-                            // )
-                        )
-                    }
-                </div>
+    return(
+        <div className="my-2">
+            <div className='container-fluid row m-0 p-0'>
+                {
+                    Salas.map(sala =>
+                            <div className={sala.id<=12 ? "col-2 mb-3": "col-2 mb-2"} key={sala.id}>
+                                <Card testCell={sala.testCell} status={sala.status ? "Running" : sala.causal} statusbool={sala.status} motor={sala.motor} projeto={sala.projeto} teste={sala.teste} eff={sala.eff} paradaAtual={sala.parada_atual} paradaTotal={sala.parada_total} />
+                            </div>
+                        // Causais.map(causal =>
+                        //
+                        // )
+                    )
+                }
             </div>
-        )
+        </div>
+    )
 }
 
 export default StatusSalas;

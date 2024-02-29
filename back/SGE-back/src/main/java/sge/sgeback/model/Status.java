@@ -24,24 +24,30 @@ public class Status {
     private Float Code;
     private String Causal;
     private int Motor;
+    private int eff;
     private String Projeto;
     private String Teste;
     private Date date;
     private Time time;
+    private Time parada_atual;
+    private Time parada_total;
 
     public Status(){}
 
-    public Status(int id, String testCell, Boolean status, Float code, String causal, int motor, String projeto, String teste, Date date, Time time) {
+    public Status(int id, String testCell, Boolean status, Float code, String causal, int motor, int eff, String projeto, String teste, Date date, Time time, Time parada_atual, Time parada_total) {
         this.id = id;
         this.testCell = testCell;
         Status = status;
         Code = code;
         Causal = causal;
         Motor = motor;
+        this.eff = eff;
         Projeto = projeto;
         Teste = teste;
         this.date = date;
         this.time = time;
+        this.parada_atual = parada_atual;
+        this.parada_total = parada_total;
     }
 
     public int getId() {
@@ -92,6 +98,14 @@ public class Status {
         Motor = motor;
     }
 
+    public int getEff() {
+        return eff;
+    }
+
+    public void setEff(int eff) {
+        this.eff = eff;
+    }
+
     public String getProjeto() {
         return Projeto;
     }
@@ -122,6 +136,22 @@ public class Status {
 
     public void setTime(Time time) {
         this.time = time;
+    }
+
+    public Time getParada_atual() {
+        return parada_atual;
+    }
+
+    public void setParada_atual(Time parada_atual) {
+        this.parada_atual = parada_atual;
+    }
+
+    public Time getParada_total() {
+        return parada_total;
+    }
+
+    public void setParada_total(Time parada_total) {
+        this.parada_total = parada_total;
     }
 
     @Override

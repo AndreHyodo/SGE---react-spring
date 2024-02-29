@@ -4,11 +4,13 @@ import React, {Component} from 'react';
 import {Card, CardBody, CardFooter, CardHeader, CardText, CardTitle, Col, Row} from "reactstrap";
 // import {CausalAtual} from "../Causal/CausalComponent";
 
-
 class MyComponent extends Component {
+
     render() {
         const {status} = this.props;
         const cardHeaderClass = status === "Running" ? "card-header-green" : "card-header-red";
+        const effClass = status === "Running" ? "display-6 w-auto h-auto fw-bold text-success" : "display-6 w-auto h-auto fw-bold text-danger";
+
 
         return (
             <div className="container">
@@ -26,14 +28,13 @@ class MyComponent extends Component {
                         </CardHeader>
                         <CardBody className="card-body">
                             <CardTitle tag="p" className="card-status my-0 p-0 border-0 w-auto h-auto">
-                                {/*{this.props.status_bool ? "Running" : Stop(this.props.testCell)}*/}
                                 {this.props.status}
                             </CardTitle>
                             <CardText tag="div">
                                 <Row className="my-2 align-content-center card-data w-auto h-auto">
                                     <Col className="card-percent w-auto h-auto">
                                         <p className="p-0 m-0 w-auto h-auto">Efficiency</p>
-                                        <span className="display-6 w-auto h-auto">100%</span>
+                                        <span className={effClass}>{this.props.eff}%</span>
                                     </Col>
                                     <Col>
                                         <Row>Motor: {this.props.motor}</Row>
@@ -43,13 +44,13 @@ class MyComponent extends Component {
                                 </Row>
                             </CardText>
                         </CardBody>
-                        <CardFooter className="card-footer my-0 p-0 align-content-center">
-                            <Row>
-                                <Col>
-                                    <p>atual</p>
+                        <CardFooter className="card-footer my-0 p-0 align-content-center h-auto">
+                            <Row className="w-100">
+                                <Col className="d-flex justify-content-center display-8">
+                                    <span className="p-1">Atual: {this.props.paradaAtual}</span>
                                 </Col>
-                                <Col>
-                                    <p>total</p>
+                                <Col className="d-flex justify-content-center display-8">
+                                    <span className="p-1">Total: {this.props.paradaTotal}</span>
                                 </Col>
                             </Row>
                         </CardFooter>

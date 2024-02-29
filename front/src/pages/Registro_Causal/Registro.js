@@ -61,49 +61,20 @@ const App = () => {
     };
 
 
-    function checkboxCausal(causal, code) {
-        // Obtenha os elementos do DOM
-        const causalElement = document.getElementById('causal');
-        const codeElement = document.getElementById('Code');
-        const causal_selected = document.getElementById("checkbox causal");
-
-        // Atualize os valores com base no estado da caixa de seleção
-        if (causal_selected.checked) {
-            causalElement.value = causal;
-            codeElement.value = code;
-        } else {
-            causalElement.value = '';
-            codeElement.value = '';
-        }
-    }
-
-
     const [checkedState, setCheckedState] = useState(
         new Array(30).fill(false)
     );
 
-    // function checkboxOFF(position){
-    //     checkedState.map((item, index) =>
-    //         index !== position ? setCheckedState(false) : null
-    //     );
-    //     console.log(checkedState);
-    // }
-
     const handleOnChange = (code,causal,position) => {
 
         console.log(position + " - "+ checkedState[position] + " e " + causal + "------" + checkedState)
-        // const updatedCheckedState = checkedState.map((item, index) =>
-        //     index === position ? !item : item
-        // );
+
 
         for (let index in checkedState)
             if(index == position){
                 checkedState[index] = !checkedState[index]
             }
 
-        // setCheckedState(updatedCheckedState);
-
-        // setCheckedState(!checkedState[item]);
         if(checkedState[position]){
             document.getElementById('causal').value = causal
             document.getElementById('Code').value = code

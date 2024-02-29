@@ -43,15 +43,29 @@ Link{
 .brand{
     display: flex;
     justify-content: center;
-    width: 85vw;
+    margin-left: 5%;
+    width: 80vw;
     font-size: xx-large;
     text-align: center !important;
 }
 
 .logo{
-    width: 8vw;
+    width: 8.5vw;
     height: 4.5vh;
     margin-right: 1%;
+}
+
+.logo-icon{
+    width: 1vw;
+    height: 2vh;
+    margin-left: 1%;
+    /*padding-bottom: 0.2%;*/
+
+}
+
+.nav-item{
+    display: flex;
+    justify-content: center;
 }
 
 .App-link {
@@ -68,11 +82,13 @@ Link{
 }
 
 footer {
-  position: absolute;
-  bottom:0%;
-  text-align:center;
-  width: 100vw;
-  height: 3%;
-  background-color: #24405d;
-  color: white;
+    position: absolute;
+    bottom:0;
+    text-align:center;
+    width: 100vw;
+    height: 3%;
+    background-color: #CDCDCD;
+    color: black;
+    font-family: "Inter Semi Bold";
+    font-size: large;
 }

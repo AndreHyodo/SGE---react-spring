@@ -5,7 +5,7 @@ import '../../App.css'
 const FooterComponent = () => {
     return(
         <div>
-            <footer className="footer">
+            <footer className="footer display-8">
                 <span>All rights reserved 2023 by André Hyodo</span>
             </footer>
         </div>
