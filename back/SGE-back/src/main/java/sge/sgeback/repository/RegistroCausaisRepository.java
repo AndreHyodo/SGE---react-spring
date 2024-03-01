@@ -6,7 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import sge.sgeback.model.Registro_Causal;
 
 public interface RegistroCausaisRepository extends CrudRepository<Registro_Causal, Integer> {
-    Registro_Causal findTopByTestCellOrderByCausalDesc(String TestCell);
+    Registro_Causal findTopByTestCellOrderByIdDesc(String TestCell);
+    Iterable<Registro_Causal> findTop3ByTestCellOrderByIdDesc(String TestCell);
 //    Status findBySala(String sala);
 //    Status findByNameAndPassword(String name, String password);
 //    Status findByEmail(String email);

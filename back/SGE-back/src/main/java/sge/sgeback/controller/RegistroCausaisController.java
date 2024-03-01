@@ -1,7 +1,10 @@
 package sge.sgeback.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sge.sgeback.model.Registro_Causal;
 import sge.sgeback.model.Status;
@@ -11,6 +14,8 @@ import sge.sgeback.repository.StatusRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.StreamSupport;
+
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 
 @Controller
@@ -36,35 +41,34 @@ public class RegistroCausaisController {
     }
 
     @GetMapping(path="/LastList")
-    public @ResponseBody Iterable<String> getAllLastCausais() {
+    public @ResponseBody Iterable<Registro_Causal> getAllLastCausais() {
         List<String> testCells = StreamSupport.stream(statusController.getStatus().spliterator(), false)
                 .map(Status::getTestCell)
                 .toList();
 
-        List<String> latestCausals = new ArrayList<>();
+        List<Registro_Causal> latestCausals = new ArrayList<>();
 
         for (String testCell : testCells) {
-//            String causal = CausaisRepository.findTopByTestCellOrderByCausalDesc(testCell).toString();
-            Registro_Causal causal = CausaisRepository.findTopByTestCellOrderByCausalDesc(testCell);
+            Registro_Causal causal = CausaisRepository.findTopByTestCellOrderByIdDesc(testCell);
             if (causal != null) {
-                String ultimo = causal.getCausal();
-                latestCausals.add(ultimo);
+                latestCausals.add(causal);
             }
         }
         return latestCausals;
     }
 
-//    @GetMapping
-//    public List<Status> getAllTestCell() {
-//        return StatusRepository.findAll();
-//    }
 
     @GetMapping(path="/{name}")
     public @ResponseBody Registro_Causal getCausal(@PathVariable String name) {
-        return CausaisRepository.findTopByTestCellOrderByCausalDesc(name);
+        return CausaisRepository.findTopByTestCellOrderByIdDesc(name);
     }
 
-    //    @PutMapping(path="/update/{id}")
+    @GetMapping(path="/top3/{name}")
+    public @ResponseBody Iterable<Registro_Causal> getLastCausalTestCell(@PathVariable String name) {
+        return CausaisRepository.findTop3ByTestCellOrderByIdDesc(name);
+    }
+
+//    @PutMapping(path="/update/{id}")
 //    public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @RequestBody Status status) {
 //        Optional<Status> statusData = StatusRepository.findById(id);
 //
@@ -78,10 +82,20 @@ public class RegistroCausaisController {
 //        }
 //    }
 
-//    @PostMapping
-//    public ResponseEntity<Status> createStatus(@RequestBody Status status) {
-//        Status newstatus = StatusRepository.save(status);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(newstatus);
+    @PostMapping(path="/insertCausal")
+    public ResponseEntity<Registro_Causal> createStatus(@RequestBody Registro_Causal registroCausal) {
+        Registro_Causal newRegistro = CausaisRepository.save(registroCausal);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
+    }
+
+//    @RequestMapping(method = POST)
+//    public String processForm(Registro_Causal causal, Model model) {
+//
+//        model.addAttribute("firstname", causal.getCausal());
+//        model.addAttribute("lastname", causal.getCode());
+//
+//
+//
 //    }
 
 //    @DeleteMapping("/{id}")

@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import {list_Causais} from "../../services/StatusService";
 import GetIP from "./getIP";
+import axios from "axios";
 
 
 const App = () => {
@@ -85,6 +86,55 @@ const App = () => {
 
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('Submitting form');
+
+        var data = new Date(),
+            hora =  data.getHours(),
+            minuto = data.getMinutes(),
+            segundos = data.getSeconds() <= 9 ? "0"+data.getSeconds() : data.getSeconds()
+
+
+
+        // Corrected: Access form data using event.target.elements
+        const formData = new FormData(e.target);
+        const date = Date.now();
+        const hora_inicio = `${hora}:${minuto}:${segundos}`;
+        const testCell = formData.get('TestCell');
+        const code = formData.get('Code');
+        const causal = formData.get('causal');
+        const obs = formData.get('obs');
+
+        // const article = { testCell: testCell, Code: code, causal: causal, hora_inicio: hora_inicio, data: date, obs: obs };
+        // const headers = {
+        //     'Authorization': 'Bearer my-token',
+        //     'My-Custom-Header': 'foobar',
+        //     mode:"no-cors"
+        // };
+        // axios.post('http://172.28.251.102:8080/causais/insertCausal', article, { headers })
+        //     .then(response => this.setState({ articleId: response.data.id }));
+        //
+
+        // try {
+        //     const response = await fetch('http://172.28.251.102:8080/causais/insertCausal', {
+        //         method: 'POST',
+        //         // body: JSON.stringify({ testCell, code, causal, hora_inicio, data, obs}),
+        //         body: JSON.stringify({ testCell, code, causal, obs}),
+        //         headers: { 'Content-Type': 'application/json' },
+        //         mode:"no-cors"
+        //     });
+        //
+        //     if (!response.ok) {
+        //         throw new Error(`Error submitting form: ${response.status}`);
+        //     }
+        //
+        //     console.log('Form submitted successfully.');
+        // } catch (error) {
+        //     console.error('Error submitting form:', error);
+        // }
+    };
+
 
     return (
         <div id="data-container">
@@ -138,7 +188,7 @@ const App = () => {
                     </div>
                 </div>
             ))}
-            <form action="" method="post" className="form">
+            <form action="" method="post" className="form" onSubmit={handleSubmit}>
                 <div className="form-input">
                     <div className="row">
                         <div className="col-md-3">
@@ -177,8 +227,8 @@ const App = () => {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="row" id="texts">
-                                <input type="submit" value="Enviar dados" onClick="alterLocalStorage(document.getElementById('TestCell').value, document.getElementById('causal').value)"/>
-
+                                {/*<input type="submit" value="Enviar dados" onClick="alterLocalStorage(document.getElementById('TestCell').value, document.getElementById('causal').value)"/>*/}
+                                <input type="submit" value="Enviar dados"/>
 
                             </div>
                         </div>
