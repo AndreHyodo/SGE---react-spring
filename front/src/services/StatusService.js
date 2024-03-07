@@ -1,8 +1,8 @@
 import axios from "axios";
 // import {SPM} from "../pages/StatusSalas_MOTORES";
 
-const url_base = 'http://172.28.251.102:8080'
-// const url_base = 'http://192.168.15.8:8080'
+const url_base = 'http://172.28.251.102:8080' //Ip Pc NEW-CENTRAL
+// const url_base = 'http://192.168.15.6:8080' //Ip home-office
 
 // const url_base = 'http://localhost:8080'
 

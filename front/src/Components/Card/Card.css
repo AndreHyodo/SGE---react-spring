@@ -14,7 +14,31 @@
 }
 
 
-.card-header-green {
+.card-header-run {
+    font-weight: bold;
+    align-items: center;
+    text-align: center;
+    font-size: xx-large;
+    margin: 0;
+    padding: 0;
+    border-top-left-radius: 0.4em !important;
+    border-top-right-radius: 0.4em !important;
+    background-color: #01EB45;
+}
+
+.card-header-stop {
+    font-weight: bold;
+    align-items: center;
+    text-align: center;
+    font-size: xx-large;
+    margin: 0;
+    padding: 0;
+    border-top-left-radius: 0.4em !important;
+    border-top-right-radius: 0.4em !important;
+    background-color: #F50000;
+}
+
+.card-header-cooling {
     font-weight: bold;
     align-items: center;
     text-align: center;
@@ -24,9 +48,11 @@
     border-top-left-radius: 0.4em !important;
     border-top-right-radius: 0.4em !important;
     background-color: green;
+    /*background-image: radial-gradient(#61dafb 20%, mediumseagreen 70%);*/
+    background-image: linear-gradient(to right, #01EB45, #62ffec, #6fd9ff);
 }
 
-.card-header-red {
+.card-header-inactive {
     font-weight: bold;
     align-items: center;
     text-align: center;
@@ -35,7 +61,7 @@
     padding: 0;
     border-top-left-radius: 0.4em !important;
     border-top-right-radius: 0.4em !important;
-    background-color: red;
+    background-color: rgb(183, 183, 183);
 }
 
 

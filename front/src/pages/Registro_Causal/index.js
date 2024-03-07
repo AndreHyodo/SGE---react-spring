@@ -5,7 +5,8 @@ import HeaderComponent from "../../Components/Header/HeaderFile";
 import FooterComponent from "../../Components/Footer/FooterFile";
 import React  from 'react';
 
-const Home = () => {
+const RegistroPage = () => {
+    document.title = 'Cause Registry';
     return(
         <>
             <HeaderComponent/>
@@ -15,4 +16,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default RegistroPage;

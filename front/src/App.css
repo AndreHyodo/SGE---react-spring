@@ -45,7 +45,9 @@ Link{
     justify-content: center;
     margin-left: 5%;
     width: 80vw;
-    font-size: xx-large;
+    font-family: "Georgia";
+    font-weight: lighter;
+    font-size: xx-large !important;
     text-align: center !important;
 }
 

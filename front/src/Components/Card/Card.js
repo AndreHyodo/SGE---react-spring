@@ -8,8 +8,20 @@ class MyComponent extends Component {
 
     render() {
         const {status} = this.props;
-        const cardHeaderClass = status === "Running" ? "card-header-green" : "card-header-red";
-        const effClass = status === "Running" ? "display-6 w-auto h-auto fw-bold text-success" : "display-6 w-auto h-auto fw-bold text-danger";
+        const cardHeaderClass = () =>{
+            if(status === "Running"){
+                return "card-header-run";
+            }else if(status === "Cooling"){
+                return "card-header-cooling";
+            }else if(status === "Sala inativa"){
+                return "card-header-inactive";
+            }else{
+                return "card-header-stop";
+            }
+        }
+        const effClass = this.props.status==="Sala inativa" ? "display-6 w-auto h-auto fw-bold text-secondary" :
+                                    this.props.eff > 60 ? "display-6 w-auto h-auto fw-bold text-success" :
+                                    "display-6 w-auto h-auto fw-bold text-danger";
 
 
         return (
@@ -23,11 +35,11 @@ class MyComponent extends Component {
                             minHeight: '28vh'
                         }}
                     >
-                        <CardHeader className={cardHeaderClass} >
+                        <CardHeader className={cardHeaderClass()} >
                             {this.props.testCell}
                         </CardHeader>
                         <CardBody className="card-body">
-                            <CardTitle tag="p" className="card-status my-0 p-0 border-0 w-auto h-auto">
+                            <CardTitle tag="p" className="card-status my-0 p-0 border-0 w-auto h-auto ">
                                 {this.props.status}
                             </CardTitle>
                             <CardText tag="div">

@@ -4,7 +4,7 @@ import './index.css';
 // import App from './App';
 import Registro from '../../front/src/pages/Registro_Causal/index'
 import reportWebVitals from './reportWebVitals';
-import Home from './App'
+import Home from './pages/Home/index'
 // import {render} from "@testing-library/react";
 
 import {

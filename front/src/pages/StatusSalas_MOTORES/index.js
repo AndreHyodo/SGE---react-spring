@@ -20,13 +20,26 @@ const StatusSalas = () => {
         })
     }, [Salas])
 
+    const status = (causal, status) => {
+
+        if (status===0){
+            return causal;
+        }else if(status===1){
+            return "Running";
+        }else if(status===2){
+            return "Cooling";
+        }else{
+            return "Sala inativa";
+        }
+    }
+
     return(
         <div className="my-2">
             <div className='container-fluid row m-0 p-0'>
                 {
                     Salas.map(sala =>
                             <div className={sala.id<=12 ? "col-2 mb-3": "col-2 mb-2"} key={sala.id}>
-                                <Card testCell={sala.testCell} status={sala.status ? "Running" : sala.causal} statusbool={sala.status} motor={sala.motor} projeto={sala.projeto} teste={sala.teste} eff={sala.eff} paradaAtual={sala.parada_atual} paradaTotal={sala.parada_total} />
+                                <Card testCell={sala.testCell} status={status(sala.causal, sala.status)} status_actual={sala.status} motor={sala.motor} projeto={sala.projeto} teste={sala.teste} eff={sala.eff} paradaAtual={sala.parada_atual} paradaTotal={sala.parada_total} />
                             </div>
                         // Causais.map(causal =>
                         //

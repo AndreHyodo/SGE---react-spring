@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import home from '../../img/icons/home.png';
 import registry from '../../img/icons/registry.png';
 import app from '../../img/icons/app.png';
+import stellantisLogo from '../../img/logoStellantis.png';
 
 
 const HeaderComponent = () => {
@@ -30,7 +31,7 @@ const HeaderComponent = () => {
                 <Navbar color="fadded" light className="w-100">
                     <NavbarToggler onClick={toggleNavbar} className="me-2" />
                     <NavbarBrand href="/" className="me-auto brand">
-                        Stellantis
+                        Efficiency Management System
                     </NavbarBrand>
                     <img src={logo} alt="" className="logo"/>
                     <Collapse isOpen={!collapsed} navbar>
@@ -46,7 +47,7 @@ const HeaderComponent = () => {
                             <StyledNavItem>
                                 <img src={app} alt="" className="logo-icon me-auto"/>
                                 {/*<Link to="/dashboard">Dashboard salas</Link>*/}
-                                <Link to="https://bit.ly/3w1SIEH" className="text-decoration-none text-black p-2">App Tech Dyno</Link>
+                                <Link to="https://bit.ly/3w1SIEH" className="text-decoration-none text-black p-2" target="_blank">App Tech Dyno</Link>
                             </StyledNavItem>
                         </Nav>
                     </Collapse>

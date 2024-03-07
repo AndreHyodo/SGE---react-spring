@@ -68,7 +68,7 @@ public class StatusController {
     }
 
     @PutMapping(path="/update/{id}/{status}")
-    public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @PathVariable Boolean status) {
+    public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @PathVariable int status) {
         Optional<Status> statusData = StatusRepository.findById(id);
 
         if (statusData.isPresent()) {
