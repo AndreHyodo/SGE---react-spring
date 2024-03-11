@@ -5,6 +5,7 @@ import './index.css';
 import Registro from '../../front/src/pages/Registro_Causal/index'
 import reportWebVitals from './reportWebVitals';
 import Home from './pages/Home/index'
+import Detail from './pages/TestCell_Details/index'
 // import {render} from "@testing-library/react";
 
 import {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
          path: "/registro",
          element: <Registro />,
     },
+    {
+        path: "/detail",
+        element: <Detail />,
+    }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

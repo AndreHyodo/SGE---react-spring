@@ -2,13 +2,13 @@ import React, {useState} from 'react'
 import '../../App.css'
 import {Collapse, Nav, Navbar, NavbarBrand, NavbarToggler} from "reactstrap";
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../img/logoAutomAH_3.png';
-import styled from 'styled-components';
 import home from '../../img/icons/home.png';
 import registry from '../../img/icons/registry.png';
 import app from '../../img/icons/app.png';
 import stellantisLogo from '../../img/logoStellantis.png';
+import styled from "styled-components";
 
 
 const HeaderComponent = () => {

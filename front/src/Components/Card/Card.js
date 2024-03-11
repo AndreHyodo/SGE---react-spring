@@ -1,4 +1,4 @@
-// import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import './Card.css'
 import React, {Component} from 'react';
 import {Card, CardBody, CardFooter, CardHeader, CardText, CardTitle, Col, Row} from "reactstrap";
@@ -23,9 +23,13 @@ class MyComponent extends Component {
                                     this.props.eff > 60 ? "display-6 w-auto h-auto fw-bold text-success" :
                                     "display-6 w-auto h-auto fw-bold text-danger";
 
+        const handleClick = (myLink) => () => {
+            window.open(myLink, '_blank');
+        }
+
 
         return (
-            <div className="container">
+            <div className="container" onClick={handleClick('/detail')}>
                 <div>
                     <Card
                         className="my-0"
