@@ -19,7 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 
 @Controller
-@CrossOrigin(origins = { "*" })
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(path="/causais")
 public class RegistroCausaisController {
 

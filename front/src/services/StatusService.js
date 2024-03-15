@@ -9,6 +9,8 @@ const url_base = 'http://localhost:8080'
 
 const Status_Api = '/Status/all';
 const List_Causais = '/causaisList'
+const Registra_causal = '/causais/insertCausal'
+const Last_Causais = '/causais/top3'
 
 
 export const listStatus = () => {
@@ -20,7 +22,10 @@ export const dadosList = (testCell) => {
     return axios.get(url);
 };
 
-
+export const registra = () => {
+    const url = url_base + Registra_causal;
+    return (url);
+}
 
 export function export_causais(SPM){
     const Causais_Api = `/causais/${SPM}`;
@@ -32,5 +37,8 @@ export const list_Causais = () => {
     return axios.get(url_base + List_Causais);
 }
 
+export const last_Causais = (SPM) => {
+    return axios.get(url_base + `causais/top3/${SPM}`);
+}
 
 

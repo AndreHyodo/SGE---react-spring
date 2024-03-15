@@ -1,11 +1,24 @@
 import React, {useState, useEffect, useMemo} from 'react';
-import {list_Causais} from "../../services/StatusService";
-import GetIP from "./getIP";
+import {list_Causais, registra, last_Causais} from "../../services/StatusService";
+import {Button} from "reactstrap";
+import {position, useDisclosure} from "@chakra-ui/react";
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+} from '@chakra-ui/react'
 import axios from "axios";
 
 
 const App = () => {
     const [data, setData] = useState([]);
+    const [lastCausais, setLast] = useState([]);
+    const [dropdown, setDropdown] = useState("");
+
 
     useEffect(() => {
         list_Causais().then((response) => {
@@ -14,6 +27,14 @@ const App = () => {
             console.log(error);
         })
     }, [data])
+
+    useEffect(() => {
+        last_Causais().then((response) => {
+            setLast(response.data);
+        }).catch(error => {
+            console.log(error);
+        })
+    }, [lastCausais])
 
 
     const handleToggleButtonClick = (event) => {
@@ -86,6 +107,7 @@ const App = () => {
 
     }
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Submitting form');
@@ -98,48 +120,80 @@ const App = () => {
 
 
         // Corrected: Access form data using event.target.elements
-        const formData = new FormData(e.target);
+        const formElement = document.getElementById('formElementId'); // Substitua 'formElementId' pelo ID do seu formulário
+        const formData = new FormData(formElement);
+
+
         const date = Date.now();
         const hora_inicio = `${hora}:${minuto}:${segundos}`;
-        const testCell = formData.get('TestCell');
+        const testCell = formData.get('testCell');
         const code = formData.get('Code');
         const causal = formData.get('causal');
         const obs = formData.get('obs');
 
-        // const article = { testCell: testCell, Code: code, causal: causal, hora_inicio: hora_inicio, data: date, obs: obs };
-        // const headers = {
-        //     'Authorization': 'Bearer my-token',
-        //     'My-Custom-Header': 'foobar',
-        //     mode:"no-cors"
-        // };
-        // axios.post('http://172.28.251.102:8080/causais/insertCausal', article, { headers })
-        //     .then(response => this.setState({ articleId: response.data.id }));
-        //
 
-        // try {
-        //     const response = await fetch('http://172.28.251.102:8080/causais/insertCausal', {
-        //         method: 'POST',
-        //         // body: JSON.stringify({ testCell, code, causal, hora_inicio, data, obs}),
-        //         body: JSON.stringify({ testCell, code, causal, obs}),
-        //         headers: { 'Content-Type': 'application/json' },
-        //         mode:"no-cors"
-        //     });
-        //
-        //     if (!response.ok) {
-        //         throw new Error(`Error submitting form: ${response.status}`);
-        //     }
-        //
-        //     console.log('Form submitted successfully.');
-        // } catch (error) {
-        //     console.error('Error submitting form:', error);
-        // }
+        const objCausal = {
+            testCell: testCell,
+            code: code,
+            causal: causal,
+            obs: obs
+        };
+
+        console.log(JSON.stringify(objCausal));
+
+        fetch(registra(), {
+            method: 'POST',
+            mode: "cors",
+            body: JSON.stringify(objCausal),
+            // headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json;charset=UTF-8'
+            }
+
+        })
+            .then(retorno => {
+                alert("Registrado com sucesso \n\n" + testCell + "\n" + code + "\n" + causal + "\n" + obs);
+                window.location.reload();
+                retorno.json()
+            })
+            .catch(retorno_convertido => {
+                alert(retorno_convertido + "\n" + JSON.stringify(objCausal));
+                console.log(retorno_convertido);
+            });
     };
+
+    const OverlayOne = () => (
+        <ModalOverlay
+            bg='blackAlpha.300'
+            backdropFilter='blur(10px) hue-rotate(90deg)'
+        />
+    )
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [overlay, setOverlay] = useState(<OverlayOne />)
+
+    const [selectedOption, setSelectedOption] = useState('Select');
+
+    const handleOpenModal = () => {
+        onOpen();
+    };
+
+    const handleSelectOption = (option) => {
+        setSelectedOption(option);
+    };
+
+    const handleCloseModal = () => {
+        onClose();
+    };
+
+
 
 
     return (
         <div id="data-container">
             <div className="w-100 m-3 text-center w-50">
-                <input className="w-25 text-center" type="text" id="busca" placeholder="Pesquise o Causal..." onChange={handleSearchChange}/>
+                <input className="w-25 text-center border-black border-1" type="text" id="busca" placeholder="Pesquise o Causal aqui..." onChange={handleSearchChange}/>
                 {filteredData.length > 0 && (
                     <div className="w-100 text-center">
                         {filteredData.map((item,index) => (
@@ -188,53 +242,120 @@ const App = () => {
                     </div>
                 </div>
             ))}
-            <form action="" method="post" className="form" onSubmit={handleSubmit}>
+            <div>
+
+            </div>
+            <form action="/causais/insertCausal" method="POST" className="form" id="formElementId" onSubmit={handleSubmit}>
                 <div className="form-input">
                     <div className="row">
-                        <div className="col-md-3">
-                            <div className="row" id="texts">
+                        <div className="col-md-2 ">
+                            <div className="row text-light" id="texts">
                                 <label htmlFor="TestCell">TestCell:</label>
                             </div>
-                            <div className="row" id="inputs">
-                                <input type="text" name="TestCell" id="TestCell" value={GetIP()}/>
+                            <div className="row d-flex text-center" id="inputs" >
+                                <div className="w-100 d-flex">
+                                    <Button
+                                        onClick={() => {
+                                            setOverlay(<OverlayOne />)
+                                            onOpen()
+                                        }}
+                                        className="h-auto mx-2 text-center w-75"
+                                        // name="testCell"
+                                        value="Select"
+                                    >
+                                        {selectedOption}
+
+                                    </Button>
+                                    <input hidden={true} type="text" name="testCell" onChange={handleSubmit} value={selectedOption}/>
+                                </div>
+
+                                {/*<input type="text" name="TestCell" id="TestCell" value={GetIP()}/>*/}
                             </div>
                         </div>
-                        <div className="col-md-1">
-                            <div className="row" id="texts">
+                        <div className="col-md-2">
+                            <div className="row text-light" id="texts">
                                 <label htmlFor="Code">Código:</label>
                             </div>
                             <div className="row" id="inputs">
-                                <input type="text" name="Code" id="Code"/>
+                                <input type="text" onChange={handleSubmit} name="Code" id="Code" />
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <div className="row" id="texts">
+                            <div className="row text-light" id="texts">
                                 <label htmlFor="causal">Causal:</label>
                             </div>
                             <div className="row" id="inputs">
-                                <input type="text" name="causal" id="causal" />
+                                <input type="text"  name="causal" onChange={handleSubmit} id="causal" />
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <div className="row" id="texts">
+                            <div className="row text-light" id="texts">
                                 <label htmlFor="obs">Obs:</label>
                             </div>
                             <div className="row" id="inputs">
-                                <textarea name="obs" id="obs" cols="30" rows="2" className="obs"></textarea>
+                                <textarea onChange={handleSubmit} name="obs" id="obs" cols="30" rows="2" className="obs"></textarea>
                             </div>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-12">
-                            <div className="row" id="texts">
-                                {/*<input type="submit" value="Enviar dados" onClick="alterLocalStorage(document.getElementById('TestCell').value, document.getElementById('causal').value)"/>*/}
-                                <input type="submit" value="Enviar dados"/>
+                        {/*<div className="col-md-12 botao-enviar">*/}
+                        {/*    <div className="row" id="texts">*/}
+                        {/*        /!*<input type="submit" value="Enviar dados" onClick="alterLocalStorage(document.getElementById('TestCell').value, document.getElementById('causal').value)"/>*!/*/}
+                        {/*        <input type="submit" value="Enviar dados"/>*/}
 
-                            </div>
-                        </div>
+                        {/*    </div>*/}
+                        {/*</div>*/}
+                        <Button
+                            mt={4}
+                            type='submit'
+                            className="col-md-12 botao-enviar"
+                            onClick={handleSubmit}
+                        >
+                            Submit
+                        </Button>
                     </div>
                 </div>
             </form>
+            <div className="lastCauais">
+
+            </div>
+            <Modal isCentered isOpen={isOpen} onClose={onClose}>
+                {overlay}
+                <ModalContent>
+                    <ModalHeader>Select TestCell</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <div>
+                            <h3>Dev</h3>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A01'); handleCloseModal() }}>A01</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A02'); handleCloseModal() }}>A02</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A03'); handleCloseModal() }}>A03</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A04'); handleCloseModal() }}>A04</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A05'); handleCloseModal() }}>A05</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A10'); handleCloseModal() }}>A10</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A11'); handleCloseModal() }}>A11</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A12'); handleCloseModal() }}>A12</Button>
+                        </div>
+                        <div>
+                            <h3>Durability</h3>
+                            <Button className='m-2' onClick={() => { handleSelectOption('B01'); handleCloseModal() }}>B01</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('B02'); handleCloseModal() }}>B02</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('B03'); handleCloseModal() }}>B03</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('B04'); handleCloseModal() }}>B04</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('B05'); handleCloseModal() }}>B05</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('B06'); handleCloseModal() }}>B06</Button>
+                        </div>
+                        <div>
+                            <h3>StartCart</h3>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A06'); handleCloseModal() }}>A06</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A07'); handleCloseModal() }}>A07</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A08'); handleCloseModal() }}>A08</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A09'); handleCloseModal() }}>A09</Button>
+                        </div>
+
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
         </div>
     );
 };

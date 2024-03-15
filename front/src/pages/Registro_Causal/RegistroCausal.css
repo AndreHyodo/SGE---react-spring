@@ -11,6 +11,7 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    height: 14%;
 }
 
 #card-causal{
@@ -18,19 +19,36 @@
 }
 
 .form-input{
-    width: 70%;
+    width: 60%;
     text-align: center;
     background-color: #24405d;
     border-radius: 5px;
     padding-inline: 10px;
     padding-bottom: 5px;
-    color: white;
+    color: black;
 }
 
 #inputs{
     margin: 2px;
-    height: 0%;
+    height: 1vh;
 }
 #texts{
     margin: 2px;
 }
+
+.botao-enviar{
+    position: absolute;
+    bottom: 4%;
+    width: 56% !important;
+    margin-left: 2%;
+    height: 4vh;
+    text-align: center !important;
+    background-color: #DBB900 !important;
+    font-weight: bold !important;
+    color: black !important;
+}
+
+.show{
+    display: block !important;
+}
+
