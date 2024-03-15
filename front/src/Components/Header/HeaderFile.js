@@ -35,16 +35,16 @@ const HeaderComponent = () => {
                     </NavbarBrand>
                     <img src={logo} alt="" className="logo"/>
                     <Collapse isOpen={!collapsed} navbar>
-                        <Nav navbar className="" id="menu">
-                            <StyledNavItem className="navi-tem">
+                        <Nav navbar className="menu-select" id="menu">
+                            <StyledNavItem className="navi-tem d-flex ">
                                 <img src={home} alt="" className="logo-icon me-auto"/>
-                                <a href="/" className="me-auto text-decoration-none text-black p-2">Home</a>
+                                <a href="/" className="me-auto text-decoration-none text-black p-2 text-start">Home</a>
                             </StyledNavItem>
-                            <StyledNavItem className="navi-tem">
+                            <StyledNavItem className="navi-tem d-flex">
                                 <img src={registry} alt="" className="logo-icon me-auto"/>
                                 <Link to="/registro" className="text-decoration-none text-black p-2">Registro Causal</Link>
                             </StyledNavItem>
-                            <StyledNavItem>
+                            <StyledNavItem className="d-flex">
                                 <img src={app} alt="" className="logo-icon me-auto"/>
                                 {/*<Link to="/dashboard">Dashboard salas</Link>*/}
                                 <Link to="https://bit.ly/3w1SIEH" className="text-decoration-none text-black p-2" target="_blank">App Tech Dyno</Link>

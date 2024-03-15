@@ -9,7 +9,7 @@ import sge.sgeback.repository.CausaisRepository;
 
 
 @Controller
-@CrossOrigin(origins = { "*" })
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(path="/causaisList")
 public class CausaisController {
 

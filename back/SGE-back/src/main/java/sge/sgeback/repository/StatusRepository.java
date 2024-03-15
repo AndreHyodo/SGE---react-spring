@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface StatusRepository extends CrudRepository<Status, Integer> {
     Iterable<Status> findByIdBetween(int id, int id2);
+    Status findStatusByTestCell(String testCell);
 
 //    List<String> findAllTestCell();
 //    Status findByNameAndPassword(String name, String password);

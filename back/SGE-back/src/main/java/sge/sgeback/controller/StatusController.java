@@ -19,7 +19,7 @@ import sge.sgeback.repository.StatusRepository;
 
 
 @Controller
-@CrossOrigin(origins = { "*" })
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(path="/Status")
 public class StatusController {
 
@@ -51,6 +51,11 @@ public class StatusController {
     @GetMapping(path="/{id}")
     public @ResponseBody Optional<Status> getStatus(@PathVariable Integer id) {
         return StatusRepository.findById(id);
+    }
+
+    @GetMapping(path="/get/{testCell}")
+    public @ResponseBody Status getStatusTestCell(@PathVariable String testCell){
+        return StatusRepository.findStatusByTestCell(testCell);
     }
 
     @PutMapping(path="/update/{id}")

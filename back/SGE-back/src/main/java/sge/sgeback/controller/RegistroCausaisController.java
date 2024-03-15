@@ -13,6 +13,7 @@ import sge.sgeback.repository.StatusRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -64,13 +65,32 @@ public class RegistroCausaisController {
     }
 
     @GetMapping(path="/top3/{name}")
-    public @ResponseBody Iterable<Registro_Causal> getLastCausalTestCell(@PathVariable String name) {
+    public @ResponseBody Iterable<Registro_Causal> getLast3CausalTestCell(@PathVariable String name) {
         return CausaisRepository.findTop3ByTestCellOrderByIdDesc(name);
     }
 
+    @GetMapping(path="/last/{name}")
+    public @ResponseBody Registro_Causal getLastCausalTestCell(@PathVariable String name) {
+        return CausaisRepository.findTopByTestCellOrderByIdDesc(name);
+    }
+
+
 //    @PutMapping(path="/update/{id}")
-//    public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @RequestBody Status status) {
+//    public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @RequestBody Status statusatual) {
 //        Optional<Status> statusData = StatusRepository.findById(id);
+//
+//        if (statusData.isPresent()) {
+//            Status _status = statusData.get();
+//            _status.setSala(status.getSala());
+//            _status.setStatus(status.getStatus());
+//            return new ResponseEntity<>(StatusRepository.save(_status), HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+
+//    @PutMapping(path="/updateHour/{id}")
+//    public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @RequestBody Status status) {
 //
 //        if (statusData.isPresent()) {
 //            Status _status = statusData.get();
@@ -84,6 +104,10 @@ public class RegistroCausaisController {
 
     @PostMapping(path="/insertCausal")
     public ResponseEntity<Registro_Causal> createStatus(@RequestBody Registro_Causal registroCausal) {
+
+        Registro_Causal lastCausal = CausaisRepository.findTopByTestCellOrderByIdDesc(registroCausal.getTestCell());
+
+
         Registro_Causal newRegistro = CausaisRepository.save(registroCausal);
         return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
     }

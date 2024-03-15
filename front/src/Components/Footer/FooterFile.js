@@ -6,7 +6,7 @@ const FooterComponent = () => {
     return(
         <div>
             <footer className="footer display-8">
-                <span>All rights reserved 2023 by André Hyodo</span>
+                <span>All rights reserved 2023 by Testing & Analysis</span>
             </footer>
         </div>
     )

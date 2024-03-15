@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useMemo} from 'react';
-import {list_Causais, registra, last_Causais} from "../../services/StatusService";
+import {list_Causais, registra, last_Causais, getStatusTestCell} from "../../services/StatusService";
 import {Button} from "reactstrap";
 import {position, useDisclosure} from "@chakra-ui/react";
 import {
@@ -16,7 +16,6 @@ import axios from "axios";
 
 const App = () => {
     const [data, setData] = useState([]);
-    const [lastCausais, setLast] = useState([]);
     const [dropdown, setDropdown] = useState("");
 
 
@@ -28,14 +27,24 @@ const App = () => {
         })
     }, [data])
 
-    useEffect(() => {
-        last_Causais().then((response) => {
-            setLast(response.data);
-        }).catch(error => {
-            console.log(error);
-        })
-    }, [lastCausais])
+    const [lastCausais, setLast] = useState([]);
+    const [selectedTestCell, setSelectedTestCell] = useState('');
 
+    const handleButtonClick = (newTestCell) => {
+        setSelectedTestCell(newTestCell);
+    };
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await fetch(last_Causais(selectedTestCell));
+                const data = await response.json();
+                setLast(data);
+            } catch (error) {
+                console.error(error);
+            }
+        })();
+    }, [selectedTestCell]);
 
     const handleToggleButtonClick = (event) => {
         if (event.target.matches('.toggle-data-btn')) {
@@ -139,34 +148,55 @@ const App = () => {
             obs: obs
         };
 
-        console.log(JSON.stringify(objCausal));
+        console.log(testCell + " -- " + code + " -- " + causal);
 
-        fetch(registra(), {
-            method: 'POST',
-            mode: "cors",
-            body: JSON.stringify(objCausal),
-            // headers: { 'Content-Type': 'application/json' },
-            headers: {
-                'Accept': 'application/json, text/plain',
-                'Content-Type': 'application/json;charset=UTF-8'
+        if(testCell!=="Select" && testCell!=="" && code!=="" && causal!==""){
+            const response = await fetch(getStatusTestCell(testCell));
+            const statusSala = await response.json();
+
+            console.log(objCausal.testCell + " -- " + objCausal.code + " -- " + objCausal.causal);
+
+            if(statusSala.status===0){
+                fetch(registra(), {
+                    method: 'POST',
+                    mode: "cors",
+                    body: JSON.stringify(objCausal),
+                    // headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Accept': 'application/json, text/plain',
+                        'Content-Type': 'application/json;charset=UTF-8'
+                    }
+
+                })
+                    .then(retorno => {
+                        alert("Registrado com sucesso \n\n" + testCell + "\n" + code + "\n" + causal + "\n" + obs);
+                        document.getElementById('causal').value = ""
+                        document.getElementById('Code').value = ""
+                        document.getElementById('obs').value = ""
+                        window.location.reload();
+                        retorno.json()
+                    })
+                    .catch(retorno_convertido => {
+                        alert(retorno_convertido + "\n" + JSON.stringify(objCausal));
+                        console.log(retorno_convertido);
+                    });
+            }else{
+                alert("Sala em FUNCIONAMENTO, NÃO foi possível Registrar!!!");
             }
+        }else{
+            alert("ERROR!!!! \n\n Dados Faltantes, favor conferir");
+        }
 
-        })
-            .then(retorno => {
-                alert("Registrado com sucesso \n\n" + testCell + "\n" + code + "\n" + causal + "\n" + obs);
-                window.location.reload();
-                retorno.json()
-            })
-            .catch(retorno_convertido => {
-                alert(retorno_convertido + "\n" + JSON.stringify(objCausal));
-                console.log(retorno_convertido);
-            });
+
+
     };
 
     const OverlayOne = () => (
         <ModalOverlay
-            bg='blackAlpha.300'
-            backdropFilter='blur(10px) hue-rotate(90deg)'
+            bg='none'
+            backdropFilter='auto'
+            backdropInvert='80%'
+            backdropBlur='2px'
         />
     )
 
@@ -242,10 +272,21 @@ const App = () => {
                     </div>
                 </div>
             ))}
-            <div>
-
+            <div className="lastCauais" >
+                {lastCausais.map((item) => (
+                    <Button
+                        key={item.id}
+                        className="LastCausais"
+                        onClick={() => {
+                            document.getElementById('causal').value = item.causal;
+                            document.getElementById('Code').value = item.code;
+                        }}
+                    >
+                        {item.code + " : " + item.causal}
+                    </Button>
+                ))}
             </div>
-            <form action="/causais/insertCausal" method="POST" className="form" id="formElementId" onSubmit={handleSubmit}>
+            <form action="/causais/insertCausal" method="POST" className="form" id="formElementId"  onSubmit={handleSubmit}>
                 <div className="form-input">
                     <div className="row">
                         <div className="col-md-2 ">
@@ -267,6 +308,7 @@ const App = () => {
 
                                     </Button>
                                     <input hidden={true} type="text" name="testCell" onChange={handleSubmit} value={selectedOption}/>
+                                    <input hidden={true} type="text" name="tcList" onChange={handleButtonClick} value={selectedOption}/>
                                 </div>
 
                                 {/*<input type="text" name="TestCell" id="TestCell" value={GetIP()}/>*/}
@@ -316,9 +358,6 @@ const App = () => {
                     </div>
                 </div>
             </form>
-            <div className="lastCauais">
-
-            </div>
             <Modal isCentered isOpen={isOpen} onClose={onClose}>
                 {overlay}
                 <ModalContent>
@@ -327,30 +366,30 @@ const App = () => {
                     <ModalBody>
                         <div>
                             <h3>Dev</h3>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A01'); handleCloseModal() }}>A01</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A02'); handleCloseModal() }}>A02</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A03'); handleCloseModal() }}>A03</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A04'); handleCloseModal() }}>A04</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A05'); handleCloseModal() }}>A05</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A10'); handleCloseModal() }}>A10</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A11'); handleCloseModal() }}>A11</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A12'); handleCloseModal() }}>A12</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A01'); handleCloseModal(); handleButtonClick('A01')}}>A01</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A02'); handleCloseModal(); handleButtonClick('A02') }}>A02</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A03'); handleCloseModal(); handleButtonClick('A03') }}>A03</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A04'); handleCloseModal(); handleButtonClick('A04') }}>A04</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A05'); handleCloseModal(); handleButtonClick('A05') }}>A05</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A10'); handleCloseModal(); handleButtonClick('A10') }}>A10</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A11'); handleCloseModal(); handleButtonClick('A11') }}>A11</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A12'); handleCloseModal(); handleButtonClick('A12') }}>A12</Button>
                         </div>
                         <div>
                             <h3>Durability</h3>
-                            <Button className='m-2' onClick={() => { handleSelectOption('B01'); handleCloseModal() }}>B01</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('B02'); handleCloseModal() }}>B02</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('B03'); handleCloseModal() }}>B03</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('B04'); handleCloseModal() }}>B04</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('B05'); handleCloseModal() }}>B05</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('B06'); handleCloseModal() }}>B06</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('B01'); handleCloseModal(); handleButtonClick('B01') }}>B01</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('B02'); handleCloseModal(); handleButtonClick('B02') }}>B02</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('B03'); handleCloseModal(); handleButtonClick('B03') }}>B03</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('B04'); handleCloseModal(); handleButtonClick('B04') }}>B04</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('B05'); handleCloseModal(); handleButtonClick('B05') }}>B05</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('B06'); handleCloseModal(); handleButtonClick('B06') }}>B06</Button>
                         </div>
                         <div>
                             <h3>StartCart</h3>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A06'); handleCloseModal() }}>A06</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A07'); handleCloseModal() }}>A07</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A08'); handleCloseModal() }}>A08</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A09'); handleCloseModal() }}>A09</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A06'); handleCloseModal(); handleButtonClick('A06') }}>A06</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A07'); handleCloseModal(); handleButtonClick('A07') }}>A07</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A08'); handleCloseModal(); handleButtonClick('A08') }}>A08</Button>
+                            <Button className='m-2' onClick={() => { handleSelectOption('A09'); handleCloseModal(); handleButtonClick('A09') }}>A09</Button>
                         </div>
 
                     </ModalBody>

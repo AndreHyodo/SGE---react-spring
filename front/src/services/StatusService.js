@@ -1,10 +1,11 @@
 import axios from "axios";
 // import {SPM} from "../pages/StatusSalas_MOTORES";
 
-// const url_base = 'http://172.28.251.102:8080' //Ip Pc NEW-CENTRAL
+// const url_base = 'http://172.28.236.145:8080' //Ip rede fiat
 // const url_base = 'http://192.168.15.6:8080' //Ip home-office
 
-const url_base = 'http://localhost:8080'
+// const url_base = 'http://localhost:8080'
+const url_base = 'http://172.28.124.61:8080' //Rede oficial
 
 
 const Status_Api = '/Status/all';
@@ -38,7 +39,11 @@ export const list_Causais = () => {
 }
 
 export const last_Causais = (SPM) => {
-    return axios.get(url_base + `causais/top3/${SPM}`);
+    return (url_base + `/causais/top3/${SPM}`);
 }
 
+export const getStatusTestCell = (SPM) => {
+    const Status_api = `/Status/get/${SPM}`;
+    return (url_base + Status_api);
+}
 
