@@ -145,6 +145,8 @@ const App = () => {
             testCell: testCell,
             code: code,
             causal: causal,
+            hora_inicio: hora_inicio,
+            data:date,
             obs: obs
         };
 

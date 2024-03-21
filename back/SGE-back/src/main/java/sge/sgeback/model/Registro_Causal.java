@@ -6,9 +6,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.cglib.core.Local;
+import org.springframework.scheduling.support.SimpleTriggerContext;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalTime;
 
 @Entity
 @Table(name= "\"registro_causal\"")
@@ -21,13 +24,13 @@ public class Registro_Causal {
     private Float Code;
     private String causal;
     private Time hora_inicio;
-    private Time hora_final;
+    private LocalTime hora_final;
     private Date data;
     private String obs;
 
     public Registro_Causal(){}
 
-    public Registro_Causal(int id, String testCell, Float code, String causal, Time hora_inicio, Time hora_final, Date data, String obs) {
+    public Registro_Causal(int id, String testCell, Float code, String causal, Time hora_inicio, LocalTime hora_final, Date data, String obs) {
         this.id = id;
         this.testCell = testCell;
         Code = code;
@@ -78,11 +81,11 @@ public class Registro_Causal {
         this.hora_inicio = hora_inicio;
     }
 
-    public Time getHora_final() {
+    public LocalTime getHora_final() {
         return hora_final;
     }
 
-    public void setHora_final(Time hora_final) {
+    public void setHora_final(LocalTime hora_final) {
         this.hora_final = hora_final;
     }
 
