@@ -12,6 +12,14 @@ import sge.sgeback.repository.RegistroCausaisRepository;
 import sge.sgeback.repository.StatusRepository;
 
 import java.util.*;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -73,32 +81,7 @@ public class RegistroCausaisController {
     }
 
 
-//    @PutMapping(path="/update/{id}")
-//    public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @RequestBody Status statusatual) {
-//        Optional<Status> statusData = StatusRepository.findById(id);
-//
-//        if (statusData.isPresent()) {
-//            Status _status = statusData.get();
-//            _status.setSala(status.getSala());
-//            _status.setStatus(status.getStatus());
-//            return new ResponseEntity<>(StatusRepository.save(_status), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
 
-//    @PutMapping(path="/updateHour/{id}")
-//    public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @RequestBody Status status) {
-//
-//        if (statusData.isPresent()) {
-//            Status _status = statusData.get();
-//            _status.setSala(status.getSala());
-//            _status.setStatus(status.getStatus());
-//            return new ResponseEntity<>(StatusRepository.save(_status), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
 
     @PostMapping(path="/insertCausal")
     public ResponseEntity<Registro_Causal> createStatus(@RequestBody Registro_Causal registroCausal) {
@@ -106,42 +89,33 @@ public class RegistroCausaisController {
         Registro_Causal lastCausal = CausaisRepository.findTopByTestCellOrderByIdDesc(registroCausal.getTestCell());
 
 
+        LocalTime hora_atual = LocalTime.now();
+
+        LocalTime zero = LocalTime.parse("00:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+        if(lastCausal.getHora_final()==null || lastCausal.getHora_final()==zero){
+            lastCausal.setHora_final(hora_atual);
+        }
+
+
         Registro_Causal newRegistro = CausaisRepository.save(registroCausal);
         return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
     }
 
-//    @RequestMapping(method = POST)
-//    public String processForm(Registro_Causal causal, Model model) {
-//
-//        model.addAttribute("firstname", causal.getCausal());
-//        model.addAttribute("lastname", causal.getCode());
-//
-//
-//
-//    }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<String> deleteSala(@PathVariable Integer id) {
-//        if (StatusRepository.existsById(id)) {
-//            StatusRepository.deleteById(id);
-//            return ResponseEntity.ok("Sala com ID " + id + " excluída com sucesso.");
-//        } else {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sala com ID " + id + " não encontrada.");
-//        }
-//    }
-@GetMapping(path="/count/{name}")
-public ResponseEntity<Map<String, Long>> findCausalCount(@PathVariable String name) {
-    List<Object[]> results = CausaisRepository.findCausalCountByTestCell(name);
+    @GetMapping(path="/count/{name}")
+    public ResponseEntity<Map<String, Long>> findCausalCount(@PathVariable String name) {
+        List<Object[]> results = CausaisRepository.findCausalCountByTestCell(name);
 
-    Map<String, Long> causalCounts = new HashMap<>();
-    for (Object[] result : results) {
-        String causal = (String) result[1];
-        Long contagem = (Long) result[0];
-        causalCounts.put(causal, contagem);
+        Map<String, Long> causalCounts = new HashMap<>();
+        for (Object[] result : results) {
+            String causal = (String) result[1];
+            Long contagem = (Long) result[0];
+            causalCounts.put(causal, contagem);
+        }
+
+        return ResponseEntity.ok(causalCounts);
     }
-
-    return ResponseEntity.ok(causalCounts);
-}
 
 }
 

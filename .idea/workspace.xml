@@ -67,7 +67,7 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;21.3.0&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.11.5&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/SC22381/Desktop/NEW SGE/SGE - react + spring/front/src/pages/Registro_Causal&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SC22381/Desktop/Hyodo/PUC/3º Período/TIS 3/pmg-es-2024-1-ti3-9577100-petshop-do-chicao&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -107,7 +107,10 @@
       <recent name="sge.sgeback.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.index.js">
+  <component name="RunManager" selected="HTTP Request.All in generated-requests">
+    <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
+      <method v="2" />
+    </configuration>
     <configuration name="Automation.BDaq.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/../NEW_SGE/src/Automation.BDaq.jar!/" />
       <method v="2" />
@@ -125,6 +128,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.All in generated-requests" />
         <item itemvalue="Node.js.index.js" />
         <item itemvalue="JAR Application.Automation.BDaq.jar" />
       </list>
@@ -188,7 +192,9 @@
       <workItem from="1710272786787" duration="2418000" />
       <workItem from="1710331149315" duration="7469000" />
       <workItem from="1710418658868" duration="21242000" />
-      <workItem from="1710456534792" duration="19968000" />
+      <workItem from="1710456534792" duration="20933000" />
+      <workItem from="1710709509764" duration="4927000" />
+      <workItem from="1711019224977" duration="16393000" />
     </task>
     <servers />
   </component>
