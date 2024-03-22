@@ -1,0 +1,119 @@
+[33mcommit 99bfe443be0bc8749b8b7b383865348f5d392bdd[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Fri Mar 15 16:47:50 2024 -0300
+
+    [Dev] Retirada PowerBi.
+
+[33mcommit c6bdeec452ff49320fd49d8198f4fedd4dacc528[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Fri Mar 15 16:42:05 2024 -0300
+
+    [Dev]Atualização inserir Causal.
+
+[33mcommit 5ee5d8794f401eace58e6f32607dbe14a63fbcdb[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Thu Mar 14 21:24:56 2024 -0300
+
+    [Dev]Implementação de tela de registro de causais.
+
+[33mcommit 55d20c5f6e9cd4007582a9672407949bfa293ca6[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Mon Mar 11 19:33:02 2024 -0300
+
+    [Dev]Inclusão de onClick nos cards e início de ligação com PowerBI.
+
+[33mcommit b41a126f17375ee39796c83697379cd8ae8c3e90[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Fri Mar 8 15:59:44 2024 -0300
+
+    [Dev] Atualização.
+
+[33mcommit 43e6d75b3f79e809164c6a6a707cd57e77057d1a[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Thu Mar 7 15:15:17 2024 -0300
+
+    [Dev] Atualizações de cores e setup build inicial.
+
+[33mcommit 3653bdd25731719e3f92a72ed0f2a1debaffe960[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Fri Mar 1 15:53:53 2024 -0300
+
+    [Dev] Ajustes para implementação de tela de registro de causal.
+
+[33mcommit 6add0bf6d5fbee397bdb76adca13749857ef3fac[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Fri Mar 1 15:22:02 2024 -0300
+
+    [Dev] Ajustes para implementação de tela de registro de causal.
+
+[33mcommit c1acf04123b9c90d4ffea54e4967a55245266127[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Thu Feb 29 19:29:06 2024 -0300
+
+    [Dev] Inclusão de timers de Eficiência e tempo de parada + estiilização.
+
+[33mcommit 05b348f1739411bc55217c3728219a61d7183ae5[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Wed Feb 28 18:01:14 2024 -0300
+
+    [Dev]Implementação de dados de prova e navbar.
+
+[33mcommit 50b835b454e62e6396dc5f9840c627f289e1f7ec[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Tue Feb 27 17:59:09 2024 -0300
+
+    [Dev]Ajuste do checkbox e autocomplete do forms.
+
+[33mcommit fe34cd05b1bf1b362e6699a6682831cd8e1199ca[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Mon Feb 26 17:57:11 2024 -0300
+
+    [Dev]Ajustes da barra de preenchimento causal.
+
+[33mcommit 3e267f2af8c1eaf989db67cbb2c0ae1a694da432[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Fri Feb 23 17:38:51 2024 -0300
+
+    [Dev]Criação search bar e ajuste lista de causais.
+
+[33mcommit 9bcbf39732160d7aae02bf9df5526b94b1914ccb[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Thu Feb 22 17:42:09 2024 -0300
+
+    [Dev] Correção de nomes de causais não aparencendo na tela.
+
+[33mcommit f511c042a41393726c4e5f9622b39c87d9058411[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Thu Feb 22 11:09:58 2024 -0300
+
+    [Dev]Atualização backend para obter dados de motor, projeto e teste.
+
+[33mcommit 0793173ea7e6a5beae4c62008df8ed4d7455b673[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Wed Feb 21 20:46:40 2024 -0300
+
+    [Dev]Atualizações 21/02/2024.
+
+[33mcommit f10dd19a3ae157a1226d10cf66991e81facccef3[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Wed Feb 21 15:41:38 2024 -0300
+
+    [Dev]Recuperação total código -> style recuperado.
+
+[33mcommit 8ab64cc2308e32a270bb5535d94ee433f05a76e8[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Wed Feb 21 11:28:32 2024 -0300
+
+    [Dev]Recuperação código quebrado.
+
+[33mcommit 882eaf046c841ad5005c5ff04596974aef7dd9d3[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Thu Jan 25 17:34:05 2024 -0300
+
+    [Dev] Primeiro commit
+
+[33mcommit 7ec973986e8794bdd14abd0e0c7b19f9583060a8[m
+Author: Andre Hyodo <dehyodo@gmail.com>
+Date:   Thu Jan 25 15:50:20 2024 -0300
+
+    Do not touch eol

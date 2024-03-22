@@ -11,9 +11,7 @@ import sge.sgeback.model.Status;
 import sge.sgeback.repository.RegistroCausaisRepository;
 import sge.sgeback.repository.StatusRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.StreamSupport;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -131,6 +129,19 @@ public class RegistroCausaisController {
 //            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sala com ID " + id + " não encontrada.");
 //        }
 //    }
+@GetMapping(path="/count/{name}")
+public ResponseEntity<Map<String, Long>> findCausalCount(@PathVariable String name) {
+    List<Object[]> results = CausaisRepository.findCausalCountByTestCell(name);
+
+    Map<String, Long> causalCounts = new HashMap<>();
+    for (Object[] result : results) {
+        String causal = (String) result[1];
+        Long contagem = (Long) result[0];
+        causalCounts.put(causal, contagem);
+    }
+
+    return ResponseEntity.ok(causalCounts);
+}
 
 }
 
