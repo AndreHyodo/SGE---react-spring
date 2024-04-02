@@ -24,12 +24,13 @@ class MyComponent extends Component {
                                     "display-6 w-auto h-auto fw-bold text-danger";
 
         const handleClick = (myLink) => () => {
-            window.open(myLink, '_blank');
+            // window.open(myLink, '_blank'); //Abre em outra aba do navegador
+            window.location.href = myLink;
         }
 
 
         return (
-            <div className="container" onClick={handleClick('/detail')}>
+            <div className="container" onClick={handleClick(`/detail/${this.props.testCell}`, this.props.testCell)}>
                 <div>
                     <Card
                         className="my-0"

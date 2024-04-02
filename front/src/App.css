@@ -93,6 +93,18 @@ footer {
     color: black;
     font-family: "Inter Semi Bold";
     font-size: large;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer span:first-child {
+    text-align: center;
+    margin-left: 2%;
+}
+
+.footer span:last-child {
+    text-align: right;
+    margin-right: 2%;
 }
 
 .menu-select{

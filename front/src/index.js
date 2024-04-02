@@ -28,7 +28,7 @@ const router = createBrowserRouter([
          element: <Registro />,
     },
     {
-        path: "/detail",
+        path: "/detail/:testCell",
         element: <Detail />,
     }
 ]);

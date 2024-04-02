@@ -1,10 +1,11 @@
 import axios from "axios";
 // import {SPM} from "../pages/StatusSalas_MOTORES";
 
-// const url_base = 'http://172.28.236.145:8080' //Ip rede fiat
-// const url_base = 'http://192.168.15.6:8080' //Ip home-office
+// const url_base = 'http://192.168.15.5:8080' //Ip home-office
 
 // const url_base = 'http://localhost:8080'
+
+// const url_base = 'http://172.28.249.86:8080' //Rede teste Fábrica PC André
 const url_base = 'http://172.28.124.61:8080' //Rede oficial
 
 
@@ -47,3 +48,18 @@ export const getStatusTestCell = (SPM) => {
     return (url_base + Status_api);
 }
 
+export function causais_mes(SPM){
+    return axios.get(url_base + `/causais/count/${SPM}`);
+}
+
+export function eff_hist_turno(SPM,turno){
+    return axios.get(url_base + `/dadosEff/top10/${turno}/${SPM}`);
+}
+
+export function causais_date(SPM,date){
+    return axios.get(url_base + `/causais/count/${SPM}/${date}`);
+}
+
+export function causaisHour_date(SPM,date){
+    return axios.get(url_base + `/causais/countHour/${SPM}/${date}`);
+}

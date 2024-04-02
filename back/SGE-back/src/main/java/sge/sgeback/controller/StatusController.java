@@ -24,49 +24,49 @@ import sge.sgeback.repository.StatusRepository;
 public class StatusController {
 
     @Autowired
-    private StatusRepository StatusRepository;
+    public StatusRepository statusRepository;
 
     @GetMapping
     public @ResponseBody Iterable<Status> getAllStatus() {
         // This returns a JSON or XML with the users
-        return StatusRepository.findAll();
+        return statusRepository.findAll();
     }
 
 //    @GetMapping(path="/SpmList")
 //    public @ResponseBody List<String> getAllTestCells() {
 //        // This returns a JSON or XML with the users
-//        return StatusRepository.findAllTestCell();
+//        return statusRepository.findAllTestCell();
 //    }
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Status> getStatus() {
-        return StatusRepository.findByIdBetween(1, 18);
+        return statusRepository.findByIdBetween(1, 18);
     }
 
 //    @GetMapping
 //    public List<Status> getAllTestCell() {
-//        return StatusRepository.findAll();
+//        return statusRepository.findAll();
 //    }
 
     @GetMapping(path="/{id}")
     public @ResponseBody Optional<Status> getStatus(@PathVariable Integer id) {
-        return StatusRepository.findById(id);
+        return statusRepository.findById(id);
     }
 
     @GetMapping(path="/get/{testCell}")
     public @ResponseBody Status getStatusTestCell(@PathVariable String testCell){
-        return StatusRepository.findStatusByTestCell(testCell);
+        return statusRepository.findStatusByTestCell(testCell);
     }
 
     @PutMapping(path="/update/{id}")
     public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @RequestBody Status status) {
-        Optional<Status> statusData = StatusRepository.findById(id);
+        Optional<Status> statusData = statusRepository.findById(id);
 
         if (statusData.isPresent()) {
             Status _status = statusData.get();
             _status.setTestCell(status.getTestCell());
             _status.setStatus(status.getStatus());
-            return new ResponseEntity<>(StatusRepository.save(_status), HttpStatus.OK);
+            return new ResponseEntity<>(statusRepository.save(_status), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -74,12 +74,12 @@ public class StatusController {
 
     @PutMapping(path="/update/{id}/{status}")
     public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @PathVariable int status) {
-        Optional<Status> statusData = StatusRepository.findById(id);
+        Optional<Status> statusData = statusRepository.findById(id);
 
         if (statusData.isPresent()) {
             Status _status = statusData.get();
             _status.setStatus(status);
-            return new ResponseEntity<>(StatusRepository.save(_status), HttpStatus.OK);
+            return new ResponseEntity<>(statusRepository.save(_status), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -87,14 +87,14 @@ public class StatusController {
 
     @PostMapping
     public ResponseEntity<Status> createStatus(@RequestBody Status status) {
-        Status newstatus = StatusRepository.save(status);
+        Status newstatus = statusRepository.save(status);
         return ResponseEntity.status(HttpStatus.CREATED).body(newstatus);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTestCell(@PathVariable Integer id) {
-        if (StatusRepository.existsById(id)) {
-            StatusRepository.deleteById(id);
+        if (statusRepository.existsById(id)) {
+            statusRepository.deleteById(id);
             return ResponseEntity.ok("Sala com ID " + id + " excluída com sucesso.");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sala com ID " + id + " não encontrada.");

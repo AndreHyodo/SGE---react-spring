@@ -5,8 +5,10 @@ import '../../App.css'
 const FooterComponent = () => {
     return(
         <div>
-            <footer className="footer display-8">
+            <footer className="footer">
                 <span>All rights reserved 2023 by Testing & Analysis</span>
+                <span>Stellantis</span>
+                <span>Developed by: André Hyodo</span>
             </footer>
         </div>
     )

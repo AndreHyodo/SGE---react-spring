@@ -33,8 +33,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Class" />
         <option value="JavaScript File" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -96,23 +97,28 @@
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src\pages\TestCell_Details" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\bk" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\src\Images\Logo" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\src\Components\Card" />
-      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\back\SGE-back\src\main\java\sge\sgeback" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="sge.sgeback.repository" />
       <recent name="sge.sgeback.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.All in generated-requests">
+  <component name="RunManager" selected="HTTP Request.generated-requests | #5">
     <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
       <method v="2" />
     </configuration>
-    <configuration name="Automation.BDaq.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/../NEW_SGE/src/Automation.BDaq.jar!/" />
+    <configuration name="generated-requests | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="3" requestIdentifier="#3" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="4" requestIdentifier="#4" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #5" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="5" requestIdentifier="#5" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="index.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/front/src/index.js" working-dir="$PROJECT_DIR$/front/src">
@@ -128,9 +134,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.generated-requests | #5" />
+        <item itemvalue="HTTP Request.generated-requests | #4" />
+        <item itemvalue="HTTP Request.generated-requests | #3" />
         <item itemvalue="HTTP Request.All in generated-requests" />
         <item itemvalue="Node.js.index.js" />
-        <item itemvalue="JAR Application.Automation.BDaq.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -195,6 +203,13 @@
       <workItem from="1710456534792" duration="20933000" />
       <workItem from="1710709509764" duration="4927000" />
       <workItem from="1711019224977" duration="16393000" />
+      <workItem from="1711364567045" duration="16319000" />
+      <workItem from="1711451155650" duration="25385000" />
+      <workItem from="1711538479994" duration="9926000" />
+      <workItem from="1711641202375" duration="2547000" />
+      <workItem from="1711928349852" duration="3051000" />
+      <workItem from="1711967120184" duration="13497000" />
+      <workItem from="1712055935387" duration="19664000" />
     </task>
     <servers />
   </component>
