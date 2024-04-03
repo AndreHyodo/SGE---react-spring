@@ -31,8 +31,10 @@ const CausaisMes = () => {
     const getCausais = async (testCell, date) => {
         try {
             let response = null;
+            const currentDate = new Date();
+            const formattedDate = currentDate.toISOString().split('T')[0];
             if (date === null) {
-                response = await causais_mes(testCell, date); // Assuming causais_mes handles getting data for the current month
+                response = await causaisHour_date(testCell, formattedDate); // Assuming causais_mes handles getting data for the current month
             } else {
                 response = await causaisHour_date(testCell, date); // Assuming causaisHour_date handles getting data for a specific date
             }

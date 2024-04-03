@@ -80,14 +80,27 @@ public class DadosEffController {
         }
 
         for (Status status : statuses) {
-            Dados_Eff dadosEff = new Dados_Eff();
-            dadosEff.setTestCell(status.getTestCell());
-            dadosEff.setEff(status.getEff());
-            dadosEff.setHora(status.getTime()); // Hora atual
-            dadosEff.setDate(status.getDate());
-            dadosEff.setTurno(turno);
+            if(turno == 3){
+                if(status.getType().equals("dur")){
+                    Dados_Eff dadosEff = new Dados_Eff();
+                    dadosEff.setTestCell(status.getTestCell());
+                    dadosEff.setEff(status.getEff());
+                    dadosEff.setHora(status.getTime()); // Hora atual
+                    dadosEff.setDate(status.getDate());
+                    dadosEff.setTurno(turno);
 
-           createDadosEff(dadosEff);
+                    createDadosEff(dadosEff);
+                }
+            }else{
+                Dados_Eff dadosEff = new Dados_Eff();
+                dadosEff.setTestCell(status.getTestCell());
+                dadosEff.setEff(status.getEff());
+                dadosEff.setHora(status.getTime()); // Hora atual
+                dadosEff.setDate(status.getDate());
+                dadosEff.setTurno(turno);
+
+                createDadosEff(dadosEff);
+            }
         }
     }
 

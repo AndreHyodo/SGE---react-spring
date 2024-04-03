@@ -38,6 +38,18 @@
     background-color: #F50000;
 }
 
+.card-header-wait {
+    font-weight: bold;
+    align-items: center;
+    text-align: center;
+    font-size: xx-large;
+    margin: 0;
+    padding: 0;
+    border-top-left-radius: 0.4em !important;
+    border-top-right-radius: 0.4em !important;
+    background-color: #fff61e;
+}
+
 .card-header-cooling {
     font-weight: bold;
     align-items: center;

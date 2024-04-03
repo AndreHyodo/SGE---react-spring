@@ -20,6 +20,7 @@ public class Status {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String testCell;
+    private String type;
     private int Status;
     private Float Code;
     private String Causal;
@@ -34,9 +35,10 @@ public class Status {
 
     public Status(){}
 
-    public Status(int id, String testCell, int status, Float code, String causal, int motor, int eff, String projeto, String teste, Date date, Time time, Time parada_atual, Time parada_total) {
+    public Status(int id, String testCell, String type, int status, Float code, String causal, int motor, int eff, String projeto, String teste, Date date, Time time, Time parada_atual, Time parada_total) {
         this.id = id;
         this.testCell = testCell;
+        this.type = type;
         Status = status;
         Code = code;
         Causal = causal;
@@ -64,6 +66,14 @@ public class Status {
 
     public void setTestCell(String sala) {
         testCell = sala;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getStatus() {

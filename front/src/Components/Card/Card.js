@@ -8,6 +8,7 @@ class MyComponent extends Component {
 
     render() {
         const {status} = this.props;
+        const {waitTime} = this.props;
         const cardHeaderClass = () =>{
             if(status === "Running"){
                 return "card-header-run";
@@ -15,6 +16,8 @@ class MyComponent extends Component {
                 return "card-header-cooling";
             }else if(status === "Sala inativa"){
                 return "card-header-inactive";
+            }else if(waitTime === "Aguardando Causal"){
+                return "card-header-wait"
             }else{
                 return "card-header-stop";
             }

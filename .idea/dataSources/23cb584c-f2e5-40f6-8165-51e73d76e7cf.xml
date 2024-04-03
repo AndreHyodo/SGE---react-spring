@@ -1066,8 +1066,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="292" parent="1" name="sge">
       <Current>1</Current>
-      <IntrospectionTimestamp>2024-03-27.13:18:19</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-03-27.19:18:19</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2024-04-03.11:57:33</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-04-03.17:57:33</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="teste">
@@ -1250,7 +1250,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="337" parent="304" name="ID">
-      <AutoIncrement>481</AutoIncrement>
+      <AutoIncrement>482</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -2052,7 +2052,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="515" parent="322" name="id">
-      <AutoIncrement>149</AutoIncrement>
+      <AutoIncrement>310</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -2073,8 +2073,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>time|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="520" parent="322" name="Data">
-      <DasType>date|0s</DasType>
+    <column id="520" parent="322" name="data">
+      <DasType>datetime(6)|0s</DasType>
       <Position>6</Position>
     </column>
     <index id="521" parent="322" name="PRIMARY">
@@ -2132,7 +2132,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="532" parent="324" name="ID">
-      <AutoIncrement>197</AutoIncrement>
+      <AutoIncrement>203</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -2222,7 +2222,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="552" parent="326" name="Id">
-      <AutoIncrement>25</AutoIncrement>
+      <AutoIncrement>19</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -2231,56 +2231,60 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="554" parent="326" name="Status">
-      <DasType>int|0s</DasType>
+    <column id="554" parent="326" name="type">
+      <DasType>varchar(10)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="555" parent="326" name="Code">
-      <DasType>float|0s</DasType>
+    <column id="555" parent="326" name="Status">
+      <DasType>int|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="556" parent="326" name="Causal">
-      <DasType>varchar(100)|0s</DasType>
+    <column id="556" parent="326" name="Code">
+      <DasType>float|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="557" parent="326" name="Motor">
-      <DasType>int|0s</DasType>
+    <column id="557" parent="326" name="Causal">
+      <DasType>varchar(100)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="558" parent="326" name="eff">
+    <column id="558" parent="326" name="Motor">
       <DasType>int|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="559" parent="326" name="Projeto">
-      <DasType>varchar(20)|0s</DasType>
+    <column id="559" parent="326" name="eff">
+      <DasType>int|0s</DasType>
       <Position>8</Position>
     </column>
-    <column id="560" parent="326" name="Teste">
+    <column id="560" parent="326" name="Projeto">
       <DasType>varchar(20)|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="561" parent="326" name="parada_atual">
-      <DasType>time|0s</DasType>
+    <column id="561" parent="326" name="Teste">
+      <DasType>varchar(20)|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="562" parent="326" name="parada_total">
+    <column id="562" parent="326" name="parada_atual">
       <DasType>time|0s</DasType>
       <Position>11</Position>
     </column>
-    <column id="563" parent="326" name="date">
-      <DasType>datetime(6)|0s</DasType>
+    <column id="563" parent="326" name="parada_total">
+      <DasType>time|0s</DasType>
       <Position>12</Position>
     </column>
-    <column id="564" parent="326" name="time">
-      <DasType>time(6)|0s</DasType>
+    <column id="564" parent="326" name="date">
+      <DasType>datetime(6)|0s</DasType>
       <Position>13</Position>
     </column>
-    <index id="565" parent="326" name="PRIMARY">
+    <column id="565" parent="326" name="time">
+      <DasType>time(6)|0s</DasType>
+      <Position>14</Position>
+    </column>
+    <index id="566" parent="326" name="PRIMARY">
       <ColNames>Id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="566" parent="326" name="PRIMARY">
+    <key id="567" parent="326" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
