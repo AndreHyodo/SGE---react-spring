@@ -16,7 +16,9 @@ import sge.sgeback.repository.StatusRepository;
 import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -36,11 +38,17 @@ public class DadosEffController {
 
     @GetMapping(path="/top10/{name}")
     public @ResponseBody Iterable<Dados_Eff> findTop10ByTestCellOrderByIdDesc(@PathVariable String name) {
-        return dadosEffRepository.findTop10ByTestCellOrderByIdAsc(name);
+        return dadosEffRepository.findTop10ByTestCellOrderByIdDesc(name);
     }
     @GetMapping(path="/top10/{turno}/{name}")
-    public @ResponseBody Iterable<Dados_Eff> findTop10ByTestCellOrderByIdDesc(@PathVariable int turno, @PathVariable String name) {
-        return dadosEffRepository.findTop10ByTestCellAndTurnoOrderByIdDesc(name,turno);
+    public @ResponseBody List<Dados_Eff> findTop10ByTestCellOrderByIdDesc(@PathVariable int turno, @PathVariable String name) {
+        // Fetch data using the existing logic
+        List<Dados_Eff> data = dadosEffRepository.findTop10ByTestCellAndTurnoOrderByIdDesc(name, turno);
+
+        // Invert the order of the data
+        Collections.reverse(data);
+
+        return data;
     }
 
 
@@ -106,7 +114,9 @@ public class DadosEffController {
 
     @PostMapping(path="/DailyEff")
     public void atualizarDailyEff() {
+        System.out.println("Iniciando");
         Iterable<Status> status_daily = statusController.getStatus();
+        System.out.println(status_daily);
 
         for (Status status : status_daily) {
             Dados_Eff dadosEff = new Dados_Eff();
@@ -116,12 +126,14 @@ public class DadosEffController {
             dadosEff.setDate(status.getDate());
             dadosEff.setTurno(0);
 
+            System.out.println(dadosEff.getTestCell() + " --- " + dadosEff.getEff() + " --- " + dadosEff.getHora() + " --- " + dadosEff.getDate() + " --- " + dadosEff.getTurno());
             createDadosEff(dadosEff);
         }
     }
 
     @PostMapping
     public ResponseEntity<Dados_Eff> createDadosEff(@RequestBody Dados_Eff dados) {
+        System.out.println("salvando: " + dados.getTestCell() + " --- " + dados.getEff() + " --- " + dados.getHora() + " --- " + dados.getDate() + " --- " + dados.getTurno());
         Dados_Eff newDados = dadosEffRepository.save(dados);
         return ResponseEntity.status(HttpStatus.CREATED).body(newDados);
     }

@@ -23,6 +23,7 @@ import {
 import "./details.css";
 import data from "bootstrap/js/src/dom/data";
 import {Text, Box, ThemeProvider} from "@chakra-ui/react";
+import {Button} from "reactstrap";
 
 const CausaisMes = () => {
     const [causais, setCausais] = useState([]);
@@ -75,6 +76,7 @@ const CausaisMes = () => {
         }
     }, []);
 
+    const [effData0, setEffData0] = useState([]);
     const [effData1, setEffData1] = useState([]);
     const [effData2, setEffData2] = useState([]);
     const [effData3, setEffData3] = useState([]);
@@ -92,6 +94,13 @@ const CausaisMes = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            const data0 = await getEffData(testCell, "0");
+            setEffData0(
+                data0.map((item) => ({
+                    ...item,
+                    date: new Date(item.date).toLocaleDateString(),
+                }))
+            );
             const data1 = await getEffData(testCell, "1");
             setEffData1(
                 data1.map((item) => ({
@@ -126,6 +135,7 @@ const CausaisMes = () => {
         }
     };
 
+
     if (causais.length === 0 && effData1.length === 0) {
         return <h1>Loading...</h1>;
     }
@@ -159,7 +169,7 @@ const CausaisMes = () => {
                     <div className="barchart-container">
                         <ResponsiveContainer width="50%" height="100%">
                             <LineChart
-                                data={effData1}
+                                data={effData0}
                                 margin={{
                                     top: 50,
                                     right: 30,

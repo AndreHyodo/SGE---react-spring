@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface DadosEffRepository extends CrudRepository<Dados_Eff, Integer> {
 
-    Iterable<Dados_Eff> findTop10ByTestCellOrderByIdAsc(String TestCell);
-    Iterable<Dados_Eff> findTop10ByTestCellAndTurnoOrderByIdDesc(String TestCell, int turno);
+    Iterable<Dados_Eff> findTop10ByTestCellOrderByIdDesc(String TestCell);
+    List<Dados_Eff> findTop10ByTestCellAndTurnoOrderByIdDesc(String TestCell, int turno);
 
     @Query("SELECT AVG(dados.Eff) AS media_eff " +
             "FROM Dados_Eff dados " +
