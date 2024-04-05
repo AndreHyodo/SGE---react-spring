@@ -198,6 +198,7 @@ const CausaisMes = () => {
                                 />
                                 <YAxis
                                     tick={{ fill: "white", fontSize: 12, fontWeight: "normal" }}
+                                    domain={[0, 100]}
                                 />
                                 <Tooltip
                                     cursor={{
@@ -213,14 +214,15 @@ const CausaisMes = () => {
                                         padding: "10px",
                                     }}
                                     labelStyle={{
-                                        color: "#333",
+                                        color: "#FFFA00",
                                         fontSize: 14,
                                         fontWeight: "bold",
                                     }}
                                     contentStyle={{
-                                        color: "#333",
+                                        color: "#FFFA00",
                                         fontSize: 12,
                                         fontWeight: "normal",
+                                        backgroundColor:"black",
                                     }}
                                 />
                                 <Line
@@ -332,6 +334,7 @@ const CausaisMes = () => {
                                 />
                                 <YAxis
                                     tick={{ fill: "white", fontSize: 12, fontWeight: "normal" }}
+                                    domain={[0, 100]}
                                 />
                                 <Tooltip
                                     wrapperStyle={{
@@ -342,14 +345,15 @@ const CausaisMes = () => {
                                         padding: "10px",
                                     }}
                                     labelStyle={{
-                                        color: "#333",
+                                        color: "#FFFA00",
                                         fontSize: 14,
                                         fontWeight: "bold",
                                     }}
                                     contentStyle={{
-                                        color: "#333",
+                                        color: "#FFFA00",
                                         fontSize: 12,
                                         fontWeight: "normal",
+                                        backgroundColor:"black",
                                     }}
                                 />
                                 <Line
@@ -386,6 +390,7 @@ const CausaisMes = () => {
                                 />
                                 <YAxis
                                     tick={{ fill: "white", fontSize: 12, fontWeight: "normal" }}
+                                    domain={[0, 100]}
                                 />
                                 <Tooltip
                                     wrapperStyle={{
@@ -396,21 +401,23 @@ const CausaisMes = () => {
                                         padding: "10px",
                                     }}
                                     labelStyle={{
-                                        color: "#333",
+                                        color: "#FFFA00",
                                         fontSize: 14,
                                         fontWeight: "bold",
                                     }}
                                     contentStyle={{
-                                        color: "#333",
+                                        color: "#FFFA00",
                                         fontSize: 12,
                                         fontWeight: "normal",
+                                        backgroundColor:"black",
                                     }}
-                                /><Line
-                                type="monotone"
-                                dataKey="eff"
-                                stroke="#FFFA00"
-                                activeDot={{ r: 8 }}
-                            />
+                                />
+                                <Line
+                                    type="monotone"
+                                    dataKey="eff"
+                                    stroke="#FFFA00"
+                                    activeDot={{ r: 8 }}
+                                />
                             </LineChart>
                         </ResponsiveContainer>
                         <ResponsiveContainer width="100%" height={350}>
@@ -439,6 +446,7 @@ const CausaisMes = () => {
                                 />
                                 <YAxis
                                     tick={{ fill: "white", fontSize: 12, fontWeight: "normal" }}
+                                    domain={[0, 100]}
                                 />
                                 <Tooltip
                                     wrapperStyle={{
@@ -449,14 +457,15 @@ const CausaisMes = () => {
                                         padding: "10px",
                                     }}
                                     labelStyle={{
-                                        color: "#333",
+                                        color: "#FFFA00",
                                         fontSize: 14,
                                         fontWeight: "bold",
                                     }}
                                     contentStyle={{
-                                        color: "#333",
+                                        color: "#FFFA00",
                                         fontSize: 12,
                                         fontWeight: "normal",
+                                        backgroundColor:"black",
                                     }}
                                 />
                                 <Line
