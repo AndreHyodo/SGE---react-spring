@@ -30,8 +30,8 @@ public class Scheduler {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     @Scheduled(cron = "59 59 5 * * *") // Ação agendada para 05:59:59 todos os dias
-    @Scheduled(cron = "59 47 15 * * *") // Ação agendada para 15:47:59 todos os dias
-    @Scheduled(cron = "57 59 23 * * *") // Ação agendada para 01:08:59 todos os dias
+    @Scheduled(cron = "30 47 15 * * *") // Ação agendada para 15:47:59 todos os dias
+    @Scheduled(cron = "30 57 23 * * *") // Ação agendada para 23:59:57 todos os dias
     public void scheduleAtualizarDadosEff() {
         dadosEffController.atualizarDadosEff(); // Call your existing controller method
     }

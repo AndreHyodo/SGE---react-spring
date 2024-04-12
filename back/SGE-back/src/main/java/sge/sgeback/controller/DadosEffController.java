@@ -114,9 +114,7 @@ public class DadosEffController {
 
     @PostMapping(path="/DailyEff")
     public void atualizarDailyEff() {
-        System.out.println("Iniciando");
         Iterable<Status> status_daily = statusController.getStatus();
-        System.out.println(status_daily);
 
         for (Status status : status_daily) {
             Dados_Eff dadosEff = new Dados_Eff();
@@ -133,7 +131,7 @@ public class DadosEffController {
 
     @PostMapping
     public ResponseEntity<Dados_Eff> createDadosEff(@RequestBody Dados_Eff dados) {
-        System.out.println("salvando: " + dados.getTestCell() + " --- " + dados.getEff() + " --- " + dados.getHora() + " --- " + dados.getDate() + " --- " + dados.getTurno());
+//        System.out.println("salvando: " + dados.getTestCell() + " --- " + dados.getEff() + " --- " + dados.getHora() + " --- " + dados.getDate() + " --- " + dados.getTurno());
         Dados_Eff newDados = dadosEffRepository.save(dados);
         return ResponseEntity.status(HttpStatus.CREATED).body(newDados);
     }

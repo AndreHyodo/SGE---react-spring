@@ -4,6 +4,7 @@ import {
     eff_hist_turno,
     causais_date,
     causaisHour_date,
+    getStatusTestCell,
 } from "../../services/StatusService";
 import {
     BarChart,
@@ -135,6 +136,30 @@ const CausaisMes = () => {
         }
     };
 
+    // const getTypeData= async (SPM) => {
+    //     try {
+    //         const response = await getStatusTestCell(SPM);
+    //         console.log(response.data);
+    //         return response.data;
+    //     } catch (error) {
+    //         console.error("Error fetching type data:", error);
+    //         return [];
+    //     }
+    // };
+    //
+    // const [type, setType] = useState([]);
+    //
+    // useEffect(() => {
+    //     const getType = async () => {
+    //         try {
+    //             const response = await getTypeData(testCell);
+    //             console.log("API Response:", response);
+    //         } catch (error) {
+    //             console.error("Error fetching type:", error);
+    //         }
+    //     };
+    //     getType();
+    // }, [type]);
 
     if (causais.length === 0 && effData1.length === 0) {
         return <h1>Loading...</h1>;
@@ -420,62 +445,64 @@ const CausaisMes = () => {
                                 />
                             </LineChart>
                         </ResponsiveContainer>
-                        <ResponsiveContainer width="100%" height={350}>
-                            <LineChart
-                                data={effData3}
-                                margin={{ top: 30, right: 30, left: 20, bottom: 5 }}
-                            >
-                                <text
-                                    x={"50%"}
-                                    y={15}
-                                    textAnchor="middle"
-                                    fontSize={18}
-                                    fontWeight="bold"
-                                    fill="white"
+                        {/*{type === "dur" && (*/}
+                            <ResponsiveContainer width="100%" height={350}>
+                                <LineChart
+                                    data={effData3}
+                                    margin={{ top: 30, right: 30, left: 20, bottom: 5 }}
                                 >
-                                    Eficiência 3º Turno
-                                </text>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis
-                                    dataKey="date"
-                                    tick={{
-                                        fill: "white",
-                                        fontSize: 12,
-                                        fontWeight: "normal",
-                                    }}
-                                />
-                                <YAxis
-                                    tick={{ fill: "white", fontSize: 12, fontWeight: "normal" }}
-                                    domain={[0, 100]}
-                                />
-                                <Tooltip
-                                    wrapperStyle={{
-                                        border: "none",
-                                        boxShadow:
-                                            "0px 0px 10px rgba(0, 0, 0, 0.5)",
-                                        borderRadius: "5px",
-                                        padding: "10px",
-                                    }}
-                                    labelStyle={{
-                                        color: "#FFFA00",
-                                        fontSize: 14,
-                                        fontWeight: "bold",
-                                    }}
-                                    contentStyle={{
-                                        color: "#FFFA00",
-                                        fontSize: 12,
-                                        fontWeight: "normal",
-                                        backgroundColor:"black",
-                                    }}
-                                />
-                                <Line
-                                    type="monotone"
-                                    dataKey="eff"
-                                    stroke="#FFFA00"
-                                    activeDot={{ r: 8 }}
-                                />
-                            </LineChart>
-                        </ResponsiveContainer>
+                                    <text
+                                        x={"50%"}
+                                        y={15}
+                                        textAnchor="middle"
+                                        fontSize={18}
+                                        fontWeight="bold"
+                                        fill="white"
+                                    >
+                                        Eficiência 3º Turno
+                                    </text>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis
+                                        dataKey="date"
+                                        tick={{
+                                            fill: "white",
+                                            fontSize: 12,
+                                            fontWeight: "normal",
+                                        }}
+                                    />
+                                    <YAxis
+                                        tick={{ fill: "white", fontSize: 12, fontWeight: "normal" }}
+                                        domain={[0, 100]}
+                                    />
+                                    <Tooltip
+                                        wrapperStyle={{
+                                            border: "none",
+                                            boxShadow:
+                                                "0px 0px 10px rgba(0, 0, 0, 0.5)",
+                                            borderRadius: "5px",
+                                            padding: "10px",
+                                        }}
+                                        labelStyle={{
+                                            color: "#FFFA00",
+                                            fontSize: 14,
+                                            fontWeight: "bold",
+                                        }}
+                                        contentStyle={{
+                                            color: "#FFFA00",
+                                            fontSize: 12,
+                                            fontWeight: "normal",
+                                            backgroundColor:"black",
+                                        }}
+                                    />
+                                    <Line
+                                        type="monotone"
+                                        dataKey="eff"
+                                        stroke="#FFFA00"
+                                        activeDot={{ r: 8 }}
+                                    />
+                                </LineChart>
+                            </ResponsiveContainer>
+                        {/*)}*/}
                     </div>
                 </div>
             </div>
