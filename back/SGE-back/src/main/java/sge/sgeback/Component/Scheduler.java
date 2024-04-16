@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import sge.sgeback.controller.DadosEffController;
+import sge.sgeback.controller.RegistroCausaisController;
 import sge.sgeback.controller.StatusController;
 import sge.sgeback.repository.DadosEffRepository;
 
@@ -18,6 +19,9 @@ public class Scheduler {
 
     @Autowired
     private StatusController statusController;
+
+    @Autowired
+    private RegistroCausaisController causaisController;
 
     @Autowired
     private DadosEffRepository dadosEffRepository;
@@ -45,8 +49,8 @@ public class Scheduler {
     @Scheduled(cron = "59 47 15 * * *") // Ação agendada para 15:47:59 todos os dias
     @Scheduled(cron = "59 59 23 * * *") // Ação agendada para 23:59:57 todos os dias
     @Scheduled(cron = "59 08 01 * * *") // Ação agendada para 01:08:59 todos os dias
-    public void scheduleAtualizarDadosTurno() {
-        dadosEffController.atualizarDadosEff(); // Call your existing controller method
+    public void scheduleAtualizarCausaisTurno() {
+        causaisController.AutalizaTurno(); // Call your existing controller method
     }
 
 
