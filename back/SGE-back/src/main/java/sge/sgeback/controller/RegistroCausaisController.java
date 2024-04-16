@@ -15,6 +15,10 @@ import sge.sgeback.repository.RegistroCausaisRepository;
 import sge.sgeback.repository.StatusRepository;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -25,6 +29,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
+
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -86,6 +91,74 @@ public class RegistroCausaisController {
 
 
 
+    @GetMapping(path="/AtualizaTurno")
+    public @ResponseBody void AutalizaTurno() {
+        List<String> testCells = StreamSupport.stream(statusController.getStatus().spliterator(), false)
+                .map(Status::getTestCell)
+                .toList();
+        System.out.println(testCells);
+
+        LocalTime hora_atual = LocalTime.now();
+        LocalDate Data_atual = LocalDate.now();
+
+        for (String testCell : testCells) {
+            Registro_Causal causal = CausaisRepository.findTopByTestCellOrderByIdDesc(testCell);
+            System.out.println(causal.getId() + " - " + causal.getTestCell() + " - " + causal.getHora_inicio() + " - " + causal.getHora_final() + " - " + causal.getData());
+            if (causal.getHora_final() == LocalTime.of(0,0,0)) {
+                System.out.println("Ajustando causal sala: "+ causal.getTestCell() + "sendo hora_final = " + causal.getHora_final());
+                try {
+                    causal.setData(java.sql.Date.valueOf(Data_atual));
+                    ResponseEntity<Registro_Causal> responseEntity = updateCausal(causal.getId());
+                    if (responseEntity.getStatusCode() == HttpStatus.OK) {
+                        AttCausal(causal);
+                    } else {
+                        System.out.println("AttCausal returned unexpected status code: " + responseEntity.getStatusCodeValue());
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error calling AttCausal: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+    @PostMapping(path="/attCausal")
+    public ResponseEntity<Registro_Causal> AttCausal(@RequestBody Registro_Causal registroCausal) {
+
+
+
+        LocalTime hora_atual = LocalTime.now();
+
+        LocalTime zero = LocalTime.parse("00:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+        Registro_Causal newCausal = new Registro_Causal();
+
+        newCausal.setTestCell(registroCausal.getTestCell());
+        newCausal.setCode(registroCausal.getCode());
+        newCausal.setCausal(registroCausal.getCausal());
+        newCausal.setHora_inicio(Time.valueOf(hora_atual));
+        newCausal.setHora_final(zero);
+        newCausal.setData(registroCausal.getData());
+        newCausal.setObs(registroCausal.getObs());
+
+
+        Registro_Causal newRegistro = CausaisRepository.save(newCausal);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
+    }
+
+
+    @PutMapping(path="/updateHour/{id}")
+    public ResponseEntity<Registro_Causal> updateCausal(@PathVariable Integer id) {
+        Optional<Registro_Causal> Causal = CausaisRepository.findById(id);
+
+
+        if (Causal.isPresent()) {
+            Registro_Causal _causal = Causal.get();
+            _causal.setHora_final(LocalTime.parse(LocalTime.now().minusSeconds(1).format(DateTimeFormatter.ISO_TIME)));
+            return new ResponseEntity<>(CausaisRepository.save(_causal), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @PostMapping(path="/insertCausal")
     public ResponseEntity<Registro_Causal> createStatus(@RequestBody Registro_Causal registroCausal) {

@@ -14,6 +14,8 @@ import sge.sgeback.repository.DadosRepository;
 import sge.sgeback.repository.StatusRepository;
 
 import java.sql.Time;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Collections;
@@ -75,6 +77,11 @@ public class DadosEffController {
         Iterable<Status> statuses = statusController.getStatus();
         LocalTime agora = LocalTime.now();
 
+        LocalDate today = LocalDate.now();
+
+        DayOfWeek dayOfWeek = today.getDayOfWeek();
+
+
         int turno;
 
         if ((agora.isAfter(LocalTime.of(6, 0)))&&(agora.isBefore(LocalTime.of(15, 48)))) {
@@ -87,8 +94,16 @@ public class DadosEffController {
             turno = 3;
         }
 
+
+        DayOfWeek testeDay = LocalDate.now().getDayOfWeek();
+        if (testeDay == DayOfWeek.TUESDAY){
+            System.out.println("Hoje é terça");
+        }else{
+            System.out.println("Hoje é "+ LocalDate.now().getDayOfWeek());
+        }
+
         for (Status status : statuses) {
-            if(turno == 3){
+            if(turno == 3 || dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY){
                 if(status.getType().equals("dur")){
                     Dados_Eff dadosEff = new Dados_Eff();
                     dadosEff.setTestCell(status.getTestCell());
