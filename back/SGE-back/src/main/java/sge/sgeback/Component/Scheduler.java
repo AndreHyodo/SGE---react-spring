@@ -50,7 +50,7 @@ public class Scheduler {
     @Scheduled(cron = "59 59 23 * * *") // Ação agendada para 23:59:57 todos os dias
     @Scheduled(cron = "59 08 01 * * *") // Ação agendada para 01:08:59 todos os dias
     public void scheduleAtualizarCausaisTurno() {
-        causaisController.AutalizaTurno(); // Call your existing controller method
+        causaisController.AutalizarTurno(); // Call your existing controller method
     }
 
 

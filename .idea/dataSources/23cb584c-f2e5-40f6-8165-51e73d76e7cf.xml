@@ -1066,8 +1066,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="292" parent="1" name="sge">
       <Current>1</Current>
-      <IntrospectionTimestamp>2024-04-03.11:57:33</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-04-03.17:57:33</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2024-04-17.08:38:07</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-04-17.14:38:07</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="teste">
@@ -1206,7 +1206,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="327" parent="303" name="ID">
-      <AutoIncrement>155</AutoIncrement>
+      <AutoIncrement>161</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1250,7 +1250,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="337" parent="304" name="ID">
-      <AutoIncrement>482</AutoIncrement>
+      <AutoIncrement>481</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -2020,7 +2020,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="508" parent="321" name="id">
-      <AutoIncrement>37</AutoIncrement>
+      <AutoIncrement>38</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -2052,7 +2052,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="515" parent="322" name="id">
-      <AutoIncrement>310</AutoIncrement>
+      <AutoIncrement>569</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -2132,7 +2132,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="532" parent="324" name="ID">
-      <AutoIncrement>203</AutoIncrement>
+      <AutoIncrement>222</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -2156,7 +2156,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>5</Position>
     </column>
     <column id="537" parent="324" name="hora_final">
-      <DasType>time(6)|0s</DasType>
+      <DasType>time|0s</DasType>
       <Position>6</Position>
     </column>
     <column id="538" parent="324" name="data">
@@ -2222,7 +2222,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="552" parent="326" name="Id">
-      <AutoIncrement>19</AutoIncrement>
+      <AutoIncrement>25</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
