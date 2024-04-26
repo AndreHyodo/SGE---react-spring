@@ -131,16 +131,34 @@ public class DadosEffController {
     public void atualizarDailyEff() {
         Iterable<Status> status_daily = statusController.getStatus();
 
-        for (Status status : status_daily) {
-            Dados_Eff dadosEff = new Dados_Eff();
-            dadosEff.setTestCell(status.getTestCell());
-            dadosEff.setEff(dadosEffRepository.findByTestCellAndData(status.getTestCell()));
-            dadosEff.setHora(status.getTime()); // Hora atual
-            dadosEff.setDate(status.getDate());
-            dadosEff.setTurno(0);
+        LocalDate today = LocalDate.now();
+        DayOfWeek dayOfWeek = today.getDayOfWeek();
 
-            System.out.println(dadosEff.getTestCell() + " --- " + dadosEff.getEff() + " --- " + dadosEff.getHora() + " --- " + dadosEff.getDate() + " --- " + dadosEff.getTurno());
-            createDadosEff(dadosEff);
+
+        for (Status status : status_daily) {
+            if(dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY){
+                if(status.getType().equals("dur")){
+                    Dados_Eff dadosEff = new Dados_Eff();
+                    dadosEff.setTestCell(status.getTestCell());
+                    dadosEff.setEff(dadosEffRepository.findByTestCellAndData(status.getTestCell()));
+                    dadosEff.setHora(status.getTime()); // Hora atual
+                    dadosEff.setDate(status.getDate());
+                    dadosEff.setTurno(0);
+
+                    System.out.println(dadosEff.getTestCell() + " --- " + dadosEff.getEff() + " --- " + dadosEff.getHora() + " --- " + dadosEff.getDate() + " --- " + dadosEff.getTurno());
+                    createDadosEff(dadosEff);
+                }
+            }else{
+                Dados_Eff dadosEff = new Dados_Eff();
+                dadosEff.setTestCell(status.getTestCell());
+                dadosEff.setEff(dadosEffRepository.findByTestCellAndData(status.getTestCell()));
+                dadosEff.setHora(status.getTime()); // Hora atual
+                dadosEff.setDate(status.getDate());
+                dadosEff.setTurno(0);
+
+                System.out.println(dadosEff.getTestCell() + " --- " + dadosEff.getEff() + " --- " + dadosEff.getHora() + " --- " + dadosEff.getDate() + " --- " + dadosEff.getTurno());
+                createDadosEff(dadosEff);
+            }
         }
     }
 

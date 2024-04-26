@@ -36,18 +36,21 @@ const HeaderComponent = () => {
                     <img src={logo} alt="" className="logo"/>
                     <Collapse isOpen={!collapsed} navbar>
                         <Nav navbar className="menu-select" id="menu">
-                            <StyledNavItem className="navi-tem d-flex ">
+                            <StyledNavItem className="navi-tem my-2 ">
                                 <img src={home} alt="" className="logo-icon me-auto"/>
                                 <a href="/" className="me-auto text-decoration-none text-black p-2 text-start">Home</a>
                             </StyledNavItem>
-                            <StyledNavItem className="navi-tem d-flex">
+                            <StyledNavItem className="navi-tem mb-2">
                                 <img src={registry} alt="" className="logo-icon me-auto"/>
                                 <Link to="/registro" className="text-decoration-none text-black p-2">Registro Causal</Link>
                             </StyledNavItem>
-                            <StyledNavItem className="d-flex">
-                                <img src={app} alt="" className="logo-icon me-auto"/>
-                                {/*<Link to="/dashboard">Dashboard salas</Link>*/}
-                                <Link to="https://bit.ly/3w1SIEH" className="text-decoration-none text-black p-2" target="_blank">App Tech Dyno</Link>
+                            <StyledNavItem className="navi-tem mb-2">
+                                <img src={app} alt="" className="logo-icon "/>
+                                <Link to="https://apps.powerapps.com/play/e/default-d852d5cd-724c-4128-8812-ffa5db3f8507/a/c254677a-09d2-4366-87ec-61017937b8a4?tenantId=d852d5cd-724c-4128-8812-ffa5db3f8507&hint=28b87822-59ed-472c-80b0-e1cc6ff27d94&sourcetime=1712574618050&hidenavbar=true" className="text-decoration-none text-black p-2" target="_blank">App Tech Dyno</Link>
+                            </StyledNavItem>
+                            <StyledNavItem className="navi-tem mb-2">
+                                <img src={app} alt="" className="logo-icon "/>
+                                <Link to="https://apps.powerapps.com/play/e/default-d852d5cd-724c-4128-8812-ffa5db3f8507/a/3ea313f8-db19-454b-94a0-6c6143b8d8ab?tenantId=d852d5cd-724c-4128-8812-ffa5db3f8507&hint=fc2b5f23-898e-4deb-a447-fdd8873dc2d1&sourcetime=1712574527046&hidenavbar=true" className="text-decoration-none text-black p-2" target="_blank">ToolControl</Link>
                             </StyledNavItem>
                         </Nav>
                     </Collapse>

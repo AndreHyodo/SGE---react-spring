@@ -5,7 +5,7 @@ import axios from "axios";
 
 // const url_base = 'http://localhost:8080'
 
-// const url_base = 'http://172.28.249.86:8080' //Rede teste Fábrica PC André
+// const url_base = 'http://172.28.241.65:8080' //Rede teste Fábrica PC André
 const url_base = 'http://172.28.124.61:8080' //Rede oficial
 
 
