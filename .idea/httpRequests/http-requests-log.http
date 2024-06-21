@@ -1,3 +1,12 @@
+GET http://localhost:8080/causais/lastNotWaiting/A06
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-06-17T093653.200.json
+
+###
+
 POST http://localhost:8080/dadosEff
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 0

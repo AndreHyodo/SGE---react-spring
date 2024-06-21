@@ -108,7 +108,7 @@
       <recent name="sge.sgeback.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.generated-requests | #5">
+  <component name="RunManager" selected="HTTP Request.generated-requests | #6">
     <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
       <method v="2" />
     </configuration>
@@ -121,7 +121,7 @@
     <configuration name="generated-requests | #5" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="5" requestIdentifier="#5" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="index.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/front/src/index.js" working-dir="$PROJECT_DIR$/front/src">
+    <configuration name="generated-requests | #6" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="6" requestIdentifier="#6" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="SgeBackApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -134,11 +134,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.generated-requests | #6" />
         <item itemvalue="HTTP Request.generated-requests | #5" />
         <item itemvalue="HTTP Request.generated-requests | #4" />
         <item itemvalue="HTTP Request.generated-requests | #3" />
         <item itemvalue="HTTP Request.All in generated-requests" />
-        <item itemvalue="Node.js.index.js" />
       </list>
     </recent_temporary>
   </component>
@@ -226,7 +226,36 @@
       <workItem from="1713826044867" duration="1270000" />
       <workItem from="1713872285363" duration="599000" />
       <workItem from="1713962261008" duration="2510000" />
-      <workItem from="1714135102367" duration="1831000" />
+      <workItem from="1714135102367" duration="2325000" />
+      <workItem from="1714340756571" duration="1196000" />
+      <workItem from="1714399302242" duration="599000" />
+      <workItem from="1714425481871" duration="598000" />
+      <workItem from="1714486986657" duration="645000" />
+      <workItem from="1714659731937" duration="2869000" />
+      <workItem from="1714756636353" duration="1806000" />
+      <workItem from="1715008209374" duration="797000" />
+      <workItem from="1715035471397" duration="599000" />
+      <workItem from="1715168776209" duration="2098000" />
+      <workItem from="1715275926077" duration="2238000" />
+      <workItem from="1715556617458" duration="603000" />
+      <workItem from="1715792804101" duration="4944000" />
+      <workItem from="1715940015809" duration="5982000" />
+      <workItem from="1716041336732" duration="543000" />
+      <workItem from="1716200482108" duration="699000" />
+      <workItem from="1716239474213" duration="457000" />
+      <workItem from="1716261946779" duration="599000" />
+      <workItem from="1716378009649" duration="1770000" />
+      <workItem from="1716630103538" duration="9341000" />
+      <workItem from="1717540366872" duration="1223000" />
+      <workItem from="1718018530386" duration="7961000" />
+      <workItem from="1718052415351" duration="596000" />
+      <workItem from="1718113660636" duration="599000" />
+      <workItem from="1718142073455" duration="604000" />
+      <workItem from="1718194283201" duration="633000" />
+      <workItem from="1718622014027" duration="7473000" />
+      <workItem from="1718718640221" duration="1879000" />
+      <workItem from="1718816667652" duration="3143000" />
+      <workItem from="1718886601625" duration="7388000" />
     </task>
     <servers />
   </component>

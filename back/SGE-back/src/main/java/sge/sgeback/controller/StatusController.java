@@ -1,5 +1,6 @@
 package sge.sgeback.controller;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import sge.sgeback.model.Registro_Causal;
 import sge.sgeback.model.Status;
 import sge.sgeback.repository.StatusRepository;
+
+import javax.xml.crypto.Data;
 
 
 @Controller
@@ -59,13 +64,32 @@ public class StatusController {
     }
 
     @PutMapping(path="/update/{id}")
-    public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @RequestBody Status status) {
+    public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @RequestBody Status causalStatus) {
         Optional<Status> statusData = statusRepository.findById(id);
 
         if (statusData.isPresent()) {
             Status _status = statusData.get();
-            _status.setTestCell(status.getTestCell());
-            _status.setStatus(status.getStatus());
+            _status.setTestCell(causalStatus.getTestCell());
+            _status.setStatus(causalStatus.getStatus());
+            return new ResponseEntity<>(statusRepository.save(_status), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping(path="/updateCausal/{id}")
+    public ResponseEntity<Status> updateStatusCausal(@PathVariable Integer id, @RequestBody Registro_Causal causalStatus) {
+        Optional<Status> statusDataCausal = statusRepository.findById(id);
+
+        System.out.println("Autualizando causal da sala : " + causalStatus.getTestCell());
+
+        if (statusDataCausal.isPresent()) {
+            Status _status = statusDataCausal.get();
+            _status.setTestCell(causalStatus.getTestCell());
+            _status.setCausal(causalStatus.getCausal());
+            _status.setCode(causalStatus.getCode());
+            _status.setDate(causalStatus.getData());
+            _status.setTime(causalStatus.getHora_inicio());
             return new ResponseEntity<>(statusRepository.save(_status), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

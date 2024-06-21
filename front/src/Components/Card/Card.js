@@ -2,24 +2,27 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './Card.css'
 import React, {Component} from 'react';
 import {Card, CardBody, CardFooter, CardHeader, CardText, CardTitle, Col, Row} from "reactstrap";
-// import {CausalAtual} from "../Causal/CausalComponent";
 
 class MyComponent extends Component {
 
     render() {
+        const {status_actual} = this.props;
+        const {causalParada} = this.props;
         const {status} = this.props;
-        const {waitTime} = this.props;
         const cardHeaderClass = () =>{
-            if(status === "Running"){
+            console.log(status);
+            if(status_actual === 1){
                 return "card-header-run";
-            }else if(status === "Cooling"){
+            }else if(status_actual === 2){
                 return "card-header-cooling";
-            }else if(status === "Sala inativa"){
+            }else if(status_actual === 3){
                 return "card-header-inactive";
-            }else if(waitTime === "Aguardando Causal"){
-                return "card-header-wait"
-            }else{
+            }else if(status === "Aguardando causal"){
+                return "card-header-wait";
+            }else if(status_actual === 0){
                 return "card-header-stop";
+            }else{
+                return "card-header-inactive";
             }
         }
         const effClass = this.props.status==="Sala inativa" ? "display-6 w-auto h-auto fw-bold text-secondary" :
@@ -36,9 +39,9 @@ class MyComponent extends Component {
             <div className="container" onClick={handleClick(`/detail/${this.props.testCell}`, this.props.testCell)}>
                 <div>
                     <Card
-                        className="my-0"
+                        className="my-0 h-auto w-auto"
                         style={{
-                            width: '15.5vw',
+                            // width: '15.5vw',
                             height: '100%',
                             minHeight: '28vh'
                         }}
@@ -51,13 +54,13 @@ class MyComponent extends Component {
                                 {this.props.status}
                             </CardTitle>
                             <CardText tag="div">
-                                <Row className="my-2 align-content-center card-data w-auto h-auto">
+                                <Row className="my-0 align-content-center card-data w-auto h-auto ">
                                     <Col className="card-percent w-auto h-auto">
-                                        <p className="p-0 m-0 w-auto h-auto">Efficiency</p>
-                                        <span className={effClass}>{this.props.eff}%</span>
+                                        <p className="p-0 m-0 w-auto h-auto">%Efficiency</p>
+                                        <span className={effClass}>{this.props.eff}</span>
                                     </Col>
-                                    <Col>
-                                        <Row>Motor: {this.props.motor}</Row>
+                                    <Col className="card-percent w-auto h-auto m-0">
+                                        <Row >Motor: {this.props.motor}</Row>
                                         <Row>Prova: {this.props.teste}</Row>
                                         <Row>Projeto: {this.props.projeto}</Row>
                                     </Col>
@@ -81,11 +84,5 @@ class MyComponent extends Component {
     }
 }
 
-
-// function Stop(sala){
-//
-//
-//     return sala
-// }
 
 export default MyComponent;

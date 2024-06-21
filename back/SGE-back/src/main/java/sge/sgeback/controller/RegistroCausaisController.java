@@ -90,6 +90,11 @@ public class RegistroCausaisController {
         return CausaisRepository.findTopByTestCellOrderByIdDesc(name);
     }
 
+    @GetMapping(path="/lastNotWaiting/{name}")
+    public @ResponseBody Registro_Causal getLastRealCausal(@PathVariable String name) {
+        return CausaisRepository.findTopByTestCellAndCausalNotEmpty(name);
+    }
+
 
 
     @GetMapping(path="/AtualizaTurno")
@@ -124,31 +129,6 @@ public class RegistroCausaisController {
         }
     }
 
-//    @PostMapping(path="/attCausal")
-//    public ResponseEntity<Registro_Causal> AttCausal(@RequestBody Registro_Causal registroCausal) {
-//
-//
-//
-//        String hora_atual_string = LocalTime.now().toString();
-//        LocalTime hora_atual = LocalTime.parse(hora_atual_string, DateTimeFormatter.ofPattern("HH:mm:ss"));
-//
-//        LocalTime zero = LocalTime.parse("00:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
-//
-//        Registro_Causal newCausal = new Registro_Causal();
-//
-//        newCausal.setTestCell(registroCausal.getTestCell());
-//        newCausal.setCode(registroCausal.getCode());
-//        newCausal.setCausal(registroCausal.getCausal());
-//        newCausal.setHora_inicio(Time.valueOf(hora_atual));
-//        newCausal.setHora_final(zero);
-//        newCausal.setData(registroCausal.getData());
-//        newCausal.setObs(registroCausal.getObs());
-//
-//
-//        Registro_Causal newRegistro = CausaisRepository.save(newCausal);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
-//    }
-
 
     @PutMapping(path="/updateHour/{id}")
     public ResponseEntity<Registro_Causal> updateCausal(@PathVariable Integer id) {
@@ -166,6 +146,28 @@ public class RegistroCausaisController {
         }
     }
 
+
+    @PutMapping(path="/updateCausal")
+    public ResponseEntity<Registro_Causal> updateAguardandoCausal(@PathVariable Integer id,@RequestBody Registro_Causal registroCausal) {
+        Optional<Registro_Causal> Causal = CausaisRepository.findById(id);
+
+        LocalTime hora_atual = LocalTime.now().minusSeconds(1);
+
+
+        if (Causal.isPresent()) {
+            Registro_Causal _causal = Causal.get();
+            _causal.setCode(registroCausal.getCode());
+            _causal.setCausal(registroCausal.getCausal());
+            _causal.setHora_final(hora_atual);
+            _causal.setObs(registroCausal.getObs());
+            return new ResponseEntity<>(CausaisRepository.save(_causal), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+
     @PostMapping(path="/insertCausal")
     public ResponseEntity<Registro_Causal> createStatus(@RequestBody Registro_Causal registroCausal) {
 
@@ -177,15 +179,44 @@ public class RegistroCausaisController {
         LocalTime zero = LocalTime.parse("00:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
         registroCausal.setHora_final(zero); //Ajusta hora_final do novo causal para 00:00:00 para evitar valor null
 
+        if(lastCausal.getCausal().equals("Aguardando causal")){
+            return updateAguardandoCausal(lastCausal.getId(),registroCausal);
+        }else{
+            if(lastCausal.getHora_final()==null || lastCausal.getHora_final()==zero){
+                lastCausal.setHora_final(hora_atual);
+                ResponseEntity<Registro_Causal> response = updateCausal(lastCausal.getId());
+            }
 
-        if(lastCausal.getHora_final()==null || lastCausal.getHora_final()==zero){
-            lastCausal.setHora_final(hora_atual);
-            ResponseEntity<Registro_Causal> response = updateCausal(lastCausal.getId());
+            Registro_Causal newRegistro = CausaisRepository.save(registroCausal);
+            statusController.updateStatusCausal(registroCausal.getId(),registroCausal);
+            return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
         }
 
-        Registro_Causal newRegistro = CausaisRepository.save(registroCausal);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
     }
+
+
+
+//    @PutMapping(path="/newCausalUpdate")
+//    public ResponseEntity<Registro_Causal> newCausalUpdate(@RequestBody Registro_Causal registroCausal) {
+//
+//        Registro_Causal lastCausal = CausaisRepository.findTopByTestCellOrderByIdDesc(registroCausal.getTestCell());
+//
+//
+//        LocalTime hora_atual = LocalTime.now().minusSeconds(1);
+//
+//        LocalTime zero = LocalTime.parse("00:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
+//        registroCausal.setHora_final(zero); //Ajusta hora_final do novo causal para 00:00:00 para evitar valor null
+//
+//
+//        if(lastCausal.getHora_final()==null || lastCausal.getHora_final()==zero){
+//            lastCausal.setHora_final(hora_atual);
+//            ResponseEntity<Registro_Causal> response = updateCausal(lastCausal.getId());
+//        }
+//
+//        Registro_Causal newRegistro = CausaisRepository.save(registroCausal);
+//        statusController.updateStatusCausal(registroCausal.getId(),registroCausal);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
+//    }
 
 
     @GetMapping(path="/count/{name}")

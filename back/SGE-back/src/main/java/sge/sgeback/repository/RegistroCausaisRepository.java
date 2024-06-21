@@ -44,4 +44,10 @@ public interface RegistroCausaisRepository extends CrudRepository<Registro_Causa
             "ORDER BY contagem DESC")
     List<Object[]> findCausalCountByTestCellDateOrderBycontagem(@Param("testCell") String testCell, @Param("date") @DateTimeFormat(pattern= "yyyy-MM-dd") Date date);
 
+    @Query("SELECT rc from Registro_Causal rc " +
+            "WHERE rc.testCell = :TestCell " +
+            "AND rc.causal != 'Aguardando causal' " +
+            "order by rc.id desc LIMIT 1")
+    Registro_Causal findTopByTestCellAndCausalNotEmpty(String TestCell);
+
 }

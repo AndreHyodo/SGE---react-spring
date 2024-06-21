@@ -27,10 +27,10 @@ const HeaderComponent = () => {
 
     return(
         <div>
-            <div className="">
-                <Navbar color="fadded" light className="w-100">
+            <div className="w-100">
+                <Navbar color="fadded" light className="w-100 justify-content-center">
                     <NavbarToggler onClick={toggleNavbar} className="me-2" />
-                    <NavbarBrand href="/" className="me-auto brand">
+                    <NavbarBrand href="/" className="me-50 brand w-auto ">
                         Efficiency Management System
                     </NavbarBrand>
                     <img src={logo} alt="" className="logo"/>
