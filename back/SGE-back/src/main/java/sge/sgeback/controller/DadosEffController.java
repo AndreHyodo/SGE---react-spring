@@ -13,6 +13,9 @@ import sge.sgeback.repository.DadosEffRepository;
 import sge.sgeback.repository.DadosRepository;
 import sge.sgeback.repository.StatusRepository;
 
+import javax.swing.plaf.PanelUI;
+import java.math.BigDecimal;
+import java.security.PublicKey;
 import java.sql.Time;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -42,6 +45,12 @@ public class DadosEffController {
     public @ResponseBody Iterable<Dados_Eff> findTop10ByTestCellOrderByIdDesc(@PathVariable String name) {
         return dadosEffRepository.findTop10ByTestCellOrderByIdDesc(name);
     }
+
+    @GetMapping(path="/effTeste/{name}")
+    public int GetEffTeste(@PathVariable String name){
+        return dadosEffRepository.findByTestCellAndData(name);
+    }
+
     @GetMapping(path="/top10/{turno}/{name}")
     public @ResponseBody List<Dados_Eff> findTop10ByTestCellOrderByIdDesc(@PathVariable int turno, @PathVariable String name) {
         // Fetch data using the existing logic
@@ -161,6 +170,7 @@ public class DadosEffController {
             }
         }
     }
+
 
     @PostMapping
     public ResponseEntity<Dados_Eff> createDadosEff(@RequestBody Dados_Eff dados) {

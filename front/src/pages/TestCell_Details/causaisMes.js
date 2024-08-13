@@ -272,7 +272,7 @@ const CausaisMes = () => {
                                     fontWeight="bold"
                                     fill="white"
                                 >
-                                    Causais no mês atual
+                                    Causais
                                 </text>
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis

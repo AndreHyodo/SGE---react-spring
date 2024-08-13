@@ -5,6 +5,7 @@ import org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +43,9 @@ public class RegistroCausaisController {
 
     @Autowired
     private RegistroCausaisRepository CausaisRepository;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     private StatusRepository statusRepository;
 
@@ -151,14 +155,16 @@ public class RegistroCausaisController {
     public ResponseEntity<Registro_Causal> updateAguardandoCausal(@PathVariable Integer id,@RequestBody Registro_Causal registroCausal) {
         Optional<Registro_Causal> Causal = CausaisRepository.findById(id);
 
-        LocalTime hora_atual = LocalTime.now().minusSeconds(1);
+        LocalTime hora_atualLocalTime = LocalTime.now().minusSeconds(1);
+
+        Time hora_atual = Time.valueOf(hora_atualLocalTime);
 
 
         if (Causal.isPresent()) {
             Registro_Causal _causal = Causal.get();
             _causal.setCode(registroCausal.getCode());
             _causal.setCausal(registroCausal.getCausal());
-            _causal.setHora_final(hora_atual);
+//            _causal.setHora_inicio(hora_atual);
             _causal.setObs(registroCausal.getObs());
             return new ResponseEntity<>(CausaisRepository.save(_causal), HttpStatus.OK);
         } else {
@@ -266,6 +272,26 @@ public class RegistroCausaisController {
         }
 
         return ResponseEntity.ok(causalCountsByDate);
+    }
+
+    public Long findTotalTimeInSecs() {
+        String sql = "SELECT SUM(CASE WHEN hora_final = '00:00:00' THEN TIMESTAMPDIFF(SECOND, hora_inicio, CURRENT_TIME) / 60.0 ELSE TIMESTAMPDIFF(SECOND, hora_inicio, hora_final) / 60.0 END) AS tempo_total_min " +
+                "FROM Registro_Causal rc " +
+                "WHERE rc.data = CURRENT_DATE " +
+                "AND rc.testCell = :testCell " +
+                "AND (" +
+                "CURRENT_TIME >= '06:00:00' AND CURRENT_TIME < '15:48:00' AND hora_final >= '06:00:02' AND hora_final < '15:48:00' " +
+                "OR " +
+                "CURRENT_TIME >= '15:48:00' AND CURRENT_TIME < '23:59:59' AND hora_final >= '15:48:00' AND hora_final < '23:59:59' " +
+                "OR " +
+                "CURRENT_TIME >= '00:00:00' AND CURRENT_TIME < '01:09:00' AND hora_final >= '00:00:00' AND hora_final < '01:09:00' " +
+                "OR " +
+                "CURRENT_TIME >= '01:09:00' AND CURRENT_TIME < '06:00:00' AND hora_final >= '01:09:00' AND hora_final < '06:00:00' " +
+                "OR " +
+                "hora_final = '00:00:00' " +
+                ")";
+        Long totalTime = jdbcTemplate.queryForObject(sql, Long.class);
+        return totalTime;
     }
 
 }

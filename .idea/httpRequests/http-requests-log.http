@@ -1,3 +1,166 @@
+GET http://localhost:8080/EffAtual/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T172918.500.json
+
+###
+
+POST http://localhost:8080/dadosEff/Eff
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T151006.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T145341.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/effTeste/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T144735.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T143305.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T141758.500.json
+
+###
+
+GET http://localhost:8080/causais/lastNotWaiting/A06
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T141753.200.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T141700.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T141311.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T141145.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T141051.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T140053.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T140021.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T135651.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T135601.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T134933.500.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T134859.404.json
+
+###
+
+GET http://localhost:8080/dadosEff/eff/A01
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-07-03T134852.404.json
+
+###
+
 GET http://localhost:8080/causais/lastNotWaiting/A06
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)

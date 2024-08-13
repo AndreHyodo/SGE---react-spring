@@ -323,7 +323,7 @@ const App = () => {
                                 <label htmlFor="Code">Código:</label>
                             </div>
                             <div className="row" id="inputs">
-                                <input type="text" onChange={handleSubmit} name="Code" id="Code" />
+                                <input type="text" name="Code" id="Code" />
                             </div>
                         </div>
                         <div className="col-md-4">
@@ -331,7 +331,7 @@ const App = () => {
                                 <label htmlFor="causal">Causal:</label>
                             </div>
                             <div className="row" id="inputs">
-                                <input type="text"  name="causal" onChange={handleSubmit} id="causal" />
+                                <input type="text"  name="causal" id="causal" />
                             </div>
                         </div>
                         <div className="col-md-4">
@@ -339,7 +339,7 @@ const App = () => {
                                 <label htmlFor="obs">Obs:</label>
                             </div>
                             <div className="row" id="inputs">
-                                <textarea onChange={handleSubmit} name="obs" id="obs" cols="30" rows="2" className="obs"></textarea>
+                                <textarea name="obs" id="obs" cols="30" rows="2" className="obs"></textarea>
                             </div>
                         </div>
                     </div>
