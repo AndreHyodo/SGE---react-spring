@@ -12,12 +12,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.awt.font.GlyphJustificationInfo;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import sge.sgeback.model.Registro_Causal;
 import sge.sgeback.model.Status;
+import sge.sgeback.repository.CausaisRepository;
+import sge.sgeback.repository.RegistroCausaisRepository;
 import sge.sgeback.repository.StatusRepository;
 
 import javax.xml.crypto.Data;
@@ -30,6 +43,9 @@ public class StatusController {
 
     @Autowired
     public StatusRepository statusRepository;
+
+    @Autowired
+    public RegistroCausaisRepository causaisRepository;
 
     @GetMapping
     public @ResponseBody Iterable<Status> getAllStatus() {
@@ -48,6 +64,11 @@ public class StatusController {
         return statusRepository.findByIdBetween(1, 18);
     }
 
+    @GetMapping(path="/allStopStatus")
+    public @ResponseBody Iterable<Status> getStopStatus() {
+        return statusRepository.findByIdBetweenAndStatusEmpty(1, 18);
+    }
+
 //    @GetMapping
 //    public List<Status> getAllTestCell() {
 //        return statusRepository.findAll();
@@ -59,7 +80,7 @@ public class StatusController {
     }
 
     @GetMapping(path="/get/{testCell}")
-    public @ResponseBody Status getStatusTestCell(@PathVariable String testCell){
+    public @ResponseBody Optional<Status> getStatusTestCell(@PathVariable String testCell){
         return statusRepository.findStatusByTestCell(testCell);
     }
 
@@ -77,7 +98,88 @@ public class StatusController {
         }
     }
 
-    @PutMapping(path="/updateCausal/{id}")
+    @PutMapping(path="/update_Eff")
+    public ResponseEntity<Void> updateStatusEff() {
+
+        Iterable<Status> statuses = getAllStatus();
+        Integer turnoTime = 35280;
+
+        for (Status status : statuses) {
+            Float totalTime = causaisRepository.findTempoTotalSec(status.getTestCell());
+            if(totalTime == null){
+                totalTime = 0.0f;
+            }
+            status.setEff(((turnoTime - Math.round(totalTime))*100)/turnoTime);
+            statusRepository.save(status);
+        }
+
+        // Return after processing all statuses
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(path="/update_StopTime")
+    public ResponseEntity<Void> updateTotalStop() throws ParseException {
+
+        Iterable<Status> Stop_statuses = getStatus();
+
+        for (Status stopStatus : Stop_statuses) {
+            if (stopStatus.getStatus() == 0){
+                Float totalStop = causaisRepository.findTotalStop(stopStatus.getTestCell());
+                Float currentStop = causaisRepository.findCurrentStop(stopStatus.getTestCell());
+
+                Time StopTime = TimeConverter(totalStop);
+                Time CurrentStop = TimeConverter(currentStop);
+
+                stopStatus.setParada_atual(CurrentStop);
+                stopStatus.setParada_total(StopTime);
+                statusRepository.save(stopStatus);
+            } else if (stopStatus.getStatus()==1) {
+                LocalTime midnightLocalTime = LocalTime.MIDNIGHT;
+
+                stopStatus.setParada_atual(Time.valueOf(midnightLocalTime));
+                statusRepository.save(stopStatus);
+            }
+
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    public Time TimeConverter(Float time) throws ParseException {
+        String formattedTime;
+        long hours=0;
+        long minutes=0;
+        long remainingSeconds=0;
+
+        if(time==null){
+            time=0.0f;
+        }
+
+        if(time>0){
+
+            if(time>3600){
+                hours = TimeUnit.SECONDS.toHours(time.longValue());
+                minutes = TimeUnit.SECONDS.toMinutes(time.longValue()) - TimeUnit.HOURS.toMinutes(hours);
+            }else{
+                minutes = TimeUnit.SECONDS.toMinutes(time.longValue());
+            }
+
+            remainingSeconds = time.longValue() - TimeUnit.MINUTES.toSeconds(minutes) - TimeUnit.HOURS.toSeconds(hours);
+        }else {
+            remainingSeconds = TimeUnit.MINUTES.toSeconds(minutes) - TimeUnit.HOURS.toSeconds(hours);
+        }
+
+        formattedTime = String.format("%02d:%02d:%02d", hours, minutes, remainingSeconds);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+
+        Date date = sdf.parse(formattedTime);
+
+        return new Time(date.getTime());
+    }
+
+
+        @PutMapping(path="/updateCausal/{id}")
     public ResponseEntity<Status> updateStatusCausal(@PathVariable Integer id, @RequestBody Registro_Causal causalStatus) {
         Optional<Status> statusDataCausal = statusRepository.findById(id);
 
@@ -124,6 +226,7 @@ public class StatusController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sala com ID " + id + " não encontrada.");
         }
     }
+
 
 
 

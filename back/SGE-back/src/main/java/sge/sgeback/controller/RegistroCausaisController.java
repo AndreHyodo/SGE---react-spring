@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.StreamSupport;
 
 
@@ -274,25 +275,86 @@ public class RegistroCausaisController {
         return ResponseEntity.ok(causalCountsByDate);
     }
 
-    public Long findTotalTimeInSecs() {
-        String sql = "SELECT SUM(CASE WHEN hora_final = '00:00:00' THEN TIMESTAMPDIFF(SECOND, hora_inicio, CURRENT_TIME) / 60.0 ELSE TIMESTAMPDIFF(SECOND, hora_inicio, hora_final) / 60.0 END) AS tempo_total_min " +
-                "FROM Registro_Causal rc " +
-                "WHERE rc.data = CURRENT_DATE " +
-                "AND rc.testCell = :testCell " +
-                "AND (" +
-                "CURRENT_TIME >= '06:00:00' AND CURRENT_TIME < '15:48:00' AND hora_final >= '06:00:02' AND hora_final < '15:48:00' " +
-                "OR " +
-                "CURRENT_TIME >= '15:48:00' AND CURRENT_TIME < '23:59:59' AND hora_final >= '15:48:00' AND hora_final < '23:59:59' " +
-                "OR " +
-                "CURRENT_TIME >= '00:00:00' AND CURRENT_TIME < '01:09:00' AND hora_final >= '00:00:00' AND hora_final < '01:09:00' " +
-                "OR " +
-                "CURRENT_TIME >= '01:09:00' AND CURRENT_TIME < '06:00:00' AND hora_final >= '01:09:00' AND hora_final < '06:00:00' " +
-                "OR " +
-                "hora_final = '00:00:00' " +
-                ")";
-        Long totalTime = jdbcTemplate.queryForObject(sql, Long.class);
-        return totalTime;
+//    @GetMapping(path="/Eff/{testCell}")
+//    public ResponseEntity<Float> findTotalTimeInSecs(@PathVariable String testCell) {
+//
+//        return ResponseEntity.ok(CausaisRepository.findTempoTotalSec(testCell));
+//    }
+
+    @GetMapping(path="/Eff/{testCell}")
+    public ResponseEntity<TotalTimeResponse> findTotalTimeInSecs(@PathVariable String testCell) {
+        Float totalTime = CausaisRepository.findTempoTotalSec(testCell);
+        TotalTimeResponse response = new TotalTimeResponse(totalTime);
+        return ResponseEntity.ok(response);
     }
+
+    static class TotalTimeResponse {
+        private Float totalTime;
+
+        public TotalTimeResponse(Float totalTime) {
+            this.totalTime = totalTime;
+        }
+
+        public Float getTotalTime() {
+            return totalTime;
+        }
+    }
+
+
+    @GetMapping(path="/TotalStop/{testCell}")
+    public ResponseEntity<String> findTotalStop(@PathVariable String testCell) {
+        Float totalStop = CausaisRepository.findTotalStop(testCell);
+        String formattedTime;
+        long hours=0;
+        long minutes=0;
+        long remainingSeconds=0;
+
+        if(totalStop>0){
+
+            if(totalStop>3600){
+                hours = TimeUnit.SECONDS.toHours(totalStop.longValue());
+                minutes = TimeUnit.SECONDS.toMinutes(totalStop.longValue()) - TimeUnit.HOURS.toMinutes(hours);
+            }else{
+                minutes = TimeUnit.SECONDS.toMinutes(totalStop.longValue());
+            }
+
+        }
+
+        remainingSeconds = totalStop.longValue() - TimeUnit.MINUTES.toSeconds(minutes) - TimeUnit.HOURS.toSeconds(hours);
+
+        formattedTime = String.format("%02d:%02d:%02d", hours, minutes, remainingSeconds);
+
+        return ResponseEntity.ok(formattedTime);
+    }
+
+
+    @GetMapping(path="/CurrentStop/{testCell}")
+    public ResponseEntity<String> findCurrentStop(@PathVariable String testCell) {
+        Float CurrentStop = CausaisRepository.findCurrentStop(testCell);
+        String formattedTime;
+        long hours=0;
+        long minutes=0;
+        long remainingSeconds=0;
+
+        if(CurrentStop>0 && CurrentStop!=null){
+
+            if(CurrentStop>3600){
+                hours = TimeUnit.SECONDS.toHours(CurrentStop.longValue());
+                minutes = TimeUnit.SECONDS.toMinutes(CurrentStop.longValue()) - TimeUnit.HOURS.toMinutes(hours);
+            }else{
+                minutes = TimeUnit.SECONDS.toMinutes(CurrentStop.longValue());
+            }
+            remainingSeconds = CurrentStop.longValue() - TimeUnit.MINUTES.toSeconds(minutes) - TimeUnit.HOURS.toSeconds(hours);
+        }else{
+            remainingSeconds = TimeUnit.MINUTES.toSeconds(minutes) - TimeUnit.HOURS.toSeconds(hours);
+        }
+
+        formattedTime = String.format("%02d:%02d:%02d", hours, minutes, remainingSeconds);
+
+        return ResponseEntity.ok(formattedTime);
+    }
+
+
 
 }
 

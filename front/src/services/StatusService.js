@@ -63,3 +63,7 @@ export function causais_date(SPM,date){
 export function causaisHour_date(SPM,date){
     return axios.get(url_base + `/causais/countHour/${SPM}/${date}`);
 }
+
+export function Current_Eff(SPM){
+    return axios.get(url_base + `/causais/Eff/${SPM}`);
+}

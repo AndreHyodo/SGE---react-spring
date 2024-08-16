@@ -68,7 +68,7 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;21.3.0&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.11.5&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/SC22381/Desktop/Hyodo/PUC/3º Período/TIS 3/pmg-es-2024-1-ti3-9577100-petshop-do-chicao&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SC22381/Desktop/NEW SGE/SGE - react + spring/front/src/pages/Registro_Causal&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -104,8 +104,9 @@
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\src\Components\Card" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="sge.sgeback.repository" />
       <recent name="sge.sgeback.controller" />
+      <recent name="sge.sgeback.repository" />
+      <recent name="sge.sgeback.model" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.SgeBackApplication">
@@ -261,7 +262,10 @@
       <workItem from="1720016227209" duration="12492000" />
       <workItem from="1720718305557" duration="3651000" />
       <workItem from="1723466198159" duration="955000" />
-      <workItem from="1723546767218" duration="6435000" />
+      <workItem from="1723546767218" duration="7100000" />
+      <workItem from="1723640543862" duration="10560000" />
+      <workItem from="1723732066798" duration="21549000" />
+      <workItem from="1723806005035" duration="14000" />
     </task>
     <servers />
   </component>

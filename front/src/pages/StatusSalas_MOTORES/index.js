@@ -21,6 +21,9 @@ const StatusSalas = () => {
         })
     }, [Salas])
 
+
+
+
     const status = (causal, status) => {
 
         if (status===0){

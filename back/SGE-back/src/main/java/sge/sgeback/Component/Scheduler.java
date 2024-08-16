@@ -1,7 +1,10 @@
 package sge.sgeback.Component;
 
 
+import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +55,16 @@ public class Scheduler {
     @Scheduled(cron = "00 04 17 * * *") // Ação agendada para 01:08:59 todos os dias
     public void scheduleAtualizarCausaisTurno() {
         causaisController.AutalizarTurno(); // Call your existing controller method
+    }
+
+    @Scheduled(cron = "0 * * * * *") // Ação agendada para uma vez a cada minuto
+    public void scheduleAtualizarEff(){
+        statusController.updateStatusEff();
+    }
+
+    @Scheduled(cron = "*/1 * * * * ?") // Ação agendada para uma vez a cada segundo
+    public void scheduleAtualizarStopTime() throws ParseException {
+        statusController.updateTotalStop();
     }
 
 
