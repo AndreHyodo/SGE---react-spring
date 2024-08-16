@@ -5,7 +5,7 @@ import axios from "axios";
 
 // const url_base = 'http://localhost:8080'
 
-// const url_base = 'http://172.28.241.65:8080' //Rede teste Fábrica PC André
+// const url_base = 'http://172.28.235.25:8080' //Rede teste Fábrica PC André
 const url_base = 'http://172.28.124.61:8080' //Rede oficial
 
 
@@ -66,4 +66,9 @@ export function causaisHour_date(SPM,date){
 
 export function Current_Eff(SPM){
     return axios.get(url_base + `/causais/Eff/${SPM}`);
+}
+
+export function Verif_User(user,senha){
+    console.log("estou executando: " + url_base + `/users/verificaUser/${user}/${senha}`)
+    return axios.get(url_base + `/users/verificaUser/${user}/${senha}`)
 }

@@ -13,6 +13,8 @@ import {
 import logo from '../../img/logoStellantis.png';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {eff_hist_turno} from "../../services/StatusService";
+import {Verif_User} from "../../services/StatusService"
 
 const App = () => {
 
@@ -22,9 +24,8 @@ const App = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await
-                axios.get(`users/verificaUser/${user}/${senha}`);
-                console.log(user + " -- " + senha);
+            const response = await Verif_User(user, senha);
+            console.log(response.data);
             if(user && senha){
                 if (response.data) {
                     // Login successful
@@ -32,7 +33,7 @@ const App = () => {
                     console.log(response.data.token);
                     setErrorMessage("");
                     sessionStorage.setItem('TOKEN_OK', response.data.token);
-                    // window.location.reload();
+                    window.location.reload();
                 } else {
                     setErrorMessage('Usuário ou senha inválidos');
                 }
