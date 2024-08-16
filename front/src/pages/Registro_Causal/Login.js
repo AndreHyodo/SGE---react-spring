@@ -24,16 +24,22 @@ const App = () => {
         try {
             const response = await
                 axios.get(`users/verificaUser/${user}/${senha}`);
-            if (response.data) {
-                // Login successful
-                console.log('Login successful');
-                console.log(response.data.token);
-                setErrorMessage("");
-                sessionStorage.setItem('TOKEN_OK', response.data.token);
-                window.location.reload();
-            } else {
+                console.log(user + " -- " + senha);
+            if(user && senha){
+                if (response.data) {
+                    // Login successful
+                    console.log('Login successful');
+                    console.log(response.data.token);
+                    setErrorMessage("");
+                    sessionStorage.setItem('TOKEN_OK', response.data.token);
+                    // window.location.reload();
+                } else {
+                    setErrorMessage('Usuário ou senha inválidos');
+                }
+            }else{
                 setErrorMessage('Usuário ou senha inválidos');
             }
+
         } catch (error) {
             console.error('Error:', error);
             setErrorMessage('Ocorreu um erro durante a verificação');
