@@ -26,9 +26,9 @@ public interface RegistroCausaisRepository extends CrudRepository<Registro_Causa
     List<Object[]> findCausalCountByTestCellOrderBycontagem(@Param("testCell") String testCell);
 
     @Query("SELECT TIME_FORMAT(\n" +
-            "    COALESCE(SUM(TIMEDIFF(COALESCE(rc.hora_final, CURRENT_TIME()), rc.hora_inicio)), 0),\n" +
+            "    COALESCE(SUM(TIMEDIFF(COALESCE(NULLIF(rc.hora_final,0), CURRENT_TIME()), rc.hora_inicio)), 0),\n" +
             "    '%H:%i:%s') AS contagem, " +
-            "SUM(TIMEDIFF(COALESCE(rc.hora_final, CURRENT_TIME()), rc.hora_inicio)) AS contagem_sec, " +
+            "SUM(TIMEDIFF(COALESCE(NULLIF(rc.hora_final,0), CURRENT_TIME()), rc.hora_inicio)) AS contagem_sec, " +
             "rc.causal, rc.testCell " +
             "FROM Registro_Causal rc " +
             "WHERE rc.testCell = :testCell " +
