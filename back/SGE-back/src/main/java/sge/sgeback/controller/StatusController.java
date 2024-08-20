@@ -211,6 +211,22 @@ public class StatusController {
         }
     }
 
+    @PutMapping(path="/update/{testCell}/{motor}/{projeto}/{teste}")
+    public ResponseEntity<Status> updateData(@PathVariable String testCell, @PathVariable int motor, @PathVariable String projeto, @PathVariable String teste) {
+        Optional<Status> statusData = statusRepository.findStatusByTestCell(testCell);
+
+        if (statusData.isPresent()) {
+            Status _status = statusData.get();
+            _status.setMotor(motor);
+            _status.setProjeto(projeto);
+            _status.setTeste(teste);
+            System.out.println("Atualizando DB : "+ motor + " , " + projeto + " e " + teste);
+            return new ResponseEntity<>(statusRepository.save(_status), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Status> createStatus(@RequestBody Status status) {
         Status newstatus = statusRepository.save(status);
