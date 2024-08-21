@@ -220,7 +220,7 @@ public class StatusController {
             _status.setMotor(motor);
             _status.setProjeto(projeto);
             _status.setTeste(teste);
-            System.out.println("Atualizando DB : "+ motor + " , " + projeto + " e " + teste);
+//            System.out.println("Atualizando DB : "+ motor + " , " + projeto + " e " + teste);
             return new ResponseEntity<>(statusRepository.save(_status), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

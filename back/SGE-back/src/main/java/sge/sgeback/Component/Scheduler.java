@@ -38,12 +38,12 @@ public class Scheduler {
 
     @Scheduled(cron = "59 59 5 * * *") // Ação agendada para 05:59:59 todos os dias
     @Scheduled(cron = "30 47 15 * * *") // Ação agendada para 15:47:59 todos os dias
-    @Scheduled(cron = "30 57 23 * * *") // Ação agendada para 23:59:57 todos os dias
+    @Scheduled(cron = "00 59 23 * * *") // Ação agendada para 23:59:57 todos os dias
     public void scheduleAtualizarDadosEff() {
         dadosEffController.atualizarDadosEff(); // Call your existing controller method
     }
 
-    @Scheduled(cron = "59 58 23 * * *") // Ação agendada para 23:58:59 todos os dias
+    @Scheduled(cron = "50 59 23 * * *") // Ação agendada para 23:58:59 todos os dias
     public void scheduleDailyEff() {
         dadosEffController.atualizarDailyEff();
     }

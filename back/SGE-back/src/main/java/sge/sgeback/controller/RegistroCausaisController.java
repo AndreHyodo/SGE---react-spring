@@ -48,6 +48,7 @@ public class RegistroCausaisController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
     private StatusRepository statusRepository;
 
     @Autowired
@@ -187,6 +188,9 @@ public class RegistroCausaisController {
         registroCausal.setHora_final(zero); //Ajusta hora_final do novo causal para 00:00:00 para evitar valor null
 
         if(lastCausal.getCausal().equals("Aguardando causal")){
+            Optional<Status> status_ = statusRepository.findStatusByTestCell(registroCausal.getTestCell());
+            System.out.println("Procurando status para : " + status_.get().getTestCell());
+            statusController.updateStatusCausal(status_.get().getId(),registroCausal);
             return updateAguardandoCausal(lastCausal.getId(),registroCausal);
         }else{
             if(lastCausal.getHora_final()==null || lastCausal.getHora_final()==zero){
