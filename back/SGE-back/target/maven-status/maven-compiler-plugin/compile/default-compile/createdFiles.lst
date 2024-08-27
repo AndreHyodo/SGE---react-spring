@@ -1,8 +1,10 @@
 sge\sgeback\repository\DadosEffRepository.class
+sge\sgeback\controller\FilesController.class
 sge\sgeback\controller\RegistroCausaisController$TotalTimeResponse.class
 sge\sgeback\controller\StatusController.class
 sge\sgeback\repository\StatusRepository.class
 sge\sgeback\controller\Eff_atualController.class
+sge\sgeback\model\Files.class
 sge\sgeback\model\Status.class
 sge\sgeback\model\Users.class
 sge\sgeback\controller\UsersController.class
@@ -11,6 +13,7 @@ sge\sgeback\controller\CausaisController.class
 sge\sgeback\controller\DadosController.class
 sge\sgeback\SgeBackApplication.class
 sge\sgeback\model\Registro_Causal.class
+sge\sgeback\repository\FilesRepository.class
 sge\sgeback\controller\RegistroCausaisController.class
 sge\sgeback\repository\Eff_atualRepository.class
 sge\sgeback\model\Causais.class
@@ -18,6 +21,7 @@ sge\sgeback\repository\UsersRepository.class
 sge\sgeback\model\Dados.class
 sge\sgeback\repository\CausaisRepository.class
 sge\sgeback\repository\DadosRepository.class
+sge\sgeback\service\FileService.class
 sge\sgeback\model\Eff_atual.class
 sge\sgeback\controller\DadosEffController.class
 sge\sgeback\repository\RegistroCausaisRepository.class

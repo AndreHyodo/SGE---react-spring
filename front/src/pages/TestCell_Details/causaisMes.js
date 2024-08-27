@@ -136,31 +136,6 @@ const CausaisMes = () => {
         }
     };
 
-    // const getTypeData= async (SPM) => {
-    //     try {
-    //         const response = await getStatusTestCell(SPM);
-    //         console.log(response.data);
-    //         return response.data;
-    //     } catch (error) {
-    //         console.error("Error fetching type data:", error);
-    //         return [];
-    //     }
-    // };
-    //
-    // const [type, setType] = useState([]);
-    //
-    // useEffect(() => {
-    //     const getType = async () => {
-    //         try {
-    //             const response = await getTypeData(testCell);
-    //             console.log("API Response:", response);
-    //         } catch (error) {
-    //             console.error("Error fetching type:", error);
-    //         }
-    //     };
-    //     getType();
-    // }, [type]);
-
     if (causais.length === 0 && effData1.length === 0) {
         return <h1>Loading...</h1>;
     }

@@ -3,14 +3,17 @@ C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\jav
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\securingweb\WebSecurityConfig.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\repository\StatusRepository.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\controller\DadosController.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\controller\FilesController.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\securingweb\MvcConfig.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\securingweb\CorsConfiguration.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\model\UpdateStatus.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\Component\Scheduler.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\service\FileService.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\controller\StatusController.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\model\Registro_Causal.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\model\Eff_atual.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\model\Status.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\repository\FilesRepository.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\model\Users.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\controller\Eff_atualController.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\repository\UsersRepository.java
@@ -22,6 +25,7 @@ C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\jav
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\repository\DadosEffRepository.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\controller\UsersController.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\SgeBackApplication.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\model\Files.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\model\Dados.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\repository\Eff_atualRepository.java
 C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\sge-back\src\main\java\sge\sgeback\controller\RegistroCausaisController.java

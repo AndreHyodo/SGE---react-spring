@@ -21,19 +21,19 @@ public class Dados {
     private Integer Motor;
     private String Projeto;
     private String Teste;
-    private Date DATE;
     private Time Hora_inicio;
+    private Date DATE;
 
     public Dados(){}
 
-    public Dados(int id, String testCell, Integer motor, String projeto, String teste, Date DATE, Time hora_inicio) {
+    public Dados(int id, String testCell, Integer motor, String projeto, String teste, Date DATE, Time Hora_inicio) {
         this.id = id;
         this.testCell = testCell;
         Motor = motor;
         Projeto = projeto;
         Teste = teste;
         this.DATE = DATE;
-        Hora_inicio = hora_inicio;
+        this.Hora_inicio = Hora_inicio;
     }
 
     public int getId() {
@@ -91,6 +91,4 @@ public class Dados {
     public void setHora_inicio(Time hora_inicio) {
         Hora_inicio = hora_inicio;
     }
-
-
 }

@@ -268,7 +268,8 @@ public class RegistroCausaisController {
         for (Object[] result : results) {
             String causal = (String) result[2];
             Long seconds = ((BigDecimal) result[1]).longValue();
-            String time = (String) result[0];
+            Time time_original = (Time) result[0];
+            String time = time_original.toString();
 
             Map<String, Long> causalData = new HashMap<>();
             causalData.put(time, seconds);

@@ -68,7 +68,7 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;21.3.0&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.11.5&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/SC22381/Desktop/NEW SGE/SGE - react + spring/front/src/pages/Registro_Causal&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SC22381/Desktop/NEW SGE/SGE - react + spring/back/SGE-back/src/main&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -90,20 +90,21 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src\pages\Registro_Causal" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src\pages\TestCell_Details" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\public" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\build" />
-      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\ArquivosTeste" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src\pages\TestCell_Details" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\bk" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\src\Images\Logo" />
-      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\src\Components\Card" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="sge.sgeback.service" />
       <recent name="sge.sgeback.controller" />
       <recent name="sge.sgeback.repository" />
       <recent name="sge.sgeback.model" />
@@ -267,7 +268,12 @@
       <workItem from="1723732066798" duration="21549000" />
       <workItem from="1723806005035" duration="12422000" />
       <workItem from="1724150783165" duration="4066000" />
-      <workItem from="1724238045610" duration="4991000" />
+      <workItem from="1724238045610" duration="11736000" />
+      <workItem from="1724331819528" duration="6407000" />
+      <workItem from="1724413364596" duration="1464000" />
+      <workItem from="1724511212833" duration="8495000" />
+      <workItem from="1724690722267" duration="5712000" />
+      <workItem from="1724756382687" duration="3596000" />
     </task>
     <servers />
   </component>

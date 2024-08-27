@@ -1,5 +1,6 @@
 package sge.sgeback.controller;
 
+import org.springframework.cglib.core.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +18,8 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneOffset;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.time.*;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import sge.sgeback.model.Registro_Causal;
@@ -102,14 +97,37 @@ public class StatusController {
     public ResponseEntity<Void> updateStatusEff() {
 
         Iterable<Status> statuses = getAllStatus();
-        Integer turnoTime = 35280;
+
+        long turnoTime=0;
+
+        LocalTime inicioTime;
+        LocalTime finalTime;
+        LocalTime hora_atual = LocalTime.now();
+
+        // Horários de início e fim dos intervalos
+        LocalTime inicio1turno = LocalTime.of(6, 0, 0);
+        LocalTime inicio2turno = LocalTime.of(15, 48, 0);
+        LocalTime finalDia = LocalTime.of(23, 59, 59);
+        LocalTime inicioDia = LocalTime.of(0, 0, 0);
+        LocalTime inicio3turno = LocalTime.of(1, 9, 0);
+
+        if(hora_atual.isAfter(inicio1turno) && hora_atual.isBefore(inicio2turno)){
+            turnoTime = Duration.between(inicio1turno, hora_atual).toSeconds(); // 1 TURNO
+        } else if (hora_atual.isAfter(inicio2turno) && hora_atual.isBefore(finalDia)) {
+            turnoTime = Duration.between(inicio2turno, hora_atual).toSeconds(); // 2 TURNO
+            System.out.println("tempo de turno : " + turnoTime);
+        } else if (hora_atual.isAfter(inicioDia) && hora_atual.isBefore(inicio3turno)) {
+            turnoTime = Duration.between(inicio2turno, finalDia).plus(Duration.between(inicio3turno, hora_atual)).toSeconds(); // 2 TURNO APÓS A VIRADA DO DIA
+        } else if(hora_atual.isAfter(inicio3turno) && hora_atual.isBefore(inicio1turno)){
+            turnoTime = Duration.between(inicio3turno, hora_atual).toSeconds();
+        }
 
         for (Status status : statuses) {
             Float totalTime = causaisRepository.findTempoTotalSec(status.getTestCell());
             if(totalTime == null){
                 totalTime = 0.0f;
             }
-            status.setEff(((turnoTime - Math.round(totalTime))*100)/turnoTime);
+            status.setEff((int) (((turnoTime - Math.round(totalTime))*100)/turnoTime));
             statusRepository.save(status);
         }
 
