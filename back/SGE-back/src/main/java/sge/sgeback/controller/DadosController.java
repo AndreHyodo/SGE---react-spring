@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.StreamSupport;
 
 
 @Controller
@@ -49,8 +50,22 @@ public class DadosController {
     }
 
     @GetMapping(path="/last/{testCell}")
-    public @ResponseBody Iterable<Dados> getData(@PathVariable String testCell) {
+    public @ResponseBody Dados getDadosData(@PathVariable String testCell) {
         return DadosRepository.findFirstByTestCellOrderByIdDesc(testCell);
+    }
+
+    @PutMapping(path="/updateLastAll")
+    public @ResponseBody void updateLastOfAll(){
+        List<String> testCells = StreamSupport.stream(statusController.getStatus().spliterator(), false)
+                .map(Status::getTestCell)
+                .toList();
+
+
+        for (String testCell : testCells) {
+            Dados dado = getDadosData(testCell);
+
+            statusController.updateStatusDados(testCell, dado);
+        }
     }
 
     public void atualizaExcelDados() throws IOException {
@@ -58,6 +73,8 @@ public class DadosController {
 
         for (Status testCellStatus : testCellStatuses){
             getExcelData(testCellStatus.getTestCell());
+            Dados dado = getDadosData(testCellStatus.getTestCell());
+            statusController.updateStatusDados(testCellStatus.getTestCell(), dado);
         }
     }
 

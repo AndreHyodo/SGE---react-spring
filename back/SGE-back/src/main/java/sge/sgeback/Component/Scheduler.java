@@ -72,7 +72,7 @@ public class Scheduler {
         statusController.updateTotalStop();
     }
 
-    @Scheduled(cron = "0 */5 * * * ?") // Ação agendada para uma vez a cada 5 minutos
+    @Scheduled(cron = "0 */10 * * * ?") // Ação agendada para uma vez a cada 5 minutos
     public void scheduleAtualizaDados() throws IOException {
         dadosController.atualizaExcelDados();
     }

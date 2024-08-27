@@ -22,6 +22,7 @@ import java.time.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import sge.sgeback.model.Dados;
 import sge.sgeback.model.Registro_Causal;
 import sge.sgeback.model.Status;
 import sge.sgeback.repository.CausaisRepository;
@@ -115,7 +116,6 @@ public class StatusController {
             turnoTime = Duration.between(inicio1turno, hora_atual).toSeconds(); // 1 TURNO
         } else if (hora_atual.isAfter(inicio2turno) && hora_atual.isBefore(finalDia)) {
             turnoTime = Duration.between(inicio2turno, hora_atual).toSeconds(); // 2 TURNO
-            System.out.println("tempo de turno : " + turnoTime);
         } else if (hora_atual.isAfter(inicioDia) && hora_atual.isBefore(inicio3turno)) {
             turnoTime = Duration.between(inicio2turno, finalDia).plus(Duration.between(inicio3turno, hora_atual)).toSeconds(); // 2 TURNO APÓS A VIRADA DO DIA
         } else if(hora_atual.isAfter(inicio3turno) && hora_atual.isBefore(inicio1turno)){
@@ -197,7 +197,7 @@ public class StatusController {
     }
 
 
-        @PutMapping(path="/updateCausal/{id}")
+    @PutMapping(path="/updateCausal/{id}")
     public ResponseEntity<Status> updateStatusCausal(@PathVariable Integer id, @RequestBody Registro_Causal causalStatus) {
         Optional<Status> statusDataCausal = statusRepository.findById(id);
 
@@ -258,6 +258,22 @@ public class StatusController {
             return ResponseEntity.ok("Sala com ID " + id + " excluída com sucesso.");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sala com ID " + id + " não encontrada.");
+        }
+    }
+
+    @PutMapping(path="/updateDados/{testCell}")
+    public ResponseEntity<Status> updateStatusDados(@PathVariable String testCell, @RequestBody Dados dadosTeste) {
+        Optional<Status> statusDataCausal = statusRepository.findStatusByTestCell(testCell);
+
+        if (statusDataCausal.isPresent() && dadosTeste.getTeste()!=null && dadosTeste.getProjeto()!=null && dadosTeste.getMotor()!=null) {
+            Status _status = statusDataCausal.get();
+            _status.setMotor(dadosTeste.getMotor());
+            _status.setProjeto(dadosTeste.getProjeto());
+            _status.setTeste(dadosTeste.getTeste());
+            System.out.println("Atualizando dados " + _status.getTestCell() + " -> " +dadosTeste.getMotor() + " - " + dadosTeste.getProjeto() + " - " + dadosTeste.getTeste());
+            return new ResponseEntity<>(statusRepository.save(_status), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

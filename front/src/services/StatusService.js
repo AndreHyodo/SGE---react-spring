@@ -72,3 +72,4 @@ export function Verif_User(user,senha){
     console.log("estou executando: " + url_base + `/users/verificaUser/${user}/${senha}`)
     return axios.get(url_base + `/users/verificaUser/${user}/${senha}`)
 }
+
