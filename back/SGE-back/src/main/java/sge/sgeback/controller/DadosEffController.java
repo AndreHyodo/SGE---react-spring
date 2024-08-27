@@ -17,10 +17,7 @@ import javax.swing.plaf.PanelUI;
 import java.math.BigDecimal;
 import java.security.PublicKey;
 import java.sql.Time;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -88,6 +85,8 @@ public class DadosEffController {
 
         LocalDate today = LocalDate.now();
 
+        Date hoje = Date.from(Instant.from(LocalDate.now()));
+
         DayOfWeek dayOfWeek = today.getDayOfWeek();
 
 
@@ -118,7 +117,7 @@ public class DadosEffController {
                     dadosEff.setTestCell(status.getTestCell());
                     dadosEff.setEff(status.getEff());
                     dadosEff.setHora(status.getTime()); // Hora atual
-                    dadosEff.setDate(status.getDate());
+                    dadosEff.setDate(hoje);
                     dadosEff.setTurno(turno);
 
                     createDadosEff(dadosEff);
@@ -128,7 +127,7 @@ public class DadosEffController {
                 dadosEff.setTestCell(status.getTestCell());
                 dadosEff.setEff(status.getEff());
                 dadosEff.setHora(status.getTime()); // Hora atual
-                dadosEff.setDate(status.getDate());
+                dadosEff.setDate(hoje);
                 dadosEff.setTurno(turno);
 
                 createDadosEff(dadosEff);
