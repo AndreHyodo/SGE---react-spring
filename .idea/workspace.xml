@@ -68,7 +68,7 @@
     "git-widget-placeholder": "master",
     "javascript.nodejs.core.library.configured.version": "21.3.0",
     "javascript.nodejs.core.library.typings.version": "20.11.5",
-    "last_opened_file_path": "C:/Users/SC22381/Downloads/github-copilot-intellij/lib/github-copilot-intellij-1.5.20.6554.jar",
+    "last_opened_file_path": "C:/Users/SC22381/Desktop/NEW SGE/SGE - react + spring/back/SGE-back/src/main/ArquivosTeste",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -90,18 +90,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\ArquivosTeste" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src\pages\Registro_Causal" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src\pages\TestCell_Details" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\public" />
-      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\build" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\ArquivosTeste\Excel" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\ArquivosTeste" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src\pages\TestCell_Details" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\bk" />
-      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\src\Images\Logo" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="sge.sgeback.service" />
@@ -273,7 +273,8 @@
       <workItem from="1724413364596" duration="1464000" />
       <workItem from="1724511212833" duration="8495000" />
       <workItem from="1724690722267" duration="5712000" />
-      <workItem from="1724756382687" duration="8742000" />
+      <workItem from="1724756382687" duration="10303000" />
+      <workItem from="1724842612706" duration="9027000" />
     </task>
     <servers />
   </component>

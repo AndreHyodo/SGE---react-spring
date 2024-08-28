@@ -11,7 +11,6 @@ import {getTimeDiffInMilliseconds} from "util";
 const StatusSalas = () => {
 
     const[Salas, setSalas] = useState([])
-    // const[Dados, setDados] = useState([])
 
     useEffect(() => {
         listStatus().then((response) => {
@@ -39,14 +38,10 @@ const StatusSalas = () => {
             <div className='row row-cols-6 gx-4 gy-2 m-0 p-0'>
                 {
                     Salas.map(sala =>
-                            // <div className={sala.id<=12 ? "col-2 mb-3": "col-2 mb-2"} key={sala.id}>
                             <div className={"col-2 col-md-2 col-sm-4 col-xs-6"} key={sala.id}>
                                 {/*<Card testCell={sala.testCell} causalParada={causal(sala.time, sala.status, sala.causal)} status={status(sala.causal, sala.status)} status_actual={sala.status} motor={sala.motor} projeto={sala.projeto} teste={sala.teste} eff={sala.eff} paradaAtual={sala.parada_atual} paradaTotal={sala.parada_total} />*/}
-                                <Card testCell={sala.testCell} status={status(sala.causal, sala.status)} status_actual={sala.status} motor={dados.motor} projeto={sala.projeto} teste={sala.teste} eff={sala.eff} paradaAtual={sala.parada_atual} paradaTotal={sala.parada_total} />
+                                <Card testCell={sala.testCell} status={status(sala.causal, sala.status)} status_actual={sala.status} motor={sala.motor} projeto={sala.projeto} teste={sala.teste} eff={sala.eff} paradaAtual={sala.parada_atual} paradaTotal={sala.parada_total} />
                             </div>
-                        // Causais.map(causal =>
-                        //
-                        // )
                     )
                 }
             </div>

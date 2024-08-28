@@ -84,15 +84,18 @@ public class DadosEffController {
         LocalTime agora = LocalTime.now();
 
         LocalDate today = LocalDate.now();
+        LocalDate yesterday = LocalDate.now().minusDays(1);
 
-        Date hoje = Date.from(Instant.from(LocalDate.now()));
+        Date hoje = java.sql.Date.valueOf(LocalDate.now());
+
+        Date ontem = java.sql.Date.valueOf(yesterday);
 
         DayOfWeek dayOfWeek = today.getDayOfWeek();
 
 
         int turno;
 
-        if ((agora.isAfter(LocalTime.of(6, 0)))&&(agora.isBefore(LocalTime.of(15, 48)))) {
+        if ((agora.isAfter(LocalTime.of(6, 0)))&&(agora.isBefore(LocalTime.of(15, 47,0)))) {
             turno = 1;
         } else if ((agora.isAfter(LocalTime.of(15, 48)))&&(agora.isBefore(LocalTime.of(23, 59)))) {
             turno = 2;
@@ -103,13 +106,6 @@ public class DadosEffController {
         }
 
 
-        DayOfWeek testeDay = LocalDate.now().getDayOfWeek();
-        if (testeDay == DayOfWeek.TUESDAY){
-            System.out.println("Hoje é terça");
-        }else{
-            System.out.println("Hoje é "+ LocalDate.now().getDayOfWeek());
-        }
-
         for (Status status : statuses) {
             if(turno == 3 || dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY){
                 if(status.getType().equals("dur")){
@@ -117,7 +113,11 @@ public class DadosEffController {
                     dadosEff.setTestCell(status.getTestCell());
                     dadosEff.setEff(status.getEff());
                     dadosEff.setHora(status.getTime()); // Hora atual
-                    dadosEff.setDate(hoje);
+                    if(turno == 2){
+                        dadosEff.setDate(ontem);
+                    }else{
+                        dadosEff.setDate(hoje);
+                    }
                     dadosEff.setTurno(turno);
 
                     createDadosEff(dadosEff);
@@ -127,7 +127,11 @@ public class DadosEffController {
                 dadosEff.setTestCell(status.getTestCell());
                 dadosEff.setEff(status.getEff());
                 dadosEff.setHora(status.getTime()); // Hora atual
-                dadosEff.setDate(hoje);
+                if(turno == 2){
+                    dadosEff.setDate(ontem);
+                }else{
+                    dadosEff.setDate(hoje);
+                }
                 dadosEff.setTurno(turno);
 
                 createDadosEff(dadosEff);

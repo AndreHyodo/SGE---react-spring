@@ -18,10 +18,7 @@ import sge.sgeback.model.Registro_Causal;
 import sge.sgeback.model.Status;
 import sge.sgeback.repository.DadosRepository;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -76,6 +73,71 @@ public class DadosController {
             Dados dado = getDadosData(testCellStatus.getTestCell());
             statusController.updateStatusDados(testCellStatus.getTestCell(), dado);
         }
+    }
+
+    public void atualizaTxtDados() throws IOException {
+        Iterable<Status> testCellStatuses = statusController.getStatus();
+
+        for (Status testCellStatus : testCellStatuses){
+            getTxtData(testCellStatus.getTestCell());
+            Dados dado = getDadosData(testCellStatus.getTestCell());
+            statusController.updateStatusDados(testCellStatus.getTestCell(), dado);
+        }
+    }
+
+    @GetMapping(path = "/dadosTxt/{testCell}")
+    public @ResponseBody void getTxtData(@PathVariable String testCell) throws IOException{
+//        String filePath = "C:/Users/SC22381/Desktop/NEW SGE/SGE - react + spring/back/SGE-back/src/main/ArquivosTeste/"+ testCell +".txt"; //teste-PC Hyodo
+        String filePath = "C:/Users/CENTRAL/Desktop/SGE/Controle_dados_teste/"+ testCell +".txt"; //Oficial PC Central
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
+            String linha = "";
+
+            Dados dados_prova = new Dados();
+
+            int num = 0;
+            while (num>=0){
+                linha = bufferedReader.readLine();
+                if(linha!=null){
+                    switch (num){
+                        case 0:
+                            dados_prova.setTestCell(linha);
+                            break;
+                        case 1:
+                            dados_prova.setMotor(Integer.valueOf(linha));
+                            break;
+                        case 2:
+                            dados_prova.setProjeto(linha);
+                            break;
+                        case 3:
+                            dados_prova.setTeste(linha);
+                            break;
+                    }
+                }else{
+                    break;
+                }
+                num++;
+            }
+
+            Date now = new Date();
+            SimpleDateFormat data_formatada = new SimpleDateFormat("dd/MM/yyyy");
+            LocalTime hora_atual = LocalTime.now();
+
+
+            dados_prova.setHora_inicio(Time.valueOf(hora_atual));
+            dados_prova.setDATE(data_formatada.parse(data_formatada.format(now)));
+            insertDados(dados_prova);
+
+            bufferedReader.close();
+
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     @GetMapping(path="/dadosExcel/{testCell}")

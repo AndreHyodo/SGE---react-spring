@@ -182,7 +182,8 @@ public class RegistroCausaisController {
         Registro_Causal lastCausal = CausaisRepository.findTopByTestCellOrderByIdDesc(registroCausal.getTestCell());
 
 
-        LocalTime hora_atual = LocalTime.now().minusSeconds(1);
+        LocalTime hora_final = LocalTime.now().minusSeconds(1);
+        LocalTime hora_atual = LocalTime.now().plusSeconds(1);
 
         LocalTime zero = LocalTime.parse("00:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
         registroCausal.setHora_final(zero); //Ajusta hora_final do novo causal para 00:00:00 para evitar valor null
@@ -194,10 +195,11 @@ public class RegistroCausaisController {
             return updateAguardandoCausal(lastCausal.getId(),registroCausal);
         }else{
             if(lastCausal.getHora_final()==null || lastCausal.getHora_final()==zero){
-                lastCausal.setHora_final(hora_atual);
+                lastCausal.setHora_final(hora_final);
                 ResponseEntity<Registro_Causal> response = updateCausal(lastCausal.getId());
             }
 
+            registroCausal.setHora_inicio(Time.valueOf(hora_atual));
             Registro_Causal newRegistro = CausaisRepository.save(registroCausal);
             statusController.updateStatusCausal(registroCausal.getId(),registroCausal);
             return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
