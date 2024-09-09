@@ -120,20 +120,22 @@ public class RegistroCausaisController {
         LocalTime zero = LocalTime.parse("00:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
 
         for (String testCell : testCells) {
-            Registro_Causal causal = CausaisRepository.findTopByTestCellOrderByIdDesc(testCell);
-            if (causal.getHora_final() == LocalTime.of(0,0,0) && causal.getData() == date) {
-                System.out.println("Ajustando causal sala: "+ causal.getTestCell() + "sendo hora_final = " + causal.getHora_final());
-                Registro_Causal newCausal = new Registro_Causal();
+            if(testCell!="A11" && testCell!="A12"){
+                Registro_Causal causal = CausaisRepository.findTopByTestCellOrderByIdDesc(testCell);
+                if (causal.getHora_final() == LocalTime.of(0,0,0) && causal.getData() == date) {
+                    System.out.println("Ajustando causal sala: "+ causal.getTestCell() + "sendo hora_final = " + causal.getHora_final());
+                    Registro_Causal newCausal = new Registro_Causal();
 
-                newCausal.setTestCell(causal.getTestCell());
-                newCausal.setCode(causal.getCode());
-                newCausal.setCausal(causal.getCausal());
-                newCausal.setHora_inicio(Time.valueOf(hora_atual));
-                newCausal.setHora_final(zero);
-                newCausal.setData(causal.getData());
-                newCausal.setObs(causal.getObs());
+                    newCausal.setTestCell(causal.getTestCell());
+                    newCausal.setCode(causal.getCode());
+                    newCausal.setCausal(causal.getCausal());
+                    newCausal.setHora_inicio(Time.valueOf(hora_atual));
+                    newCausal.setHora_final(zero);
+                    newCausal.setData(causal.getData());
+                    newCausal.setObs(causal.getObs());
 
-                createStatus(newCausal);
+                    createStatus(newCausal);
+                }
             }
         }
     }
