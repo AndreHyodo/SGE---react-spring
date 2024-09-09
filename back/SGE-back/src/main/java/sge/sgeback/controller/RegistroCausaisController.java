@@ -111,6 +111,9 @@ public class RegistroCausaisController {
 
 //        LocalTime hora_atual = LocalTime.now();
         LocalDate Data_atual = LocalDate.now();
+        //default time zone
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        Date date = Date.from(Data_atual.atStartOfDay(defaultZoneId).toInstant());
 
         LocalTime hora_atual = LocalTime.now().plusSeconds(1);
 
@@ -118,7 +121,7 @@ public class RegistroCausaisController {
 
         for (String testCell : testCells) {
             Registro_Causal causal = CausaisRepository.findTopByTestCellOrderByIdDesc(testCell);
-            if (causal.getHora_final() == LocalTime.of(0,0,0)) {
+            if (causal.getHora_final() == LocalTime.of(0,0,0) && causal.getData() == date) {
                 System.out.println("Ajustando causal sala: "+ causal.getTestCell() + "sendo hora_final = " + causal.getHora_final());
                 Registro_Causal newCausal = new Registro_Causal();
 
