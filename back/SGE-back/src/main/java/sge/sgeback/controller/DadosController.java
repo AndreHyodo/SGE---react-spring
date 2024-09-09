@@ -18,13 +18,16 @@ import sge.sgeback.model.Registro_Causal;
 import sge.sgeback.model.Status;
 import sge.sgeback.repository.DadosRepository;
 
+import java.awt.*;
 import java.io.*;
+import java.sql.Array;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.List;
 import java.util.stream.StreamSupport;
 
 
@@ -87,8 +90,50 @@ public class DadosController {
 
     @GetMapping(path = "/dadosTxt/{testCell}")
     public @ResponseBody void getTxtData(@PathVariable String testCell) throws IOException{
-//        String filePath = "C:/Users/SC22381/Desktop/NEW SGE/SGE - react + spring/back/SGE-back/src/main/ArquivosTeste/"+ testCell +".txt"; //teste-PC Hyodo
-        String filePath = "C:/Users/CENTRAL/Desktop/SGE/Controle_dados_teste/"+ testCell +".txt"; //Oficial PC Central
+        int cell=0;
+        switch (testCell){
+            case "A01":
+                cell=0;
+                break;
+            case "A02":
+                cell=1;
+                break;
+            case "A03":
+                cell=2;
+                break;
+            case "A10":
+                cell=3;
+                break;
+            case "A04":
+                cell=4;
+                break;
+            case "A05":
+                cell=5;
+                break;
+            case "B01":
+                cell=6;
+                break;
+            case "B02":
+                cell=7;
+                break;
+            case "B03":
+                cell=8;
+                break;
+            case "B04":
+                cell=9;
+                break;
+            case "B05":
+                cell=10;
+                break;
+            case "B06":
+                cell=11;
+                break;
+        }
+
+        String spm[] = {"AVL18091211", "AVL18091212", "AVL19112716", "AVL19112714", "AVL17010619", "AVL18041118", "AVL18080139", "AVL180801310", "AVL18080138", "AVL18080132", "AVL18080133","AVL18082416"};
+
+//        String filePath = "C:/Users/CENTRAL/Desktop/SGE/Controle_dados_teste/"+ testCell +".txt"; //Oficial PC Central
+        String filePath = "\\\\"+ spm[cell] +"\\ExcelPuma"+ testCell +".txt"; //Teste conexão Central
 
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));

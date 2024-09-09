@@ -3,11 +3,10 @@ import axios from "axios";
 
 // const url_base = 'http://192.168.15.5:8080' //Ip home-office
 
-// const url_base = 'http://localhost:8080'
+const url_base = 'http://localhost:8080'
 
 // const url_base = 'http://172.28.235.25:8080' //Rede teste Fábrica PC André
-const url_base = 'http://172.28.124.61:8080' //Rede oficial
-
+// const url_base = 'http://172.28.124.61:8080' //Rede oficial
 
 const Status_Api = '/Status/all';
 const List_Causais = '/causaisList'
@@ -71,5 +70,9 @@ export function Current_Eff(SPM){
 export function Verif_User(user,senha){
     console.log("estou executando: " + url_base + `/users/verificaUser/${user}/${senha}`)
     return axios.get(url_base + `/users/verificaUser/${user}/${senha}`)
+}
+
+export function fetchDocs(){
+    return axios.get(url_base + `/files/`)
 }
 

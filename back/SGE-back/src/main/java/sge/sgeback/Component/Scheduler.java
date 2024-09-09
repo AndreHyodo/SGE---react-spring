@@ -53,10 +53,10 @@ public class Scheduler {
         dadosEffController.atualizarDailyEff();
     }
 
-    @Scheduled(cron = "59 59 5 * * *") // Ação agendada para 05:59:59 todos os dias
-    @Scheduled(cron = "59 47 15 * * *") // Ação agendada para 15:47:59 todos os dias
-    @Scheduled(cron = "59 59 23 * * *") // Ação agendada para 23:59:57 todos os dias
-    @Scheduled(cron = "59 08 01 * * *") // Ação agendada para 01:08:59 todos os dias
+    @Scheduled(cron = "50 59 5 * * *") // Ação agendada para 05:59:59 todos os dias
+    @Scheduled(cron = "50 47 15 * * *") // Ação agendada para 15:47:59 todos os dias
+    @Scheduled(cron = "50 59 23 * * *") // Ação agendada para 23:59:57 todos os dias
+    @Scheduled(cron = "50 08 01 * * *") // Ação agendada para 01:08:59 todos os dias
     public void scheduleAtualizarCausaisTurno() {
         causaisController.AutalizarTurno(); // Call your existing controller method
     }
@@ -71,8 +71,7 @@ public class Scheduler {
         statusController.updateTotalStop();
     }
 
-    @Scheduled(cron = "0 */10 * * * ?") // Ação agendada para uma vez a cada 5 minutos
-    @Scheduled(cron = "00 00 14 * * *") //teste
+    @Scheduled(cron = "0 */10 * * * ?") // Ação agendada para uma vez a cada 10 minutos
     public void scheduleAtualizaDados() throws IOException {
         dadosController.atualizaTxtDados(); //Atualiza com dados dos arquivos .txt
     }

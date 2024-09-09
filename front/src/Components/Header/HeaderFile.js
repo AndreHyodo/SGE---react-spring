@@ -52,6 +52,10 @@ const HeaderComponent = () => {
                                 <img src={app} alt="" className="logo-icon "/>
                                 <Link to="https://apps.powerapps.com/play/e/default-d852d5cd-724c-4128-8812-ffa5db3f8507/a/3ea313f8-db19-454b-94a0-6c6143b8d8ab?tenantId=d852d5cd-724c-4128-8812-ffa5db3f8507&hint=fc2b5f23-898e-4deb-a447-fdd8873dc2d1&sourcetime=1712574527046&hidenavbar=true" className="text-decoration-none text-black p-2" target="_blank">ToolControl</Link>
                             </StyledNavItem>
+                            <StyledNavItem className="navi-tem mb-2">
+                                <img src={registry} alt="" className="logo-icon me-auto"/>
+                                <Link to="/uploadFiles" className="text-decoration-none text-black p-2">Upload Files</Link>
+                            </StyledNavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>

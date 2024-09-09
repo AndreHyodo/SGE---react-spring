@@ -11,6 +11,7 @@ import Detail from './pages/TestCell_Details/index'
 import {
     createBrowserRouter, RouterProvider,
 } from "react-router-dom";
+import UploadFiles from "./pages/uploadFiles";
 
 // import {
 //     BrowserRouter as Router,
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     {
         path: "/detail/:testCell",
         element: <Detail />,
+    },
+    {
+        path: "/uploadFiles",
+        element: <UploadFiles />,
     }
 ]);
 

@@ -95,7 +95,7 @@ public class DadosEffController {
 
         int turno;
 
-        if ((agora.isAfter(LocalTime.of(6, 0)))&&(agora.isBefore(LocalTime.of(15, 47,0)))) {
+        if ((agora.isAfter(LocalTime.of(6, 0)))&&(agora.isBefore(LocalTime.of(15, 47,59)))) {
             turno = 1;
         } else if ((agora.isAfter(LocalTime.of(15, 48)))&&(agora.isBefore(LocalTime.of(23, 59)))) {
             turno = 2;

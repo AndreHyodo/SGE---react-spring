@@ -14,6 +14,7 @@ public class Files {
     private int idFiles;
     private String fileName;
     private String fileType;
+    private String location = "upload-dir";
 
     @Lob
     private byte[] data;
@@ -56,5 +57,13 @@ public class Files {
 
     public void setData(byte[] data) {
         this.data = data;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
