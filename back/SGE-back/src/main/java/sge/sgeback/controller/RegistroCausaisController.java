@@ -121,7 +121,7 @@ public class RegistroCausaisController {
 
         for (String testCell : testCells) {
             Registro_Causal causal = CausaisRepository.findTopByTestCellOrderByIdDesc(testCell);
-            if (causal.getHora_final() == LocalTime.of(0,0,0) && causal.getData() == date) {
+            if (causal.getHora_final() == LocalTime.of(0,0,0)) {
                 System.out.println("Ajustando causal sala: "+ causal.getTestCell() + "sendo hora_final = " + causal.getHora_final());
                 Registro_Causal newCausal = new Registro_Causal();
 
