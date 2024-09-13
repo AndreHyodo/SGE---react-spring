@@ -270,7 +270,7 @@ public class StatusController {
             _status.setMotor(dadosTeste.getMotor());
             _status.setProjeto(dadosTeste.getProjeto());
             _status.setTeste(dadosTeste.getTeste());
-            System.out.println("Atualizando dados " + _status.getTestCell() + " -> " +dadosTeste.getMotor() + " - " + dadosTeste.getProjeto() + " - " + dadosTeste.getTeste());
+//            System.out.println("Atualizando dados " + _status.getTestCell() + " -> " +dadosTeste.getMotor() + " - " + dadosTeste.getProjeto() + " - " + dadosTeste.getTeste());
             return new ResponseEntity<>(statusRepository.save(_status), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

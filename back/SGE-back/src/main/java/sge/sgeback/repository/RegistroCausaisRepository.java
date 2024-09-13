@@ -37,16 +37,32 @@ public interface RegistroCausaisRepository extends CrudRepository<Registro_Causa
 //            "ORDER BY contagem_sec DESC")
 //    List<Object[]> findCausalSumCountByTestCellOrderBycontagem(@Param("testCell") String testCell, @Param("date") @DateTimeFormat(pattern= "yyyy-MM-dd") Date date);
 
-    @Query("SELECT " +
-            "  SEC_TO_TIME(SUM(TIMEDIFF(COALESCE(rc.hora_final, CURRENT_TIME()), rc.hora_inicio))) AS contagem, " +
-            "  SUM(TIMEDIFF(COALESCE(rc.hora_final, CURRENT_TIME()), rc.hora_inicio)) AS contagem_sec, " +
-            "  rc.causal, " +
-            "  rc.testCell " +
-            "FROM Registro_Causal rc " +
-            "WHERE rc.testCell = :testCell " +
-            "  AND rc.data = :date " +
-            "GROUP BY rc.causal " +
-            "ORDER BY contagem_sec DESC")
+//    @Query("SELECT " +
+//            "  SEC_TO_TIME(SUM(TIMEDIFF(COALESCE(rc.hora_final, CURRENT_TIME()), rc.hora_inicio))) AS contagem, " +
+//            "  SUM(TIMEDIFF(COALESCE(rc.hora_final, CURRENT_TIME()), rc.hora_inicio)) AS contagem_sec, " +
+//            "  rc.causal, " +
+//            "  rc.testCell " +
+//            "FROM Registro_Causal rc " +
+//            "WHERE rc.testCell = :testCell " +
+//            "  AND rc.data = :date " +
+//            "GROUP BY rc.causal " +
+//            "ORDER BY contagem_sec DESC")
+    @Query("SELECT\n" +
+            "  rc.causal,\n" +
+            "sum(time_to_sec(TIMEDIFF(CASE WHEN rc.hora_final IS NULL OR TIME(rc.hora_final) BETWEEN '00:00:00' AND '00:00:01'\n" +
+            "                                        THEN CURTIME()\n" +
+            "                                        ELSE rc.hora_final \n" +
+            "                                    END,rc.hora_inicio)))as sec_time,\n" +
+            "sec_to_time(sum(time_to_sec(TIMEDIFF(CASE WHEN rc.hora_final IS NULL OR TIME(rc.hora_final) BETWEEN '00:00:00' AND '00:00:01'\n" +
+            "                                        THEN CURTIME()\n" +
+            "                                        ELSE rc.hora_final \n" +
+            "                                    END,rc.hora_inicio)))) as time_in_time\n" +
+            "FROM Registro_Causal rc\n" +
+            "WHERE rc.testCell = :testCell \n" +
+            "  AND rc.data = :date \n" +
+            "  AND rc.hora_inicio IS NOT NULL\n" +
+            "group by rc.causal\n" +
+            "order by sec_time desc\n")
     List<Object[]> findCausalSumCountByTestCellOrderBycontagem(@Param("testCell") String testCell, @Param("date") @DateTimeFormat(pattern= "yyyy-MM-dd") Date date);
     @Query("SELECT COUNT(rc.id) AS contagem, rc.causal, rc.testCell " +
             "FROM Registro_Causal rc " +

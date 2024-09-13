@@ -1,9 +1,10 @@
 import React, {useEffect,useState} from "react";
-import {listDados, listStatus} from "../../services/StatusService";
+import {listDados, listStatus, listLastCausais} from "../../services/StatusService";
 // import {Card} from "../../Components/Card/Card";
 import Card from "../../Components/Card/Card"
 import './StatusSalas.module.css'
 import {getTimeDiffInMilliseconds} from "util";
+import configList from "webpack-config/dist/ConfigList";
 // import axios from "axios";
 
 
@@ -11,6 +12,8 @@ import {getTimeDiffInMilliseconds} from "util";
 const StatusSalas = () => {
 
     const[Salas, setSalas] = useState([])
+    const [Causais, setCausais] = useState([]); // new state to store causais data
+
 
     useEffect(() => {
         listStatus().then((response) => {
@@ -19,6 +22,20 @@ const StatusSalas = () => {
             console.log(error);
         })
     }, [Salas])
+
+    useEffect(() => {
+        const fetchCausais = async () => {
+            const causaisData = {};
+            for (const sala of Salas) {
+                const spm = sala.testCell;
+                const response = await listLastCausais(spm);
+                causaisData[sala.id] = response.data;
+            }
+            setCausais(causaisData);
+            console.log(Causais)
+        };
+        fetchCausais();
+    }, [Causais]);
 
     const status = (causal, status) => {
 
@@ -40,7 +57,16 @@ const StatusSalas = () => {
                     Salas.map(sala =>
                             <div className={"col-2 col-md-2 col-sm-4 col-xs-6"} key={sala.id}>
                                 {/*<Card testCell={sala.testCell} causalParada={causal(sala.time, sala.status, sala.causal)} status={status(sala.causal, sala.status)} status_actual={sala.status} motor={sala.motor} projeto={sala.projeto} teste={sala.teste} eff={sala.eff} paradaAtual={sala.parada_atual} paradaTotal={sala.parada_total} />*/}
-                                <Card testCell={sala.testCell} status={status(sala.causal, sala.status)} status_actual={sala.status} motor={sala.motor} projeto={sala.projeto} teste={sala.teste} eff={sala.eff} paradaAtual={sala.parada_atual} paradaTotal={sala.parada_total} />
+                                <Card
+                                    testCell={sala.testCell}
+                                    status={status(Causais[sala.id].causal, sala.status)}
+                                    status_actual={sala.status}
+                                    motor={sala.motor}
+                                    projeto={sala.projeto}
+                                    teste={sala.teste}
+                                    eff={sala.eff}
+                                    paradaAtual={sala.parada_atual}
+                                    paradaTotal={sala.parada_total} />
                             </div>
                     )
                 }

@@ -91,6 +91,11 @@ public class RegistroCausaisController {
         return CausaisRepository.findTop3ByTestCellOrderByIdDesc(name);
     }
 
+//    @GetMapping(path="/lastAll")
+//    public @ResponseBody Iterable<Registro_Causal> getLastCausalAll(@PathVariable String name) {
+//        return CausaisRepository.findTop3ByTestCellOrderByIdDesc(name);
+//    }
+
     @GetMapping(path="/last/{name}")
     public @ResponseBody Registro_Causal getLastCausalTestCell(@PathVariable String name) {
         return CausaisRepository.findTopByTestCellOrderByIdDesc(name);
@@ -271,15 +276,36 @@ public class RegistroCausaisController {
 
         Map<String, Long> causalCountsByDate = new HashMap<>();
         for (Object[] result : results) {
-            String causal = (String) result[2];
+            String causal = (String) result[0];
             Long seconds = ((BigDecimal) result[1]).longValue();
-            Time time_original = (Time) result[0];
+            Time time_original = (Time) result[2];
             String time = time_original.toString();
 
             Map<String, Long> causalData = new HashMap<>();
-            causalData.put(time, seconds);
+            causalData.put(causal, seconds);
 
             causalCountsByDate.put(causal, seconds);
+        }
+
+        return ResponseEntity.ok(causalCountsByDate);
+    }
+
+    @GetMapping(path="/countHourFormatted/{name}/{date}")
+    public ResponseEntity<Map<String, String>> findHourFormattedCausaisByDate(@PathVariable String name, @PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
+
+        List<Object[]> results = CausaisRepository.findCausalSumCountByTestCellOrderBycontagem(name, date);
+
+        Map<String, String> causalCountsByDate = new HashMap<>();
+        for (Object[] result : results) {
+            String causal = (String) result[0];
+            Long seconds = ((BigDecimal) result[1]).longValue();
+            Time time_original = (Time) result[2];
+            String time = time_original.toString();
+
+            Map<String, String> causalData = new HashMap<>();
+            causalData.put(causal, time);
+
+            causalCountsByDate.put(causal, time);
         }
 
         return ResponseEntity.ok(causalCountsByDate);

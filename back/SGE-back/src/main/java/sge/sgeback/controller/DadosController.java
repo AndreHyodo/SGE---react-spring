@@ -191,7 +191,7 @@ public class DadosController {
 //        String filePath = "C:/Users/SC22381/Desktop/NEW SGE/SGE - react + spring/back/SGE-back/src/main/ArquivosTeste/"+ testCell +".xlsx"; //teste-PC Hyodo
         String filePath = "C:/Users/CENTRAL/Desktop/SGE/Controle_dados_teste/"+ testCell +".xlsx"; //Oficial PC Central
 
-        System.out.println(filePath);
+//        System.out.println(filePath);
 
         try {
             // Abrindo o arquivo e recuperando a planilha
@@ -211,15 +211,6 @@ public class DadosController {
                 for(int c=0;c<cols;c++){
                     XSSFCell cell =  row.getCell(c);
                     if(cell!=null){
-//                        switch (cell.getCellType())
-//                        {
-//                            case STRING:
-//                                System.out.println(cell.getStringCellValue());
-//                                break;
-//                            case NUMERIC:
-//                                System.out.println(cell.getNumericCellValue());
-//                                break;
-//                        }
                         switch (c)
                         {
                             case 0:

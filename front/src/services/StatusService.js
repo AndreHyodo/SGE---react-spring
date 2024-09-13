@@ -3,10 +3,10 @@ import axios from "axios";
 
 // const url_base = 'http://192.168.15.5:8080' //Ip home-office
 
-const url_base = 'http://localhost:8080'
+// const url_base = 'http://localhost:8080'
 
 // const url_base = 'http://172.28.235.25:8080' //Rede teste Fábrica PC André
-// const url_base = 'http://172.28.124.61:8080' //Rede oficial
+const url_base = 'http://172.28.124.61:8080' //Rede oficial
 
 const Status_Api = '/Status/all';
 const List_Causais = '/causaisList'
@@ -16,6 +16,10 @@ const Last_Causais = '/causais/top3'
 
 export const listStatus = () => {
     return axios.get(url_base + Status_Api);
+}
+
+export const listLastCausais = (SPM) => {
+    return axios.get(url_base + `/causais/last/${SPM}`);
 }
 
 export const dadosList = (testCell) => {
@@ -61,6 +65,10 @@ export function causais_date(SPM,date){
 
 export function causaisHour_date(SPM,date){
     return axios.get(url_base + `/causais/countHour/${SPM}/${date}`);
+}
+
+export function causaisHourFormatted_date(SPM,date){
+    return axios.get(url_base + `/causais/countHourFormatted/${SPM}/${date}`);
 }
 
 export function Current_Eff(SPM){

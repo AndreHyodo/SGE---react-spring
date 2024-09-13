@@ -5,6 +5,7 @@ import {
     causais_date,
     causaisHour_date,
     getStatusTestCell,
+    causaisHourFormatted_date
 } from "../../services/StatusService";
 import {
     BarChart,
@@ -27,39 +28,50 @@ import {Text, Box, ThemeProvider} from "@chakra-ui/react";
 import {Button} from "reactstrap";
 
 const CausaisMes = () => {
+    const [causaisFormatted, setCausaisFormatted] = useState([]);
     const [causais, setCausais] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
 
     const getCausais = async (testCell, date) => {
         try {
             let response = null;
+            let responseString = null;
             const currentDate = new Date();
             const formattedDate = currentDate.toISOString().split('T')[0];
             if (date === null) {
-                response = await causaisHour_date(testCell, formattedDate); // Assuming causais_mes handles getting data for the current month
+                response = await causaisHour_date(testCell, formattedDate); // Getting response with time in Long (sec)
+                responseString = await causaisHourFormatted_date(testCell,formattedDate); //Getting response with time in String
             } else {
-                response = await causaisHour_date(testCell, date); // Assuming causaisHour_date handles getting data for a specific date
+                response = await causaisHour_date(testCell, date); // Getting response with time in Long (sec)
+                responseString = await causaisHourFormatted_date(testCell,date); //Getting response with time in String
             }
 
             const causaisData = Object.entries(response.data).map(([causal, seconds]) => ({
                 name: causal,
                 seconds: seconds,
-                secondsFormatted: convertHMS(seconds),
+                // secondsFormatted: convertHMS(seconds),
+            }));
+
+            const causaisDataFormatted = Object.entries(responseString.data).map(([causal, time_st]) => ({
+                name: causal,
+                time_st: time_st,
             }));
 
             // Sort data by seconds in descending order
             causaisData.sort((a, b) => b.seconds - a.seconds);
 
+
             setCausais(causaisData);
+            setCausaisFormatted(causaisDataFormatted);
         } catch (error) {
             console.error("Error fetching causais data:", error);
         }
     };
 
     function convertHMS(value) {
-        let hours   = Math.floor((value%1000000)/10000); // get hours
-        let minutes = Math.floor((value%10000)/100); // get minutes
-        let seconds = (value%100); //  get seconds
+        let hours   = Math.floor(value/3600); // get hours
+        let minutes = Math.floor((value-(hours*3600))/60); // get minutes
+        let seconds = (value-(hours*3600)-(minutes*60)); //  get seconds
         // add 0 if value < 10
         if (hours   < 10) {hours   = "0"+hours;}
         if (minutes < 10) {minutes = "0"+minutes;}
