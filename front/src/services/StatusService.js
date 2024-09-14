@@ -18,8 +18,8 @@ export const listStatus = () => {
     return axios.get(url_base + Status_Api);
 }
 
-export const listLastCausais = (SPM) => {
-    return axios.get(url_base + `/causais/last/${SPM}`);
+export const listLastCausais = () => {
+    return axios.get(url_base + `/causais/LastList`);
 }
 
 export const dadosList = (testCell) => {

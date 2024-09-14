@@ -1,5 +1,6 @@
 package sge.sgeback.controller;
 
+import org.apache.commons.collections4.map.MultiKeyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,6 +18,8 @@ import sge.sgeback.repository.StatusRepository;
 
 import javax.print.attribute.standard.MediaSize;
 import java.math.BigDecimal;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -71,11 +74,15 @@ public class RegistroCausaisController {
 
         List<Registro_Causal> latestCausals = new ArrayList<>();
 
+        int aux = 1;
+
         for (String testCell : testCells) {
             Registro_Causal causal = CausaisRepository.findTopByTestCellOrderByIdDesc(testCell);
             if (causal != null) {
+                causal.setId(aux);
                 latestCausals.add(causal);
             }
+            aux++;
         }
         return latestCausals;
     }
@@ -100,6 +107,7 @@ public class RegistroCausaisController {
     public @ResponseBody Registro_Causal getLastCausalTestCell(@PathVariable String name) {
         return CausaisRepository.findTopByTestCellOrderByIdDesc(name);
     }
+
 
     @GetMapping(path="/lastNotWaiting/{name}")
     public @ResponseBody Registro_Causal getLastRealCausal(@PathVariable String name) {
@@ -390,6 +398,44 @@ public class RegistroCausaisController {
         return ResponseEntity.ok(formattedTime);
     }
 
+
+    @GetMapping(path="/causaisMonth/{code}/{mes}")
+    public ResponseEntity<Map<String, Long>> findCausalCount(@PathVariable Float code,@PathVariable String mes) {
+        Float codeMax = (float) (code + 0.01);
+        Float codeMin = (float) (code - 0.01);
+
+        List<Object[]> results = CausaisRepository.findSumCausalEachTestCellandMonth(codeMin, codeMax, mes);
+
+        Map<String, Long> map = new HashMap<>();
+        for (Object[] result : results) {
+            String testCell = (String) result[1];
+//            String causal_get = (String) result[2];
+            BigDecimal total_time = (BigDecimal) result[4];
+            Long time = total_time.longValue();
+            map.put(testCell, time);
+        }
+
+        return ResponseEntity.ok(map);
+    }
+
+    @GetMapping(path="/causaisMonthTurno/{code}/{mes}/{turno}")
+    public ResponseEntity<Map<String, Long>> findCausalCountTurno(@PathVariable Float code,@PathVariable String mes, @PathVariable Integer turno) {
+        Float codeMax = (float) (code + 0.01);
+        Float codeMin = (float) (code - 0.01);
+
+        List<Object[]> results = CausaisRepository.findSumCausalEachTestCellandMonth(codeMin, codeMax, mes);
+
+        Map<String, Long> map = new HashMap<>();
+        for (Object[] result : results) {
+            String testCell = (String) result[1];
+//            String causal_get = (String) result[2];
+            BigDecimal total_time = (BigDecimal) result[4];
+            Long time = total_time.longValue();
+            map.put(testCell, time);
+        }
+
+        return ResponseEntity.ok(map);
+    }
 
 
 }

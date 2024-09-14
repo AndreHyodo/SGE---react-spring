@@ -13,6 +13,7 @@ const StatusSalas = () => {
 
     const[Salas, setSalas] = useState([])
     const [Causais, setCausais] = useState([]); // new state to store causais data
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
@@ -24,23 +25,19 @@ const StatusSalas = () => {
     }, [Salas])
 
     useEffect(() => {
-        const fetchCausais = async () => {
-            const causaisData = {};
-            for (const sala of Salas) {
-                const spm = sala.testCell;
-                const response = await listLastCausais(spm);
-                causaisData[sala.id] = response.data;
-            }
-            setCausais(causaisData);
-            console.log(Causais)
-        };
-        fetchCausais();
-    }, [Causais]);
+        listLastCausais().then((response) => {
+            setCausais(response.data);
+            setLoading(false); // Set loading to false once data is fetched
+        }).catch(error => {
+            console.log(error);
+        })
+    }, [Causais])
 
-    const status = (causal, status) => {
+    const status = (id, status) => {
 
         if (status===0){
-            return causal;
+            console.log(id +  " = " + Causais[id].testCell +" = "  + Causais[id].causal)
+            return Causais[id].causal;
         }else if(status===1){
             return "Running";
         }else if(status===2){
@@ -49,6 +46,13 @@ const StatusSalas = () => {
             return "Sala inativa";
         }
     }
+
+    if (loading) {
+        return <div>Loading...</div>; // Render a loading indicator
+    }
+
+    console.log(Causais[6].causal)
+
 
     return(
         <div className="my-2">
@@ -59,7 +63,7 @@ const StatusSalas = () => {
                                 {/*<Card testCell={sala.testCell} causalParada={causal(sala.time, sala.status, sala.causal)} status={status(sala.causal, sala.status)} status_actual={sala.status} motor={sala.motor} projeto={sala.projeto} teste={sala.teste} eff={sala.eff} paradaAtual={sala.parada_atual} paradaTotal={sala.parada_total} />*/}
                                 <Card
                                     testCell={sala.testCell}
-                                    status={status(Causais[sala.id].causal, sala.status)}
+                                    status={status(sala.id-1, sala.status)}
                                     status_actual={sala.status}
                                     motor={sala.motor}
                                     projeto={sala.projeto}

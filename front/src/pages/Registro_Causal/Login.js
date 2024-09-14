@@ -31,7 +31,7 @@ const App = () => {
                     // Login successful
                     console.log('Login successful');
                     console.log(response.data.token);
-                    setErrorMessage("");
+                    // setErrorMessage("");
                     sessionStorage.setItem('TOKEN_OK', response.data.token);
                     window.location.reload();
                 } else {

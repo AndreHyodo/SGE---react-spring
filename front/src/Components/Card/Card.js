@@ -10,7 +10,6 @@ class MyComponent extends Component {
         const {causalParada} = this.props;
         const {status} = this.props;
         const cardHeaderClass = () =>{
-            console.log(status);
             if(status_actual === 1){
                 return "card-header-run";
             }else if(status_actual === 2){

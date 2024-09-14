@@ -112,4 +112,49 @@ public interface RegistroCausaisRepository extends CrudRepository<Registro_Causa
             "ORDER BY rc.id DESC LIMIT 1", nativeQuery = true)
     Float findCurrentStop(String roomName);
 
+    @Query("SELECT\n" +
+            "\trc.Code,\n" +
+            "    rc.testCell,\n" +
+            "    rc.causal,\n" +
+            "    month(rc.data) as mes,\n" +
+            "    SUM(time_to_sec(TIMEDIFF(COALESCE(rc.hora_final, CAST(CURRENT_TIMESTAMP AS time)), rc.hora_inicio))) as total_time,\n" +
+            "    count(*) AS contagem\n" +
+            "FROM Registro_Causal rc\n" +
+            "WHERE\n" +
+            "\trc.Code BETWEEN :codeMin and :codeMax\n" +
+            "    and\n" +
+            "    month(rc.data) = :mes\n" +
+            "GROUP BY\n" +
+            "    rc.testCell,\n" +
+            "    rc.causal,\n" +
+            "    mes\n" +
+            "HAVING\n" +
+            "    COUNT(*) > 1\n" +
+            "ORDER BY\n" +
+            "    rc.testCell,\n" +
+            "    rc.causal")
+    List<Object[]> findSumCausalEachTestCellandMonth(@Param("codeMin") Float codeMin, @Param("codeMax") Float codeMax, @Param("mes") String mes);
+
+    @Query("SELECT\n" +
+            "\trc.Code,\n" +
+            "    rc.testCell,\n" +
+            "    rc.causal,\n" +
+            "    month(rc.data) as mes,\n" +
+            "    SUM(time_to_sec(TIMEDIFF(COALESCE(rc.hora_final, CAST(CURRENT_TIMESTAMP AS time)), rc.hora_inicio))) as total_time,\n" +
+            "    count(*) AS contagem\n" +
+            "FROM Registro_Causal rc\n" +
+            "WHERE\n" +
+            "\trc.Code BETWEEN :codeMin and :codeMax\n" +
+            "    and\n" +
+            "    month(rc.data) = :mes\n" +
+            "GROUP BY\n" +
+            "    rc.testCell,\n" +
+            "    rc.causal,\n" +
+            "    mes\n" +
+            "HAVING\n" +
+            "    COUNT(*) > 1\n" +
+            "ORDER BY\n" +
+            "    rc.testCell,\n" +
+            "    rc.causal")
+    List<Object[]> findSumCausalEachTestCellandMonthTurno(@Param("codeMin") Float codeMin, @Param("codeMax") Float codeMax, @Param("mes") String mes);
 }

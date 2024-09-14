@@ -109,17 +109,14 @@ public class StatusController {
         LocalTime inicio1turno = LocalTime.of(6, 0, 0);
         LocalTime inicio2turno = LocalTime.of(15, 48, 0);
         LocalTime finalDia = LocalTime.of(23, 59, 59);
-        LocalTime inicioDia = LocalTime.of(0, 0, 0);
-        LocalTime inicio3turno = LocalTime.of(1, 9, 0);
+        LocalTime inicioDia = LocalTime.of(0, 0, 0); //inicio 3 turno = inicio dia
 
         if(hora_atual.isAfter(inicio1turno) && hora_atual.isBefore(inicio2turno)){
             turnoTime = Duration.between(inicio1turno, hora_atual).toSeconds(); // 1 TURNO
         } else if (hora_atual.isAfter(inicio2turno) && hora_atual.isBefore(finalDia)) {
             turnoTime = Duration.between(inicio2turno, hora_atual).toSeconds(); // 2 TURNO
-        } else if (hora_atual.isAfter(inicioDia) && hora_atual.isBefore(inicio3turno)) {
-            turnoTime = Duration.between(inicio2turno, finalDia).plus(Duration.between(inicio3turno, hora_atual)).toSeconds(); // 2 TURNO APÓS A VIRADA DO DIA
-        } else if(hora_atual.isAfter(inicio3turno) && hora_atual.isBefore(inicio1turno)){
-            turnoTime = Duration.between(inicio3turno, hora_atual).toSeconds();
+        } else if(hora_atual.isAfter(inicioDia) && hora_atual.isBefore(inicio1turno)){
+            turnoTime = Duration.between(inicioDia, hora_atual).toSeconds();
         }
 
         for (Status status : statuses) {
