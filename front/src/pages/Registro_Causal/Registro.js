@@ -32,6 +32,7 @@ const App = () => {
     const [lastCausais, setLast] = useState([]);
     const [selectedTestCell, setSelectedTestCell] = useState('');
 
+
     const handleButtonClick = (newTestCell) => {
         setSelectedTestCell(newTestCell);
     };
@@ -155,6 +156,8 @@ const App = () => {
         console.log(testCell + " -- " + code + " -- " + causal);
 
         if(testCell!=="Select" && testCell!=="" && code!=="" && causal!==""){
+
+            sessionStorage.setItem('TestCell', testCell); // Envio de TOKEN para salvar o valor da sala
             const response = await fetch(getStatusTestCell(testCell));
             const statusSala = await response.json();
 
@@ -208,6 +211,15 @@ const App = () => {
     const [overlay, setOverlay] = useState(<OverlayOne />)
 
     const [selectedOption, setSelectedOption] = useState('Select');
+
+    useEffect(() => {
+        const storedTestCell = sessionStorage.getItem('TestCell');
+        if (storedTestCell) {
+            setSelectedOption(storedTestCell);
+            handleButtonClick(storedTestCell)
+            console.log(selectedOption)
+        }
+    }, []);
 
     const handleOpenModal = () => {
         onOpen();
