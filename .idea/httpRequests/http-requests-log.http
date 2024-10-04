@@ -1,3 +1,12 @@
+GET http://localhost:8080/Dados_sala
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-10-02T165101.200.json
+
+###
+
 POST http://localhost:8080/files/uploadFiles
 Content-Length: 0
 Connection: Keep-Alive

@@ -7,11 +7,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import sge.sgeback.model.Registro_Causal;
+import sge.sgeback.projection.SearchDataProjection;
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 public interface RegistroCausaisRepository extends CrudRepository<Registro_Causal, Integer> {
     Registro_Causal findTopByTestCellOrderByIdDesc(String TestCell);
@@ -25,28 +24,6 @@ public interface RegistroCausaisRepository extends CrudRepository<Registro_Causa
             "ORDER BY contagem DESC")
     List<Object[]> findCausalCountByTestCellOrderBycontagem(@Param("testCell") String testCell);
 
-//    @Query("SELECT " +
-//            "  SEC_TO_TIME(SUM((TIME_TO_SEC((COALESCE(NULLIF(rc.hora_final,0), CURRENT_TIME())))) - ((TIME_TO_SEC(rc.hora_inicio))))) AS contagem, " +
-//            "  SUM((TIME_TO_SEC((COALESCE(NULLIF(rc.hora_final,0), CURRENT_TIME())))) - ((TIME_TO_SEC(rc.hora_inicio)))) AS contagem_sec, " +
-//            "  rc.causal, " +
-//            "  rc.testCell " +
-//            "FROM Registro_Causal rc " +
-//            "WHERE rc.testCell = :testCell " +
-//            "  AND DATE(rc.data) = :date " +
-//            "GROUP BY rc.causal " +
-//            "ORDER BY contagem_sec DESC")
-//    List<Object[]> findCausalSumCountByTestCellOrderBycontagem(@Param("testCell") String testCell, @Param("date") @DateTimeFormat(pattern= "yyyy-MM-dd") Date date);
-
-//    @Query("SELECT " +
-//            "  SEC_TO_TIME(SUM(TIMEDIFF(COALESCE(rc.hora_final, CURRENT_TIME()), rc.hora_inicio))) AS contagem, " +
-//            "  SUM(TIMEDIFF(COALESCE(rc.hora_final, CURRENT_TIME()), rc.hora_inicio)) AS contagem_sec, " +
-//            "  rc.causal, " +
-//            "  rc.testCell " +
-//            "FROM Registro_Causal rc " +
-//            "WHERE rc.testCell = :testCell " +
-//            "  AND rc.data = :date " +
-//            "GROUP BY rc.causal " +
-//            "ORDER BY contagem_sec DESC")
     @Query("SELECT\n" +
             "  rc.causal,\n" +
             "sum(time_to_sec(TIMEDIFF(CASE WHEN rc.hora_final IS NULL OR TIME(rc.hora_final) BETWEEN '00:00:00' AND '00:00:01'\n" +
@@ -136,25 +113,32 @@ public interface RegistroCausaisRepository extends CrudRepository<Registro_Causa
     List<Object[]> findSumCausalEachTestCellandMonth(@Param("codeMin") Float codeMin, @Param("codeMax") Float codeMax, @Param("mes") String mes);
 
     @Query("SELECT\n" +
-            "\trc.Code,\n" +
-            "    rc.testCell,\n" +
-            "    rc.causal,\n" +
-            "    month(rc.data) as mes,\n" +
-            "    SUM(time_to_sec(TIMEDIFF(COALESCE(rc.hora_final, CAST(CURRENT_TIMESTAMP AS time)), rc.hora_inicio))) as total_time,\n" +
-            "    count(*) AS contagem\n" +
-            "FROM Registro_Causal rc\n" +
+            "    rc.testCell as testCell,\n" +
+            "    rc.causal as causal,\n" +
+            "    MONTH(rc.data) AS mes,\n" +
+            "\tCASE\n" +
+            "\t\tWHEN HOUR(rc.hora_inicio) * 3600 + MINUTE(rc.hora_inicio)*60 BETWEEN 1 AND 21599 THEN 1\n" +
+            "\t\tWHEN HOUR(rc.hora_inicio) * 3600 + MINUTE(rc.hora_inicio)*60 BETWEEN 56879 AND 86399 THEN 2\n" +
+            "\t\tELSE 1\n" +
+            "\tEND AS turno,\n" +
+            "    SUM(TIME_TO_SEC(TIMEDIFF(COALESCE(rc.hora_final, CAST(CURRENT_TIMESTAMP AS time)), rc.hora_inicio))) AS totalTime,\n" +
+            "    COUNT(*) AS contagem\n" +
+            "FROM\n" +
+            "    Registro_Causal rc\n" +
             "WHERE\n" +
-            "\trc.Code BETWEEN :codeMin and :codeMax\n" +
-            "    and\n" +
-            "    month(rc.data) = :mes\n" +
+            "    rc.Code BETWEEN :codeMin and :codeMax\n" +
+            "    AND MONTH(rc.data) = :mes\n" +
             "GROUP BY\n" +
             "    rc.testCell,\n" +
             "    rc.causal,\n" +
-            "    mes\n" +
+            "    mes,\n" +
+            "    turno\n" +
             "HAVING\n" +
-            "    COUNT(*) > 1\n" +
+            "    COUNT(*) > 0\n" +
             "ORDER BY\n" +
             "    rc.testCell,\n" +
-            "    rc.causal")
-    List<Object[]> findSumCausalEachTestCellandMonthTurno(@Param("codeMin") Float codeMin, @Param("codeMax") Float codeMax, @Param("mes") String mes);
+            "    rc.causal,\n" +
+            "    turno")
+    List<SearchDataProjection> findSumCausalEachTestCellandMonthOrderByShift(@Param("codeMin") Float codeMin, @Param("codeMax") Float codeMax, @Param("mes") String mes);
+
 }

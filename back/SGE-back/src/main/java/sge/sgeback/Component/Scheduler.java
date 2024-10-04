@@ -43,7 +43,7 @@ public class Scheduler {
 
     @Scheduled(cron = "0 59 5 * * *") // Ação agendada para 05:59:00 todos os dias - Marca Eff do 3º turno
     @Scheduled(cron = "0 47 15 * * *") // Ação agendada para 15:47:00 todos os dias - Marca Eff do 1º turno
-    @Scheduled(cron = "0 8 1 * * *") // Ação agendada para 01:08:00 todos os dias - Marca Eff do 2º turno
+    @Scheduled(cron = "0 59 23 * * *") // Ação agendada para 23:59:00 todos os dias - Marca Eff do 2º turno
     public void scheduleAtualizarDadosEff() {
         dadosEffController.atualizarDadosEff(); // Call your existing controller method
     }

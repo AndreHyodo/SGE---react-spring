@@ -1,0 +1,46 @@
+[
+  {
+    "testCell": "A01",
+    "dina": "d123",
+    "carrinho": "c123",
+    "campana": "c789",
+    "eixo": "e123",
+    "data": 1727751600000,
+    "hora": "14:14:24",
+    "operador": "",
+    "id_dados": 1
+  },
+  {
+    "testCell": "A01",
+    "dina": "d123",
+    "carrinho": "c123",
+    "campana": "c789",
+    "eixo": "e123",
+    "data": 1727751600000,
+    "hora": "14:14:24",
+    "operador": "",
+    "id_dados": 2
+  },
+  {
+    "testCell": "A02",
+    "dina": "d123",
+    "carrinho": "cc",
+    "campana": "caa",
+    "eixo": "ee",
+    "data": 1727838000000,
+    "hora": "14:42:53",
+    "operador": "",
+    "id_dados": 3
+  },
+  {
+    "testCell": "A02",
+    "dina": "d123",
+    "carrinho": "cc",
+    "campana": "caa",
+    "eixo": "ee",
+    "data": 1727838000000,
+    "hora": "14:42:53",
+    "operador": "",
+    "id_dados": 4
+  }
+]

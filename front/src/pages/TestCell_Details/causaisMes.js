@@ -25,7 +25,7 @@ import {
 import "./details.css";
 import data from "bootstrap/js/src/dom/data";
 import {Text, Box, ThemeProvider} from "@chakra-ui/react";
-import {Button} from "reactstrap";
+import MenuFlutuante from "../../Components/Menu/MenuFlutuante";
 
 const CausaisMes = () => {
     const [causaisFormatted, setCausaisFormatted] = useState([]);
@@ -433,62 +433,62 @@ const CausaisMes = () => {
                             </LineChart>
                         </ResponsiveContainer>
                         {/*{type === "dur" && (*/}
-                            <ResponsiveContainer width="100%" height={350}>
-                                <LineChart
-                                    data={effData3}
-                                    margin={{ top: 30, right: 30, left: 20, bottom: 5 }}
+                        <ResponsiveContainer width="100%" height={350}>
+                            <LineChart
+                                data={effData3}
+                                margin={{ top: 30, right: 30, left: 20, bottom: 5 }}
+                            >
+                                <text
+                                    x={"50%"}
+                                    y={15}
+                                    textAnchor="middle"
+                                    fontSize={18}
+                                    fontWeight="bold"
+                                    fill="white"
                                 >
-                                    <text
-                                        x={"50%"}
-                                        y={15}
-                                        textAnchor="middle"
-                                        fontSize={18}
-                                        fontWeight="bold"
-                                        fill="white"
-                                    >
-                                        Eficiência 3º Turno
-                                    </text>
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis
-                                        dataKey="date"
-                                        tick={{
-                                            fill: "white",
-                                            fontSize: 12,
-                                            fontWeight: "normal",
-                                        }}
-                                    />
-                                    <YAxis
-                                        tick={{ fill: "white", fontSize: 12, fontWeight: "normal" }}
-                                        domain={[0, 100]}
-                                    />
-                                    <Tooltip
-                                        wrapperStyle={{
-                                            border: "none",
-                                            boxShadow:
-                                                "0px 0px 10px rgba(0, 0, 0, 0.5)",
-                                            borderRadius: "5px",
-                                            padding: "10px",
-                                        }}
-                                        labelStyle={{
-                                            color: "#FFFA00",
-                                            fontSize: 14,
-                                            fontWeight: "bold",
-                                        }}
-                                        contentStyle={{
-                                            color: "#FFFA00",
-                                            fontSize: 12,
-                                            fontWeight: "normal",
-                                            backgroundColor:"black",
-                                        }}
-                                    />
-                                    <Line
-                                        type="monotone"
-                                        dataKey="eff"
-                                        stroke="#FFFA00"
-                                        activeDot={{ r: 8 }}
-                                    />
-                                </LineChart>
-                            </ResponsiveContainer>
+                                    Eficiência 3º Turno
+                                </text>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis
+                                    dataKey="date"
+                                    tick={{
+                                        fill: "white",
+                                        fontSize: 12,
+                                        fontWeight: "normal",
+                                    }}
+                                />
+                                <YAxis
+                                    tick={{ fill: "white", fontSize: 12, fontWeight: "normal" }}
+                                    domain={[0, 100]}
+                                />
+                                <Tooltip
+                                    wrapperStyle={{
+                                        border: "none",
+                                        boxShadow:
+                                            "0px 0px 10px rgba(0, 0, 0, 0.5)",
+                                        borderRadius: "5px",
+                                        padding: "10px",
+                                    }}
+                                    labelStyle={{
+                                        color: "#FFFA00",
+                                        fontSize: 14,
+                                        fontWeight: "bold",
+                                    }}
+                                    contentStyle={{
+                                        color: "#FFFA00",
+                                        fontSize: 12,
+                                        fontWeight: "normal",
+                                        backgroundColor:"black",
+                                    }}
+                                />
+                                <Line
+                                    type="monotone"
+                                    dataKey="eff"
+                                    stroke="#FFFA00"
+                                    activeDot={{ r: 8 }}
+                                />
+                            </LineChart>
+                        </ResponsiveContainer>
                         {/*)}*/}
                     </div>
                 </div>

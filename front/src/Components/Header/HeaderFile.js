@@ -45,6 +45,10 @@ const HeaderComponent = () => {
                                 <Link to="/registro" className="text-decoration-none text-black p-2">Registro Causal</Link>
                             </StyledNavItem>
                             <StyledNavItem className="navi-tem mb-2">
+                                <img src={registry} alt="" className="logo-icon "/>
+                                <Link to="/DadosSala" className="text-decoration-none text-black p-2" target="_blank">Dados Sala</Link>
+                            </StyledNavItem>
+                            <StyledNavItem className="navi-tem mb-2">
                                 <img src={app} alt="" className="logo-icon "/>
                                 <Link to="https://apps.powerapps.com/play/e/default-d852d5cd-724c-4128-8812-ffa5db3f8507/a/c254677a-09d2-4366-87ec-61017937b8a4?tenantId=d852d5cd-724c-4128-8812-ffa5db3f8507&hint=28b87822-59ed-472c-80b0-e1cc6ff27d94&sourcetime=1712574618050&hidenavbar=true" className="text-decoration-none text-black p-2" target="_blank">App Tech Dyno</Link>
                             </StyledNavItem>

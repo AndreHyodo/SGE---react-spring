@@ -12,6 +12,7 @@ const Status_Api = '/Status/all';
 const List_Causais = '/causaisList'
 const Registra_causal = '/causais/insertCausal'
 const Last_Causais = '/causais/top3'
+const DadosSala = `/Dados_sala`
 
 
 export const listStatus = () => {
@@ -79,6 +80,16 @@ export function Verif_User(user,senha){
     console.log("estou executando: " + url_base + `/users/verificaUser/${user}/${senha}`)
     return axios.get(url_base + `/users/verificaUser/${user}/${senha}`)
 }
+
+export const InsertDadosSala_url = () => {
+    const url = url_base + DadosSala;
+    return (url);
+}
+
+export function DadosSala_url(){
+    return axios.get(url_base + DadosSala)
+}
+
 
 export function fetchDocs(){
     return axios.get(url_base + `/files/`)

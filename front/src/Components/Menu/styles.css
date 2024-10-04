@@ -1,0 +1,60 @@
+.menu-flutuante {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    height: 50px;
+}
+
+.menu-flutuante ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-flutuante li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.menu-flutuante a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu-flutuante a:hover {
+    color: #ccc;
+}.menu-flutuante {
+     position: relative;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     background-color: #333;
+     color: #fff;
+     padding: 10px;
+     text-align: center;
+ }
+
+.menu-flutuante ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-flutuante li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.menu-flutuante a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu-flutuante a:hover {
+    color: #ccc;
+}

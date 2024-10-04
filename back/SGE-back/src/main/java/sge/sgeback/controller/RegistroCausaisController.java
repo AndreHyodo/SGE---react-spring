@@ -1,32 +1,24 @@
 package sge.sgeback.controller;
 
-import org.apache.commons.collections4.map.MultiKeyMap;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import sge.sgeback.model.Dados_Eff;
 import sge.sgeback.model.Registro_Causal;
 import sge.sgeback.model.Status;
+import sge.sgeback.projection.SearchDataProjection;
 import sge.sgeback.repository.RegistroCausaisRepository;
 import sge.sgeback.repository.StatusRepository;
+import sge.sgeback.service.RegistroCausais_service;
 
-import javax.print.attribute.standard.MediaSize;
 import java.math.BigDecimal;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -35,9 +27,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.StreamSupport;
-
-
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 
 @Controller
@@ -56,6 +45,9 @@ public class RegistroCausaisController {
 
     @Autowired
     private StatusController statusController;
+
+    @Autowired
+    private RegistroCausais_service registroCausaisService;
 
     private Registro_Causal causal;
 
@@ -132,6 +124,8 @@ public class RegistroCausaisController {
 
         LocalTime zero = LocalTime.parse("00:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
 
+        LocalTime ajusteZero = LocalTime.parse("00:00:30", DateTimeFormatter.ofPattern("HH:mm:ss"));
+
         for (String testCell : testCells) {
             Registro_Causal causal = CausaisRepository.findTopByTestCellOrderByIdDesc(testCell);
             if (causal.getHora_final() == LocalTime.of(0,0,0)) {
@@ -143,7 +137,21 @@ public class RegistroCausaisController {
                 newCausal.setCausal(causal.getCausal());
                 newCausal.setHora_inicio(Time.valueOf(hora_atual));
                 newCausal.setHora_final(zero);
-                newCausal.setData(causal.getData());
+                if(hora_atual.isAfter(zero) && hora_atual.isBefore(ajusteZero)){
+                    Date data = causal.getData();
+
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(data);
+                    calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+                    Date dataAtt = calendar.getTime();
+
+                    java.sql.Date DataAttSql = new java.sql.Date(dataAtt.getTime());
+
+                    newCausal.setData(DataAttSql);
+                }else{
+                    newCausal.setData(causal.getData());
+                }
                 newCausal.setObs(causal.getObs());
 
                 createStatus(newCausal);
@@ -401,40 +409,12 @@ public class RegistroCausaisController {
 
     @GetMapping(path="/causaisMonth/{code}/{mes}")
     public ResponseEntity<Map<String, Long>> findCausalCount(@PathVariable Float code,@PathVariable String mes) {
-        Float codeMax = (float) (code + 0.01);
-        Float codeMin = (float) (code - 0.01);
-
-        List<Object[]> results = CausaisRepository.findSumCausalEachTestCellandMonth(codeMin, codeMax, mes);
-
-        Map<String, Long> map = new HashMap<>();
-        for (Object[] result : results) {
-            String testCell = (String) result[1];
-//            String causal_get = (String) result[2];
-            BigDecimal total_time = (BigDecimal) result[4];
-            Long time = total_time.longValue();
-            map.put(testCell, time);
-        }
-
-        return ResponseEntity.ok(map);
+        return ResponseEntity.ok(registroCausaisService.findCausalCount(code, mes));
     }
 
-    @GetMapping(path="/causaisMonthTurno/{code}/{mes}/{turno}")
-    public ResponseEntity<Map<String, Long>> findCausalCountTurno(@PathVariable Float code,@PathVariable String mes, @PathVariable Integer turno) {
-        Float codeMax = (float) (code + 0.01);
-        Float codeMin = (float) (code - 0.01);
-
-        List<Object[]> results = CausaisRepository.findSumCausalEachTestCellandMonth(codeMin, codeMax, mes);
-
-        Map<String, Long> map = new HashMap<>();
-        for (Object[] result : results) {
-            String testCell = (String) result[1];
-//            String causal_get = (String) result[2];
-            BigDecimal total_time = (BigDecimal) result[4];
-            Long time = total_time.longValue();
-            map.put(testCell, time);
-        }
-
-        return ResponseEntity.ok(map);
+    @GetMapping(path="/causaisMonthTurnos/{code}/{mes}")
+    public ResponseEntity<List<SearchDataProjection>> findCausalCountAllShifts(@PathVariable Float code, @PathVariable String mes) {
+        return ResponseEntity.ok(registroCausaisService.findCausalCountAllShifts(code,mes));
     }
 
 

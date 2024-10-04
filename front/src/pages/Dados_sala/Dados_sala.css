@@ -1,0 +1,30 @@
+/*!*:root {*!*/
+/*!*    font-synthesis: none;*!*/
+/*!*    text-rendering: optimizeLegibility;*!*/
+/*!*    -webkit-font-smoothing: antialiased;*!*/
+/*!*    -moz-osx-font-smoothing: grayscale;*!*/
+/*!*}*!*/
+
+/*!*.card {*!*/
+/*!*    margin-left: 25%;*!*/
+/*!*    padding: 2rem;*!*/
+/*!*    background-color: var(--surface-card);*!*/
+/*!*    align-items: center;*!*/
+/*!*}*!*/
+
+/*h4 {*/
+/*    margin-top: 0;*/
+/*}*/
+
+
+.form-insertDados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*.inputLabel{*/
+/*    align-items: center;*/
+/*    text-align: center;*/
+/*    margin: 1%;*/
+/*}*/

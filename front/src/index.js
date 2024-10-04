@@ -12,6 +12,8 @@ import {
     createBrowserRouter, RouterProvider,
 } from "react-router-dom";
 import UploadFiles from "./pages/uploadFiles";
+import InsertIndex from "./pages/Dados_sala/insertIndex";
+import IndexDadosSala from "./pages/Dados_sala/indexDadosSala";
 
 // import {
 //     BrowserRouter as Router,
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
     {
         path: "/uploadFiles",
         element: <UploadFiles />,
+    },
+    {
+        path: "/insertDadosSala",
+        element: <InsertIndex />,
+    },
+    {
+        path: "/DadosSala",
+        element: <IndexDadosSala />,
     }
 ]);
 

@@ -1,18 +1,12 @@
 import React, {useEffect,useState} from "react";
-import {listDados, listStatus, listLastCausais} from "../../services/StatusService";
-// import {Card} from "../../Components/Card/Card";
+import {listStatus, listLastCausais} from "../../services/StatusService";
 import Card from "../../Components/Card/Card"
 import './StatusSalas.module.css'
-import {getTimeDiffInMilliseconds} from "util";
-import configList from "webpack-config/dist/ConfigList";
-// import axios from "axios";
-
-
 
 const StatusSalas = () => {
 
     const[Salas, setSalas] = useState([])
-    const [Causais, setCausais] = useState([]); // new state to store causais data
+    const [Causais, setCausais] = useState([]); 
     const [loading, setLoading] = useState(true);
 
 
@@ -42,7 +36,7 @@ const StatusSalas = () => {
             return "Running";
         }else if(status===2){
             return "Cooling";
-        }else if(status===3){
+        }else if(status===3) {
             return "Sala inativa";
         }
     }
@@ -51,8 +45,6 @@ const StatusSalas = () => {
         return <div>Loading...</div>; // Render a loading indicator
     }
 
-    console.log(Causais[6].causal)
-
 
     return(
         <div className="my-2">
@@ -60,15 +52,15 @@ const StatusSalas = () => {
                 {
                     Salas.map(sala =>
                             <div className={"col-2 col-md-2 col-sm-4 col-xs-6"} key={sala.id}>
-                                {/*<Card testCell={sala.testCell} causalParada={causal(sala.time, sala.status, sala.causal)} status={status(sala.causal, sala.status)} status_actual={sala.status} motor={sala.motor} projeto={sala.projeto} teste={sala.teste} eff={sala.eff} paradaAtual={sala.parada_atual} paradaTotal={sala.parada_total} />*/}
-                                <Card
+                                 <Card
                                     testCell={sala.testCell}
                                     status={status(sala.id-1, sala.status)}
                                     status_actual={sala.status}
                                     motor={sala.motor}
                                     projeto={sala.projeto}
                                     teste={sala.teste}
-                                    eff={sala.eff}
+                                    // eff={sala.eff}
+                                    eff={sala.eff < 0 ? 0 : sala.eff}
                                     paradaAtual={sala.parada_atual}
                                     paradaTotal={sala.parada_total} />
                             </div>
