@@ -1,25 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
 import Registro from '../../front/src/pages/Registro_Causal/index'
 import reportWebVitals from './reportWebVitals';
 import Home from './pages/Home/index'
 import Detail from './pages/TestCell_Details/index'
-// import {render} from "@testing-library/react";
 
 import {
     createBrowserRouter, RouterProvider,
 } from "react-router-dom";
 import UploadFiles from "./pages/uploadFiles";
 import InsertIndex from "./pages/Dados_sala/insertIndex";
-import IndexDadosSala from "./pages/Dados_sala/indexDadosSala";
+import IndexDadosSala from "./pages/Dados_sala/IndexDadosSala";
+import Campanas from "./pages/Campanas/Campanas";
+import IndexCampanas from "./pages/Campanas/indexCampanas";
+import IndexInsertCampanas from "./pages/Campanas/indexInsertCampanas";
+import IndexEditCampanas from "./pages/Campanas/indexEditCampanas";
 
-// import {
-//     BrowserRouter as Router,
-//     Routes,
-//     Route, Redirect,Navigate
-// } from "react-router-dom";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +42,18 @@ const router = createBrowserRouter([
     {
         path: "/DadosSala",
         element: <IndexDadosSala />,
+    },
+    {
+        path: "/DadosCampanas",
+        element: <IndexCampanas />,
+    },
+    {
+        path: "/insertCampana",
+        element: <IndexInsertCampanas />,
+    },
+    {
+        path: "/editCampana",
+        element: <IndexEditCampanas />,
     }
 ]);
 

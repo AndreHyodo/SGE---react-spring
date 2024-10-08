@@ -6,6 +6,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import {Paper} from "@mui/material";
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 
 import {DadosSala_url} from "../../services/StatusService";
 
@@ -46,12 +47,21 @@ const DadosSala = () => {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh' }}>
             <Paper sx={{ width: '80%', height: '90%', padding: 4 }}>
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
-                    <Link to="/insertDadosSala">
-                        <Button variant="contained" startIcon={<AddIcon />}>
-                            Adicionar
-                        </Button>
-                    </Link>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
+                    <div >
+                        <Link to="/DadosCampanas">
+                            <Button variant="contained" startIcon={<ArticleOutlinedIcon />}>
+                                Lista Campanas
+                            </Button>
+                        </Link>
+                    </div>
+                    <div >
+                        <Link to="/insertDadosSala">
+                            <Button variant="contained" startIcon={<AddIcon />}>
+                                Adicionar
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
                 <DataGrid
                     rows={rows}

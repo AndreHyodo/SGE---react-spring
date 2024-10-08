@@ -13,6 +13,7 @@ const List_Causais = '/causaisList'
 const Registra_causal = '/causais/insertCausal'
 const Last_Causais = '/causais/top3'
 const DadosSala = `/Dados_sala`
+const Campana = `/campanas`
 
 
 export const listStatus = () => {
@@ -88,6 +89,15 @@ export const InsertDadosSala_url = () => {
 
 export function DadosSala_url(){
     return axios.get(url_base + DadosSala)
+}
+
+export function Campanas_url(){
+    return axios.get(url_base + Campana)
+}
+
+export const InsertCampana_url = () => {
+    const url = url_base + Campana;
+    return (url);
 }
 
 

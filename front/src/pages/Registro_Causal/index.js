@@ -36,7 +36,7 @@ const RegistroPage = () => {
                 }
 
                 <FooterComponent/>
-            </ChakraProvider>
+                </ChakraProvider>
         </>
     )
 }

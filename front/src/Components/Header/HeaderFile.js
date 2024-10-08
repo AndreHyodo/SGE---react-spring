@@ -46,7 +46,7 @@ const HeaderComponent = () => {
                             </StyledNavItem>
                             <StyledNavItem className="navi-tem mb-2">
                                 <img src={registry} alt="" className="logo-icon "/>
-                                <Link to="/DadosSala" className="text-decoration-none text-black p-2" target="_blank">Dados Sala</Link>
+                                <Link to="/DadosSala" className="text-decoration-none text-black p-2">Dados Sala</Link>
                             </StyledNavItem>
                             <StyledNavItem className="navi-tem mb-2">
                                 <img src={app} alt="" className="logo-icon "/>

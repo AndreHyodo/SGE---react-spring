@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Dados_sala.css';
 
@@ -7,21 +7,40 @@ import SendIcon from '@mui/icons-material/Send';
 import CancelIcon from '@mui/icons-material/Cancel';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import {InputLabel, MenuItem, Select} from "@mui/material";
+import { InputLabel, MenuItem, Select, FormControl, CircularProgress, FormHelperText } from "@mui/material";
 
-import {InsertDadosSala_url} from "../../services/StatusService";
+import { InsertDadosSala_url, Campanas_url } from "../../services/StatusService";
 
 const Insert_Dados_sala = () => {
-    const [testCell, setTestCell] = useState(null);
-    const [dina, setDina] = useState(null);
-    const [carrinho, setCarrinho] = useState(null);
-    const [campana, setCampana] = useState(null);
-    const [eixo, setEixo] = useState(null);
-    const [data, setData] = useState(new Date().toISOString()); // Current date in YYYY-MM-DD format
-    const [hora, setHora] = useState(new Date().toLocaleTimeString()); // Current time in HH:MM:SS format
-    const [operador, setOperador] = useState(null);
+    const [testCell, setTestCell] = useState('');
+    const [dina, setDina] = useState('');
+    const [carrinho, setCarrinho] = useState('');
+    const [campana, setCampana] = useState('');
+    const [eixo, setEixo] = useState('');
+    const [data, setData] = useState(new Date().toISOString().split('T')[0]); // YYYY-MM-DD
+    const [hora, setHora] = useState(new Date().toLocaleTimeString('en-GB')); // HH:MM:SS
+    const [operador, setOperador] = useState('');
 
-    const handleSubmit = (event) => {
+    const [campanasList, setCampanasList] = useState([]);
+    const [loadingCampanas, setLoadingCampanas] = useState(true);
+    const [errorCampanas, setErrorCampanas] = useState(null);
+
+    useEffect(() => {
+        fetchCampanas();
+    }, []);
+    const fetchCampanas = () => {
+        Campanas_url().then((response) => {
+            const dados = response.data.map((dado) => ({
+                ...dado
+            }));
+            setCampanasList(dados);
+        }).catch(error => {
+            console.error('Erro ao buscar campanas:', error);
+            setErrorCampanas('Erro ao carregar campanas.');
+        });
+    };
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const dados = {
             testCell,
@@ -40,74 +59,56 @@ const Insert_Dados_sala = () => {
             return;
         }
 
-        fetch(InsertDadosSala_url(), {
-            method: 'POST',
-            mode: "cors",
-            body: JSON.stringify(dados),
-            headers: {
-                'Accept': 'application/json, text/plain',
-                'Content-Type': 'application/json;charset=UTF-8'
-            }
-
-        })
-            .then(retorno => {
-                window.location.replace("/DadosSala");
-                console.log(JSON.stringify(dados));
-            })
-            .catch(retorno_convertido => {
-                alert(retorno_convertido + "\n" + JSON.stringify(dados));
-                console.log(JSON.stringify(dados));
-                console.log(retorno_convertido);
+        try {
+            await axios.post(InsertDadosSala_url(), dados, {
+                headers: {
+                    'Accept': 'application/json, text/plain',
+                    'Content-Type': 'application/json;charset=UTF-8'
+                }
             });
+            console.log('Dados enviados:', JSON.stringify(dados));
+            window.location.replace("/DadosSala");
+        } catch (error) {
+            alert(`Erro ao enviar dados: ${error}\n${JSON.stringify(dados)}`);
+            console.error('Erro ao enviar dados:', error);
+        }
     };
 
-    const handleCancel = (event) => {
+    const handleCancel = () => {
         window.location.replace("/DadosSala");
-    }
-
+    };
 
     return (
         <Box
             component="form"
             className="form-insertDados"
-            sx={{ '& .MuiTextField-root': { m: 1, width: '25ch'} }}
+            sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
             noValidate
             autoComplete="off"
+            onSubmit={handleSubmit}
         >
             <div>
-                <InputLabel id="demo-simple-select-label">TestCell *</InputLabel>
-                <Select
-                    sx={{width: '24ch', mb:1}}
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    label="TestCell"
-                    value={testCell}
-                    onChange={(event) => setTestCell(event.target.value)}
-                >
-                    <MenuItem value={'A01'}>A01</MenuItem>
-                    <MenuItem value={'A02'}>A02</MenuItem>
-                    <MenuItem value={'A03'}>A03</MenuItem>
-                    <MenuItem value={'A04'}>A04</MenuItem>
-                    <MenuItem value={'A05'}>A05</MenuItem>
-                    <MenuItem value={'A06'}>A06</MenuItem>
-                    <MenuItem value={'A07'}>A07</MenuItem>
-                    <MenuItem value={'A08'}>A08</MenuItem>
-                    <MenuItem value={'A09'}>A09</MenuItem>
-                    <MenuItem value={'A10'}>A10</MenuItem>
-                    <MenuItem value={'A11'}>A11</MenuItem>
-                    <MenuItem value={'A12'}>A12</MenuItem>
-                    <MenuItem value={'B01'}>B01</MenuItem>
-                    <MenuItem value={'B02'}>B02</MenuItem>
-                    <MenuItem value={'B03'}>B03</MenuItem>
-                    <MenuItem value={'B04'}>B04</MenuItem>
-                    <MenuItem value={'B05'}>B05</MenuItem>
-                    <MenuItem value={'B06'}>B06</MenuItem>
-                </Select>
+                <FormControl sx={{ m: 1, minWidth: 220 }}>
+                    <InputLabel id="testcell-label">TestCell *</InputLabel>
+                    <Select
+                        labelId="testcell-label"
+                        id="testcell-select"
+                        value={testCell}
+                        label="TestCell *"
+                        onChange={(event) => setTestCell(event.target.value)}
+                        required
+                    >
+                        {/* Lista de TestCell */}
+                        {['A01', 'A02', 'A03', 'A04', 'A05', 'A06', 'A07', 'A08', 'A09', 'A10', 'A11', 'A12', 'B01', 'B02', 'B03', 'B04', 'B05', 'B06'].map(cell => (
+                            <MenuItem key={cell} value={cell}>{cell}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
             </div>
             <div>
                 <TextField
                     required
-                    id="outlined-required"
+                    id="outlined-dinamometro"
                     label="Dinamômetro"
                     value={dina}
                     onChange={(event) => setDina(event.target.value)}
@@ -116,25 +117,35 @@ const Insert_Dados_sala = () => {
             <div>
                 <TextField
                     required
-                    id="outlined-required"
+                    id="outlined-carrinho"
                     label="Carrinho"
                     value={carrinho}
                     onChange={(event) => setCarrinho(event.target.value)}
                 />
             </div>
             <div>
-                <TextField
-                    required
-                    id="outlined-required"
-                    label="Campana"
-                    value={campana}
-                    onChange={(event) => setCampana(event.target.value)}
-                />
+                <FormControl sx={{ width: '25ch', mb: 1 }}>
+                    <InputLabel id="campana-select-label">Campana *</InputLabel>
+                    <Select
+                        labelId="campana-select-label"
+                        id="campana-select"
+                        label="Campana"
+                        value={campana}
+                        onChange={(event) => setCampana(event.target.value)}
+                    >
+                        {campanasList.map((campana) => (
+                            <MenuItem key={campana.id} value={campana.nome}>
+                                {campana.nome}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                    {errorCampanas && <div style={{ color: 'red' }}>{errorCampanas}</div>}
+                </FormControl>
             </div>
             <div>
                 <TextField
                     required
-                    id="outlined-required"
+                    id="outlined-eixo"
                     label="Eixo"
                     value={eixo}
                     onChange={(event) => setEixo(event.target.value)}
@@ -143,24 +154,25 @@ const Insert_Dados_sala = () => {
             <div>
                 <TextField
                     required
-                    id="outlined-required"
+                    id="outlined-operador"
                     label="Operador"
                     value={operador}
                     onChange={(event) => setOperador(event.target.value)}
                 />
             </div>
             <div>
-                <Button variant="contained"
-                        color="error"
-                        endIcon={<CancelIcon />}
-                        onClick={handleCancel}
-                        sx={{ marginRight: 2 }}
+                <Button
+                    variant="contained"
+                    color="error"
+                    endIcon={<CancelIcon />}
+                    onClick={handleCancel}
+                    sx={{ marginRight: 2 }}
                 >
                     Cancel
                 </Button>
                 <Button variant="contained"
-                        endIcon={<SendIcon />}
-                        onClick={handleSubmit}
+                    endIcon={<SendIcon />}
+                    onClick={handleSubmit}
                 >
                     Send
                 </Button>
