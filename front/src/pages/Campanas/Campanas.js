@@ -8,7 +8,7 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
-import { Campanas_url } from "../../services/StatusService";
+import { Campanas_url,atualizaCampana } from "../../services/StatusService";
 import axios from 'axios';
 
 const formatDate = (date) => {
@@ -82,15 +82,14 @@ const Campanas = () => {
             status: parseInt(selectedRow.status) // Garantindo que o status seja um número
         };
 
-        axios.put(`/campanas/update_id/${selectedRow.id}`, updatedRow)
-            .then(() => {
-                // console.log(JSON.stringify(updatedRow))
-                fetchCampanas(); // Atualiza a lista após salvar
-                handleClose();
-            })
-            .catch(error => {
-                console.error("Erro ao atualizar a campanha:", error);
-            });
+        atualizaCampana(selectedRow.id,updatedRow).then(() => {
+            // console.log(JSON.stringify(updatedRow))
+            fetchCampanas(); // Atualiza a lista após salvar
+            handleClose();
+        })
+        .catch(error => {
+            console.error("Erro ao atualizar a campanha:", error);
+        });
     };
 
     const columns = [

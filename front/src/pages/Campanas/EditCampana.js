@@ -81,7 +81,7 @@ const EditCampana = () => {
                 <TextField
                     required
                     id="outlined-required"
-                    label="TEsteeeeeee"
+                    label="Nome"
                     value={nome}
                     onChange={(event) => setNome(event.target.value)}
                 />

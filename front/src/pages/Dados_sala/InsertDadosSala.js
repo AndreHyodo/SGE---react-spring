@@ -67,11 +67,21 @@ const Insert_Dados_sala = () => {
                 }
             });
             console.log('Dados enviados:', JSON.stringify(dados));
-            window.location.replace("/DadosSala");
+            axios.put(`/campanas/update/${dados.campana}`, dados)
+                .then(() => {
+                    window.location.replace("/DadosSala");
+                })
+                .catch(error => {
+                    console.error("Erro ao atualizar a campanha:", error);
+                });
         } catch (error) {
             alert(`Erro ao enviar dados: ${error}\n${JSON.stringify(dados)}`);
             console.error('Erro ao enviar dados:', error);
         }
+
+        // try{
+        //     await axios.put()
+        // }
     };
 
     const handleCancel = () => {

@@ -100,6 +100,9 @@ export const InsertCampana_url = () => {
     return (url);
 }
 
+export function atualizaCampana(id, updatedRow){
+    return axios.put(url_base + `/campanas/update_id/${id}`, updatedRow)
+}
 
 export function fetchDocs(){
     return axios.get(url_base + `/files/`)

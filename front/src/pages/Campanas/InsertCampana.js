@@ -5,14 +5,14 @@ import SendIcon from '@mui/icons-material/Send';
 import CancelIcon from '@mui/icons-material/Cancel';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import {InsertCampana_url} from "../../services/StatusService";
 import dayjs from "dayjs";
-import {MenuItem} from "@mui/material";
+import {IconButton, MenuItem} from "@mui/material";
+import {ClearIcon} from "@mui/x-date-pickers";
 
 const InsertCampana = () => {
     const [nome, setNome] = useState(null);
@@ -28,20 +28,20 @@ const InsertCampana = () => {
         const dados = {
             nome,
             local,
-            dataRevisao: dataRevisao.format('YYYY-MM-DD'),
-            dataEntrada: dataEntrada.format('YYYY-MM-DD'),
+            dataRevisao: dataRevisao ? dataRevisao.format('YYYY-MM-DD') : null,
+            dataEntrada: dataEntrada ? dataEntrada.format('YYYY-MM-DD') : null,
             horaRodagem,
             obs,
             status,
         };
 
-        const hasEmptyValues = Object.values(dados).some(value => value === null || value === '');
-        if (hasEmptyValues) {
-            alert('Todos os campos são obrigatórios, favor preencher!!');
+        console.log(dados.nome);
+        const hasEmptyName = (dados.nome === null || dados.nome === '');
+        const hasEmptyStatus = (dados.status === null || dados.status === '');
+        if (hasEmptyName || hasEmptyStatus) {
+            alert('O dados de nome e status são origatórios!!');
             return;
         }
-
-        alert(JSON.stringify(dados))
 
         fetch(InsertCampana_url(), {
             method: 'POST',
@@ -68,6 +68,9 @@ const InsertCampana = () => {
         window.location.replace("/DadosCampanas");
     }
 
+    const clearDataRevisao = () => setDataRevisao(null);
+    const clearDataEntrada = () => setDataEntrada(null);
+
 
     return (
         <Box
@@ -88,7 +91,6 @@ const InsertCampana = () => {
             </div>
             <div>
                 <TextField
-                    required
                     id="outlined-required"
                     label="Local"
                     value={local}
@@ -97,28 +99,47 @@ const InsertCampana = () => {
             </div>
             <div>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker
-                        label="DataRevisão"
-                        value={dayjs(dataRevisao)}
-                        onChange={(newValue) => setDataRevisao(newValue)}
-                        renderInput={(params) => <TextField {...params} />}
-                    />
+                    <Box sx={{ display: 'flex', alignItems: 'center', width: '27ch'}}>
+                        <DatePicker
+                            label="Data Revisão"
+                            value={dataRevisao}
+                            onChange={(newValue) => setDataRevisao(newValue)}
+                            renderInput={(params) => <TextField {...params} />}
+                            sx={{ width: '20ch' }}
+                        />
+                        <IconButton
+                            color="error"
+                            aria-label="clear date"
+                            onClick={clearDataRevisao}
+                        >
+                            <ClearIcon />
+                        </IconButton>
+                    </Box>
                 </LocalizationProvider>
             </div>
 
             <div>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker
-                        label="DataEntrada"
-                        value={dayjs(dataEntrada)}
-                        onChange={(newValue) => setDataEntrada(newValue)}
-                        renderInput={(params) => <TextField {...params} />}
-                    />
+                    <Box sx={{ display: 'flex', alignItems: 'center', width: '27ch'}}>
+                        <DatePicker
+                            label="Data Entrada"
+                            value={dataEntrada}
+                            onChange={(newValue) => setDataEntrada(newValue)}
+                            renderInput={(params) => <TextField {...params} />}
+                            sx={{ width: '20ch' }}
+                        />
+                        <IconButton
+                            color="error"
+                            aria-label="clear date"
+                            onClick={clearDataEntrada}
+                        >
+                            <ClearIcon />
+                        </IconButton>
+                    </Box>
                 </LocalizationProvider>
             </div>
             <div>
                 <TextField
-                    required
                     id="outlined-required"
                     label="HoraRodagem"
                     value={horaRodagem}
@@ -127,7 +148,6 @@ const InsertCampana = () => {
             </div>
             <div>
                 <TextField
-                    required
                     id="outlined-required"
                     label="Obs"
                     value={obs}
@@ -136,6 +156,7 @@ const InsertCampana = () => {
             </div>
             <div>
                 <TextField
+                    required
                     label="Status"
                     sx={{ m: 1, width: '25ch' }}
                     onChange={(event) => setStatus(parseInt(event.target.value))}

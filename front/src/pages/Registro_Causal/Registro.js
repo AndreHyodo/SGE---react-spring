@@ -407,7 +407,10 @@ const App = () => {
                             <Button className='m-2' onClick={() => { handleSelectOption('A08'); handleCloseModal(); handleButtonClick('A08') }}>A08</Button>
                             <Button className='m-2' onClick={() => { handleSelectOption('A09'); handleCloseModal(); handleButtonClick('A09') }}>A09</Button>
                         </div>
-
+                        <div>
+                            <h3>Outros</h3>
+                            <Button className='m-2' onClick={() => { handleSelectOption('SPT'); handleCloseModal(); handleButtonClick('SPT') }}>SPT</Button>
+                            </div>
                     </ModalBody>
                 </ModalContent>
             </Modal>

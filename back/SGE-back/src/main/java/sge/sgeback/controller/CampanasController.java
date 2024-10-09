@@ -6,10 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import sge.sgeback.model.Campanas;
+import sge.sgeback.model.Dados_sala;
 import sge.sgeback.model.Registro_Causal;
 import sge.sgeback.repository.CampanasRepository;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -32,18 +36,20 @@ public class CampanasController {
     }
 
     @PutMapping(path="/update/{nome}")
-    public ResponseEntity<Campanas> updateCampana(@PathVariable String nome, @RequestBody Campanas campana_req) {
+    public ResponseEntity<Campanas> updateCampana(@PathVariable String nome, @RequestBody Dados_sala dadosSala) {
         Optional<Campanas> campana = campanasRepository.findByNome(nome);
+
+        Date data = dadosSala.getData();
+
+        // Converter Date para LocalDate
+        LocalDate localDate = data.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
 
         if (campana.isPresent()) {
             Campanas _campana = campana.get();
-            _campana.setLocal(campana_req.getLocal());
-            _campana.setDataEntrada(campana_req.getDataEntrada());
-            _campana.setDataRevisao(campana_req.getDataRevisao());
-            _campana.setDataSaida(campana_req.getDataSaida());
-            _campana.setHoraRodagem(campana_req.getHoraRodagem());
-            _campana.setObs(campana_req.getObs());
-            _campana.setStatus(campana_req.getStatus());
+            _campana.setLocal(dadosSala.getTestCell());
+            _campana.setDataEntrada(localDate);
             return new ResponseEntity<>(campanasRepository.save(_campana), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
