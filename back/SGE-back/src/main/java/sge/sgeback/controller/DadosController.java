@@ -82,9 +82,11 @@ public class DadosController {
         Iterable<Status> testCellStatuses = statusController.getStatus();
 
         for (Status testCellStatus : testCellStatuses){
-            getTxtData(testCellStatus.getTestCell());
-            Dados dado = getDadosData(testCellStatus.getTestCell());
-            statusController.updateStatusDados(testCellStatus.getTestCell(), dado);
+            if(!testCellStatus.getTestCell().equals("A06") || !testCellStatus.getTestCell().equals("A07")||!testCellStatus.getTestCell().equals("A08")||!testCellStatus.getTestCell().equals("A09") ){
+                getTxtData(testCellStatus.getTestCell());
+                Dados dado = getDadosData(testCellStatus.getTestCell());
+                statusController.updateStatusDados(testCellStatus.getTestCell(), dado);
+            }
         }
     }
 
@@ -133,7 +135,7 @@ public class DadosController {
         String spm[] = {"AVL18091211", "AVL18091212", "AVL19112716", "AVL19112714", "AVL17010619", "AVL18041118", "AVL18080139", "AVL180801310", "AVL18080138", "AVL18080132", "AVL18080133","AVL18082416"};
 
 //        String filePath = "C:/Users/CENTRAL/Desktop/SGE/Controle_dados_teste/"+ testCell +".txt"; //Oficial PC Central
-        String filePath = "\\\\"+ spm[cell] +"\\ExcelPuma\\"+ testCell +".txt"; //Teste conexão Central
+        String filePath = "\\\\"+ spm[cell] +"\\ExcelPuma\\"+ testCell +".txt";
 
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));

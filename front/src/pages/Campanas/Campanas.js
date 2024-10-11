@@ -93,7 +93,6 @@ const Campanas = () => {
     };
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 100 },
         { field: 'nome', headerName: 'Nome', width: 150 },
         { field: 'local', headerName: 'Local', width: 150 },
         { field: 'dataEntrada', headerName: 'Entrada', width: 150 },

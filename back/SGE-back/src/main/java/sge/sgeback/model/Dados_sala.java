@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -18,14 +19,14 @@ public class Dados_sala {
     private String carrinho;
     private String campana;
     private String eixo;
-    private Date data;
+    private LocalDate data;
     private Time hora;
     private String operador;
 
     public Dados_sala() {
     }
 
-    public Dados_sala(Integer id, String testCell, String dina, String carrinho, String campana, String eixo, Date data, Time hora, String operador) {
+    public Dados_sala(Integer id, String testCell, String dina, String carrinho, String campana, String eixo, LocalDate data, Time hora, String operador) {
         this.id = id;
         this.testCell = testCell;
         this.dina = dina;
@@ -77,11 +78,11 @@ public class Dados_sala {
         this.eixo = eixo;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

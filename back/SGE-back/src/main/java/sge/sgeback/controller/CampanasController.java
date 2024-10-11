@@ -1,5 +1,6 @@
 package sge.sgeback.controller;
 
+import com.sun.tools.jconsole.JConsoleContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,17 +40,13 @@ public class CampanasController {
     public ResponseEntity<Campanas> updateCampana(@PathVariable String nome, @RequestBody Dados_sala dadosSala) {
         Optional<Campanas> campana = campanasRepository.findByNome(nome);
 
-        Date data = dadosSala.getData();
-
-        // Converter Date para LocalDate
-        LocalDate localDate = data.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
 
         if (campana.isPresent()) {
             Campanas _campana = campana.get();
             _campana.setLocal(dadosSala.getTestCell());
-            _campana.setDataEntrada(localDate);
+            _campana.setDataEntrada(dadosSala.getData());
+            _campana.setDataSaida(null);
+            _campana.setStatus(0);
             return new ResponseEntity<>(campanasRepository.save(_campana), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

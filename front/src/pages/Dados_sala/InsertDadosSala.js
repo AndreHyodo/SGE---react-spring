@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { InputLabel, MenuItem, Select, FormControl, CircularProgress, FormHelperText } from "@mui/material";
 
-import { InsertDadosSala_url, Campanas_url } from "../../services/StatusService";
+import { InsertDadosSala_url, Campanas_url, atualizaDados } from "../../services/StatusService";
 
 const Insert_Dados_sala = () => {
     const [testCell, setTestCell] = useState('');
@@ -18,7 +18,7 @@ const Insert_Dados_sala = () => {
     const [campana, setCampana] = useState('');
     const [eixo, setEixo] = useState('');
     const [data, setData] = useState(new Date().toISOString().split('T')[0]); // YYYY-MM-DD
-    const [hora, setHora] = useState(new Date().toLocaleTimeString('en-GB')); // HH:MM:SS
+    const [hora, setHora] = useState(new Date().toLocaleTimeString('pt-BR')); // HH:MM:SS
     const [operador, setOperador] = useState('');
 
     const [campanasList, setCampanasList] = useState([]);
@@ -67,8 +67,7 @@ const Insert_Dados_sala = () => {
                 }
             });
             console.log('Dados enviados:', JSON.stringify(dados));
-            axios.put(`/campanas/update/${dados.campana}`, dados)
-                .then(() => {
+            atualizaDados(dados.campana, dados).then(() => {
                     window.location.replace("/DadosSala");
                 })
                 .catch(error => {

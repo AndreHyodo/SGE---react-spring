@@ -116,7 +116,7 @@
       <recent name="sge.sgeback.model" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="Spring Boot.SgeBackApplication">
     <configuration name="SgeBackApplication | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/SgeBackApplication.http" requestIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -307,6 +307,8 @@
       <workItem from="1728384579579" duration="13136000" />
       <workItem from="1728426347225" duration="301000" />
       <workItem from="1728498544442" duration="3832000" />
+      <workItem from="1728564470332" duration="8117000" />
+      <workItem from="1728655530134" duration="1795000" />
     </task>
     <servers />
   </component>

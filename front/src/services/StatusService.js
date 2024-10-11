@@ -6,7 +6,7 @@ import axios from "axios";
 // const url_base = 'http://localhost:8080'
 
 // const url_base = 'http://172.28.235.25:8080' //Rede teste Fábrica PC André
-const url_base = 'http://172.28.124.61:8080' //Rede oficial
+const url_base = 'http://172.28.124.18:8080' //Rede oficial
 
 const Status_Api = '/Status/all';
 const List_Causais = '/causaisList'
@@ -102,6 +102,10 @@ export const InsertCampana_url = () => {
 
 export function atualizaCampana(id, updatedRow){
     return axios.put(url_base + `/campanas/update_id/${id}`, updatedRow)
+}
+
+export function atualizaDados(dadosCamp, dados){
+    return axios.put(`/campanas/update/${dadosCamp}`, dados)
 }
 
 export function fetchDocs(){
