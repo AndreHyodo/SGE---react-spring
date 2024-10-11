@@ -82,7 +82,7 @@ public class DadosController {
         Iterable<Status> testCellStatuses = statusController.getStatus();
 
         for (Status testCellStatus : testCellStatuses){
-            if(!testCellStatus.getTestCell().equals("A06") || !testCellStatus.getTestCell().equals("A07")||!testCellStatus.getTestCell().equals("A08")||!testCellStatus.getTestCell().equals("A09") ){
+            if(!(testCellStatus.getTestCell().equals("A06")||testCellStatus.getTestCell().equals("A07")||testCellStatus.getTestCell().equals("A08")||testCellStatus.getTestCell().equals("A09"))){
                 getTxtData(testCellStatus.getTestCell());
                 Dados dado = getDadosData(testCellStatus.getTestCell());
                 statusController.updateStatusDados(testCellStatus.getTestCell(), dado);
