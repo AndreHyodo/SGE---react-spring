@@ -45,7 +45,7 @@ export const list_Causais = () => {
 }
 
 export const last_Causais = (SPM) => {
-    return (url_base + `/causais/top3/${SPM}`);
+    return axios.get(url_base + `/causais/top3/${SPM}`);
 }
 
 export const getStatusTestCell = (SPM) => {
