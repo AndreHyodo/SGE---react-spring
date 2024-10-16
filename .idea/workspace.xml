@@ -33,9 +33,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Class" />
         <option value="Interface" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -73,7 +73,7 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;21.3.0&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.11.5&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/SC22381/Desktop/NEW SGE/SGE - react + spring/front/src/pages/Campanas&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SC22381/Desktop/NEW SGE/SGE - react + spring/back/SGE-back/lib/Automation.BDaq.jar&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -96,11 +96,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\lib" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src\pages\Campanas" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src\pages" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\ArquivosTeste" />
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main" />
-      <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\front\src\pages\Registro_Causal" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\ArquivosTeste\Excel" />
@@ -116,7 +116,7 @@
       <recent name="sge.sgeback.model" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SgeBackApplication">
+  <component name="RunManager" selected="npm.start">
     <configuration name="SgeBackApplication | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/SgeBackApplication.http" requestIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -308,7 +308,10 @@
       <workItem from="1728426347225" duration="301000" />
       <workItem from="1728498544442" duration="3832000" />
       <workItem from="1728564470332" duration="8117000" />
-      <workItem from="1728655530134" duration="2963000" />
+      <workItem from="1728655530134" duration="4162000" />
+      <workItem from="1728941298458" duration="1899000" />
+      <workItem from="1729021336869" duration="3424000" />
+      <workItem from="1729082796198" duration="3163000" />
     </task>
     <servers />
   </component>

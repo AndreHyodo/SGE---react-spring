@@ -198,8 +198,6 @@ public class StatusController {
     public ResponseEntity<Status> updateStatusCausal(@PathVariable Integer id, @RequestBody Registro_Causal causalStatus) {
         Optional<Status> statusDataCausal = statusRepository.findById(id);
 
-        System.out.println("Autualizando causal da sala : " + causalStatus.getTestCell());
-
         if (statusDataCausal.isPresent()) {
             Status _status = statusDataCausal.get();
             _status.setTestCell(causalStatus.getTestCell());

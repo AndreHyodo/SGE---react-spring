@@ -1,416 +1,422 @@
-import React, {useState, useEffect, useMemo} from 'react';
-import {list_Causais, registra, last_Causais, getStatusTestCell} from "../../services/StatusService";
-import {Button} from "reactstrap";
-import {position, useDisclosure} from "@chakra-ui/react";
-import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    AlertIcon,
-    Alert,
-} from '@chakra-ui/react'
-import axios from "axios";
-
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { list_Causais, registra, last_Causais, getStatusTestCell } from "../../services/StatusService";
+import { Button } from "reactstrap";
+import { useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton } from '@chakra-ui/react';
 
 const App = () => {
-    const [data, setData] = useState([]);
-    const [dropdown, setDropdown] = useState("");
-
-
-    useEffect(() => {
-        list_Causais().then((response) => {
-            setData(response.data);
-        }).catch(error => {
-            console.log(error);
-        })
-    }, [data])
-
-    const [lastCausais, setLast] = useState([]);
+    // Estados principais
+    const [causais, setCausais] = useState([]);
+    const [lastCausais, setLastCausais] = useState([]);
     const [selectedTestCell, setSelectedTestCell] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [checkedState, setCheckedState] = useState({});
+    const [formData, setFormData] = useState({
+        testCell: '',
+        code: '',
+        causal: '',
+        obs: ''
+    });
+    const [toggleGroups, setToggleGroups] = useState({});
 
+    // Controle do Modal
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const handleButtonClick = (newTestCell) => {
-        setSelectedTestCell(newTestCell);
-    };
-
+    // Fetch Causais no mount
     useEffect(() => {
-        (async () => {
+        const fetchCausais = async () => {
             try {
-                const response = await fetch(last_Causais(selectedTestCell));
-                const data = await response.json();
-                setLast(data);
+                const response = await list_Causais();
+                setCausais(response.data);
             } catch (error) {
-                console.error(error);
+                console.error("Erro ao buscar Causais:", error);
             }
-        })();
+        };
+        fetchCausais();
+    }, []);
+
+    // Fetch lastCausais quando selectedTestCell muda
+    useEffect(() => {
+        if (selectedTestCell) {
+            const fetchLastCausais = async () => {
+                try {
+                    const response = await last_Causais(selectedTestCell);
+                    setLastCausais(response.data);
+                } catch (error) {
+                    console.error("Erro ao buscar lastCausais:", error);
+                }
+            };
+            fetchLastCausais();
+        }
     }, [selectedTestCell]);
 
-    const handleToggleButtonClick = (event) => {
-        if (event.target.matches('.toggle-data-btn')) {
-            const cardBody = event.target.parentNode.nextElementSibling;
-            const toggleBtnText = event.target.textContent;
-
-            if (toggleBtnText === '+') {
-                event.target.textContent = '-';
-                cardBody.style.display = 'block';
-            } else {
-                event.target.textContent = '+';
-                cardBody.style.display = 'none';
-            }
-        }
-    };
-
-    // Group data by type
-    const groupedData = useMemo(() => {
-        return data.reduce((groups, item) => {
-            const existingGroup = groups.find(g => g.type === item.type);
-            if (existingGroup) {
-                existingGroup.items.push(item);
-            } else {
-                groups.push({ type: item.type, items: [item] });
-            }
-            return groups;
-        }, []);
-    }, [data]);
-
-    const [searchQuery, setSearchQuery] = useState('');
-    const [filteredData, setFilteredData] = useState([]);
-
-    const handleSearchChange = (event) => {
-        const query = event.target.value.toLowerCase();
-        setSearchQuery(query);
-
-        // Filter data based on search query
-        const filtered = data.filter((item) => {
-            if(query !== ""){
-                return item.causal.toLowerCase().includes(query);
-            }
-        });
-
-        setFilteredData(filtered);
-    };
-
-
-    const [checkedState, setCheckedState] = useState(
-        new Array(30).fill(false)
-    );
-
-    const handleOnChange = (code,causal,position) => {
-
-        console.log(position + " - "+ checkedState[position] + " e " + causal + "------" + checkedState)
-
-
-        for (let index in checkedState)
-            if(index == position){
-                checkedState[index] = !checkedState[index]
-            }
-
-        if(checkedState[position]){
-            document.getElementById('causal').value = causal
-            document.getElementById('Code').value = code
-        }else{
-            document.getElementById('causal').value = ""
-            document.getElementById('Code').value = ""
-        }
-
-    }
-
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log('Submitting form');
-
-        var data = new Date(),
-            hora =  data.getHours(),
-            minuto = data.getMinutes(),
-            segundos = data.getSeconds() <= 9 ? "0"+data.getSeconds() : data.getSeconds()
-
-
-
-        // Corrected: Access form data using event.target.elements
-        const formElement = document.getElementById('formElementId'); // Substitua 'formElementId' pelo ID do seu formulário
-        const formData = new FormData(formElement);
-
-
-        const date = Date.now();
-        const hora_inicio = `${hora}:${minuto}:${segundos}`;
-        const testCell = formData.get('testCell');
-        const code = formData.get('Code');
-        const causal = formData.get('causal');
-        const obs = formData.get('obs');
-
-
-        const objCausal = {
-            testCell: testCell,
-            code: code,
-            causal: causal,
-            hora_inicio: hora_inicio,
-            data:date,
-            obs: obs
-        };
-
-        console.log(testCell + " -- " + code + " -- " + causal);
-
-        if(testCell!=="Select" && testCell!=="" && code!=="" && causal!==""){
-
-            sessionStorage.setItem('TestCell', testCell); // Envio de TOKEN para salvar o valor da sala
-            const response = await fetch(getStatusTestCell(testCell));
-            const statusSala = await response.json();
-
-            console.log(objCausal.testCell + " -- " + objCausal.code + " -- " + objCausal.causal);
-
-            if(statusSala.status===0){
-                fetch(registra(), {
-                    method: 'POST',
-                    mode: "cors",
-                    body: JSON.stringify(objCausal),
-                    // headers: { 'Content-Type': 'application/json' },
-                    headers: {
-                        'Accept': 'application/json, text/plain',
-                        'Content-Type': 'application/json;charset=UTF-8'
-                    }
-
-                })
-                    .then(retorno => {
-                        alert("Registrado com sucesso \n\n" + testCell + "\n" + code + "\n" + causal + "\n" + obs);
-                        document.getElementById('causal').value = ""
-                        document.getElementById('Code').value = ""
-                        document.getElementById('obs').value = ""
-                        window.location.reload();
-                        retorno.json()
-                    })
-                    .catch(retorno_convertido => {
-                        alert(retorno_convertido + "\n" + JSON.stringify(objCausal));
-                        console.log(retorno_convertido);
-                    });
-            }else{
-                alert("Sala em FUNCIONAMENTO, NÃO foi possível Registrar!!!");
-            }
-        }else{
-            alert("ERROR!!!! \n\n Dados Faltantes, favor conferir");
-        }
-
-
-
-    };
-
-    const OverlayOne = () => (
-        <ModalOverlay
-            bg='none'
-            backdropFilter='auto'
-            backdropInvert='80%'
-            backdropBlur='2px'
-        />
-    )
-
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const [overlay, setOverlay] = useState(<OverlayOne />)
-
-    const [selectedOption, setSelectedOption] = useState('Select');
-
+    // Recupera TestCell do sessionStorage no mount
     useEffect(() => {
         const storedTestCell = sessionStorage.getItem('TestCell');
         if (storedTestCell) {
-            setSelectedOption(storedTestCell);
-            handleButtonClick(storedTestCell)
-            console.log(selectedOption)
+            setSelectedTestCell(storedTestCell);
+            setFormData(prev => ({ ...prev, testCell: storedTestCell }));
         }
     }, []);
 
-    const handleOpenModal = () => {
-        onOpen();
-    };
+    // Handle search input change
+    const handleSearchChange = useCallback((event) => {
+        const query = event.target.value.toLowerCase();
+        setSearchQuery(query);
+    }, []);
 
-    const handleSelectOption = (option) => {
-        setSelectedOption(option);
-    };
+    // Filtra causais com base na pesquisa
+    const filteredData = useMemo(() => {
+        if (searchQuery.trim() === '') {
+            return [];
+        }
+        return causais.filter(item => item.causal.toLowerCase().includes(searchQuery));
+    }, [searchQuery, causais]);
 
-    const handleCloseModal = () => {
+    // Agrupa dados por tipo
+    const groupedData = useMemo(() => {
+        return causais.reduce((groups, item) => {
+            if (!groups[item.type]) {
+                groups[item.type] = [];
+            }
+            groups[item.type].push(item);
+            return groups;
+        }, {});
+    }, [causais]);
+
+    // Handler para seleção de TestCell
+    const handleSelectTestCell = useCallback((option) => {
+        setSelectedTestCell(option);
+        setFormData(prev => ({ ...prev, testCell: option }));
+        sessionStorage.setItem('TestCell', option);
         onClose();
+    }, [onClose]);
+
+    // Handler para mudanças nos inputs
+    const handleInputChange = useCallback((e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    }, []);
+
+    // Handler para checkbox
+    const handleOnChange = useCallback((code, causal, id) => {
+        setCheckedState(prev => {
+            const newCheckedState = { ...prev, [id]: !prev[id] };
+            if (newCheckedState[id]) {
+                setFormData(prevData => ({
+                    ...prevData,
+                    code: code,
+                    causal: causal
+                }));
+            } else {
+                setFormData(prevData => ({
+                    ...prevData,
+                    code: '',
+                    causal: ''
+                }));
+            }
+            return newCheckedState;
+        });
+    }, []);
+
+    // Handler para toggle dos grupos
+    const handleToggleGroup = useCallback((type) => {
+        setToggleGroups(prev => ({
+            ...prev,
+            [type]: !prev[type]
+        }));
+    }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const { testCell, code, causal, obs } = formData;
+
+        if (testCell !== "Select" && testCell && code && causal) {
+            try {
+                sessionStorage.setItem('TestCell', testCell);
+                const response = await getStatusTestCell(testCell);
+                const statusSala = response.data; // assumindo resposta JSON
+
+                if (statusSala.status === 0) {
+                    const currentTime = new Date();
+                    const hora_inicio = `${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds().toString().padStart(2, '0')}`;
+                    const objCausal = {
+                        testCell,
+                        code,
+                        causal,
+                        hora_inicio,
+                        data: Date.now(),
+                        obs
+                    };
+
+                    await registra(objCausal);
+                    alert(`Registrado com sucesso \n\n${testCell}\n${code}\n${causal}\n${obs}`);
+                    // Resetar formulário
+                    setFormData({
+                        testCell,
+                        code: '',
+                        causal: '',
+                        obs: ''
+                    });
+                    setCheckedState({});
+                    // Atualizar lastCausais
+                    const updatedLastCausais = await last_Causais(testCell);
+                    setLastCausais(updatedLastCausais.data);
+                } else {
+                    alert("Sala em FUNCIONAMENTO, NÃO foi possível Registrar!!!");
+                }
+            } catch (error) {
+                console.error("Erro ao registrar causal:", error);
+                alert("Ocorreu um erro ao registrar. Por favor, tente novamente.");
+            }
+        } else {
+            alert("ERROR!!!!\n\n Dados Faltantes, favor conferir");
+        }
     };
-
-
-
 
     return (
         <div id="data-container">
             <div className="w-100 m-3 text-center w-50">
-                <input className="w-25 text-center border-black border-1" type="text" id="busca" placeholder="Pesquise o Causal aqui..." onChange={handleSearchChange}/>
+                <input
+                    className="w-25 text-center border-black border-1"
+                    type="text"
+                    id="busca"
+                    placeholder="Pesquise o Causal aqui..."
+                    onChange={handleSearchChange}
+                />
                 {filteredData.length > 0 && (
                     <div className="w-100 text-center">
-                        {filteredData.map((item,index) => (
-                            <div>
-                                <input id="checkboxCausal"
-                                       type="checkbox"
-                                       name="checkboxCausal"
-                                       checked={checkedState[index]}
-                                       onChange={() => handleOnChange(item.code,item.causal,index)} className="m-1"/>
-                                <span className="text-center" key={item.id}>{item.code + " - " +item.causal}</span>
+                        {filteredData.map((item) => (
+                            <div key={item.id}>
+                                <input
+                                    id={`checkboxCausal-${item.id}`}
+                                    type="checkbox"
+                                    name="checkboxCausal"
+                                    checked={checkedState[item.id] || false}
+                                    onChange={() => handleOnChange(item.code, item.causal, item.id)}
+                                    className="m-1"
+                                />
+                                <span className="text-center">{`${item.code} - ${item.causal}`}</span>
                             </div>
                         ))}
                     </div>
                 )}
             </div>
-            {groupedData.map((groupData, index) => (
-                <div key={index} className="col-md-3" id="card-causal">
-                    <div className="card mb-3">
-                        <div className="card-body">
-                            <h5 className="card-title-causal">
-                                <button
-                                    className="btn btn-primary btn-sm toggle-data-btn m-xl-2"
-                                    onClick={handleToggleButtonClick}
-                                >
-                                    +
-                                </button>
-                                {groupData.type}
-                            </h5>
-                            <ul style={{ display: 'none' }}>
 
-                                {groupData.items.map((item, itemIndex) => (
-                                    <li key={itemIndex}>
-                                        <input
-                                            id="checkboxCausal"
-                                            type="checkbox"
-                                            value={item.causal}
-                                            name="checkboxCausal"
-                                            checked={checkedState[item]}
-                                            onChange={() => handleOnChange(item.code,item.causal,itemIndex)}
-                                        />
-                                        <span>{` ${item.code} ${item.causal} `}</span>
-                                    </li>
-                                ))}
-                            </ul>
+            {/* Grupos de Causais */}
+            <div className="row m-3">
+                {Object.entries(groupedData).map(([type, items]) => (
+                    <div key={type} className="col-md-3" id="card-causal">
+                        <div className="card mb-3">
+                            <div className="card-body">
+                                <h5 className="card-title-causal ms-2 d-flex justify-content-between align-items-center">
+                                    {type}
+                                    {/* Botão de Toggle */}
+                                    <button
+                                        className="btn btn-primary btn-sm toggle-data-btn m-xl-2"
+                                        onClick={() => handleToggleGroup(type)}
+                                    >
+                                        {toggleGroups[type] ? '-' : '+'}
+                                    </button>
+                                </h5>
+                                <ul style={{ display: toggleGroups[type] ? 'block' : 'none' }}>
+                                    {items.map((item) => (
+                                        <li key={item.id}>
+                                            <input
+                                                id={`checkboxCausal-${item.id}`}
+                                                type="checkbox"
+                                                value={item.causal}
+                                                name="checkboxCausal"
+                                                checked={checkedState[item.id] || false}
+                                                onChange={() => handleOnChange(item.code, item.causal, item.id)}
+                                                className="m-1"
+                                            />
+                                            <span>{` ${item.code} ${item.causal} `}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
-            <div className="lastCauais" >
+                ))}
+            </div>
+
+            {/* Últimos Causais */}
+            <div className="lastCausais mb-4">
                 {lastCausais.map((item) => (
                     <Button
                         key={item.id}
-                        className="LastCausais"
+                        className="LastCausais m-1"
                         onClick={() => {
-                            document.getElementById('causal').value = item.causal;
-                            document.getElementById('Code').value = item.code;
+                            setFormData(prev => ({
+                                ...prev,
+                                causal: item.causal,
+                                code: item.code
+                            }));
+                            setCheckedState({});
                         }}
                     >
-                        {item.code + " : " + item.causal}
+                        {`${item.code} : ${item.causal}`}
                     </Button>
                 ))}
             </div>
-            <form action="/causais/insertCausal" method="POST" className="form" id="formElementId"  onSubmit={handleSubmit}>
+
+            {/* Formulário */}
+            <form onSubmit={handleSubmit} className="form" id="formElementId">
                 <div className="form-input">
                     <div className="row">
+                        {/* TestCell */}
                         <div className="col-md-2 ">
                             <div className="row text-light" id="texts">
-                                <label htmlFor="TestCell">TestCell:</label>
+                                <label htmlFor="testCell">TestCell:</label>
                             </div>
                             <div className="row d-flex text-center" id="inputs" >
                                 <div className="w-100 d-flex">
                                     <Button
-                                        onClick={() => {
-                                            setOverlay(<OverlayOne />)
-                                            onOpen()
-                                        }}
+                                        type="button"
+                                        onClick={onOpen}
                                         className="h-auto mx-2 text-center w-75"
-                                        // name="testCell"
-                                        value="Select"
                                     >
-                                        {selectedOption}
-
+                                        {selectedTestCell || 'Select'}
                                     </Button>
-                                    <input hidden={true} type="text" name="testCell" onChange={handleSubmit} value={selectedOption}/>
-                                    <input hidden={true} type="text" name="tcList" onChange={handleButtonClick} value={selectedOption}/>
+                                    <input
+                                        type="hidden"
+                                        name="testCell"
+                                        value={formData.testCell}
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="tcList"
+                                        value={formData.testCell}
+                                    />
                                 </div>
-
-                                {/*<input type="text" name="TestCell" id="TestCell" value={GetIP()}/>*/}
                             </div>
                         </div>
+
+                        {/* Código */}
                         <div className="col-md-2">
                             <div className="row text-light" id="texts">
                                 <label htmlFor="Code">Código:</label>
                             </div>
                             <div className="row" id="inputs">
-                                <input type="text" name="Code" id="Code" />
+                                <input
+                                    type="text"
+                                    name="Code"
+                                    id="Code"
+                                    className="form-control"
+                                    value={formData.code}
+                                    onChange={handleInputChange}
+                                />
                             </div>
                         </div>
+
+                        {/* Causal */}
                         <div className="col-md-4">
                             <div className="row text-light" id="texts">
                                 <label htmlFor="causal">Causal:</label>
                             </div>
                             <div className="row" id="inputs">
-                                <input type="text"  name="causal" id="causal" />
+                                <input
+                                    type="text"
+                                    name="causal"
+                                    id="causal"
+                                    className="form-control"
+                                    value={formData.causal}
+                                    onChange={handleInputChange}
+                                />
                             </div>
                         </div>
+
+                        {/* Observações */}
                         <div className="col-md-4">
                             <div className="row text-light" id="texts">
                                 <label htmlFor="obs">Obs:</label>
                             </div>
                             <div className="row" id="inputs">
-                                <textarea name="obs" id="obs" cols="30" rows="2" className="obs"></textarea>
+                                <textarea
+                                    name="obs"
+                                    id="obs"
+                                    cols="30"
+                                    rows="1"
+                                    className="form-control obs"
+                                    value={formData.obs}
+                                    onChange={handleInputChange}
+                                ></textarea>
                             </div>
                         </div>
                     </div>
-                    <div className="row">
-                        {/*<div className="col-md-12 botao-enviar">*/}
-                        {/*    <div className="row" id="texts">*/}
-                        {/*        /!*<input type="submit" value="Enviar dados" onClick="alterLocalStorage(document.getElementById('TestCell').value, document.getElementById('causal').value)"/>*!/*/}
-                        {/*        <input type="submit" value="Enviar dados"/>*/}
 
-                        {/*    </div>*/}
-                        {/*</div>*/}
+                    <div className="row">
                         <Button
                             mt={4}
                             type='submit'
                             className="col-md-12 botao-enviar"
-                            onClick={handleSubmit}
                         >
                             Submit
                         </Button>
                     </div>
                 </div>
             </form>
+
+            {/* Modal para Seleção de TestCell */}
             <Modal isCentered isOpen={isOpen} onClose={onClose}>
-                {overlay}
+                <ModalOverlay
+                    bg='none'
+                    backdropFilter='auto'
+                    backdropInvert='80%'
+                    backdropBlur='2px'
+                />
                 <ModalContent>
                     <ModalHeader>Select TestCell</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                         <div>
                             <h3>Dev</h3>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A01'); handleCloseModal(); handleButtonClick('A01')}}>A01</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A02'); handleCloseModal(); handleButtonClick('A02') }}>A02</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A03'); handleCloseModal(); handleButtonClick('A03') }}>A03</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A04'); handleCloseModal(); handleButtonClick('A04') }}>A04</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A05'); handleCloseModal(); handleButtonClick('A05') }}>A05</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A10'); handleCloseModal(); handleButtonClick('A10') }}>A10</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A11'); handleCloseModal(); handleButtonClick('A11') }}>A11</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A12'); handleCloseModal(); handleButtonClick('A12') }}>A12</Button>
+                            {['A01', 'A02', 'A03', 'A04', 'A05', 'A10', 'A11', 'A12'].map(option => (
+                                <Button
+                                    key={option}
+                                    className='m-2'
+                                    onClick={() => handleSelectTestCell(option)}
+                                >
+                                    {option}
+                                </Button>
+                            ))}
                         </div>
                         <div>
                             <h3>Durability</h3>
-                            <Button className='m-2' onClick={() => { handleSelectOption('B01'); handleCloseModal(); handleButtonClick('B01') }}>B01</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('B02'); handleCloseModal(); handleButtonClick('B02') }}>B02</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('B03'); handleCloseModal(); handleButtonClick('B03') }}>B03</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('B04'); handleCloseModal(); handleButtonClick('B04') }}>B04</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('B05'); handleCloseModal(); handleButtonClick('B05') }}>B05</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('B06'); handleCloseModal(); handleButtonClick('B06') }}>B06</Button>
+                            {['B01', 'B02', 'B03', 'B04', 'B05', 'B06'].map(option => (
+                                <Button
+                                    key={option}
+                                    className='m-2'
+                                    onClick={() => handleSelectTestCell(option)}
+                                >
+                                    {option}
+                                </Button>
+                            ))}
                         </div>
                         <div>
                             <h3>StartCart</h3>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A06'); handleCloseModal(); handleButtonClick('A06') }}>A06</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A07'); handleCloseModal(); handleButtonClick('A07') }}>A07</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A08'); handleCloseModal(); handleButtonClick('A08') }}>A08</Button>
-                            <Button className='m-2' onClick={() => { handleSelectOption('A09'); handleCloseModal(); handleButtonClick('A09') }}>A09</Button>
+                            {['A06', 'A07', 'A08', 'A09'].map(option => (
+                                <Button
+                                    key={option}
+                                    className='m-2'
+                                    onClick={() => handleSelectTestCell(option)}
+                                >
+                                    {option}
+                                </Button>
+                            ))}
                         </div>
                         <div>
                             <h3>Outros</h3>
-                            <Button className='m-2' onClick={() => { handleSelectOption('SPT'); handleCloseModal(); handleButtonClick('SPT') }}>SPT</Button>
-                            </div>
+                            {['SPT'].map(option => (
+                                <Button
+                                    key={option}
+                                    className='m-2'
+                                    onClick={() => handleSelectTestCell(option)}
+                                >
+                                    {option}
+                                </Button>
+                            ))}
+                        </div>
                     </ModalBody>
                 </ModalContent>
             </Modal>
