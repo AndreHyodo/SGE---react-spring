@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { list_Causais, registra, last_Causais, getStatusTestCell } from "../../services/StatusService";
 import { Button } from "reactstrap";
 import { useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton } from '@chakra-ui/react';
+import axios from "axios";
 
 const App = () => {
     // Estados principais
@@ -133,7 +134,7 @@ const App = () => {
         if (testCell !== "Select" && testCell && code && causal) {
             try {
                 sessionStorage.setItem('TestCell', testCell);
-                const response = await getStatusTestCell(testCell);
+                const response = await axios.get(getStatusTestCell(testCell));
                 const statusSala = response.data; // assumindo resposta JSON
 
                 if (statusSala.status === 0) {
@@ -241,11 +242,11 @@ const App = () => {
             </div>
 
             {/* Últimos Causais */}
-            <div className="lastCausais mb-4">
+            <div className="lastCausais">
                 {lastCausais.map((item) => (
                     <Button
                         key={item.id}
-                        className="LastCausais m-1"
+                        className="LastCausais"
                         onClick={() => {
                             setFormData(prev => ({
                                 ...prev,
