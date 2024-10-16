@@ -149,19 +149,35 @@ const App = () => {
                         obs
                     };
 
-                    await registra(objCausal);
-                    alert(`Registrado com sucesso \n\n${testCell}\n${code}\n${causal}\n${obs}`);
-                    // Resetar formulário
-                    setFormData({
-                        testCell,
-                        code: '',
-                        causal: '',
-                        obs: ''
-                    });
-                    setCheckedState({});
-                    // Atualizar lastCausais
-                    const updatedLastCausais = await last_Causais(testCell);
-                    setLastCausais(updatedLastCausais.data);
+                    fetch(registra(), {
+                        method: 'POST',
+                        mode: "cors",
+                        body: JSON.stringify(objCausal),
+                        // headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Accept': 'application/json, text/plain',
+                            'Content-Type': 'application/json;charset=UTF-8'
+                        }
+
+                    })
+                        .then(async retorno => {
+                            alert(`Registrado com sucesso \n\n${testCell}\n${code}\n${causal}\n${obs}`);
+                            // Resetar formulário
+                            setFormData({
+                                testCell,
+                                code: '',
+                                causal: '',
+                                obs: ''
+                            });
+                            setCheckedState({});
+                            // Atualizar lastCausais
+                            const updatedLastCausais = await last_Causais(testCell);
+                            setLastCausais(updatedLastCausais.data);
+                        })
+                        .catch(retorno_convertido => {
+                            alert(retorno_convertido + "\n" + JSON.stringify(objCausal));
+                            console.log(retorno_convertido);
+                        });
                 } else {
                     alert("Sala em FUNCIONAMENTO, NÃO foi possível Registrar!!!");
                 }
