@@ -54,7 +54,7 @@ public class StatusService {
             int byteIndex = i / 8; // Determina qual byte contém o bit do canal
             int bitIndex = i % 8;  // Determina a posição do bit dentro do byte
             boolean estado = ((portData[byteIndex] >> bitIndex) & 0x01) == 1;
-            statusController.updateStatusWithTestCell(spm[i],(estado ? 1 : 0));
+            statusController.updateStatusWithTestCell(spm[i],(estado ? 0 : 1));
 
         }
     }
