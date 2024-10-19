@@ -24,8 +24,8 @@ public class StatusService {
 
 
     public void AtualizaStatusTempoReal() throws DaqException {
-//        DeviceInformation devInfo = new DeviceInformation("USB-4750");
-        DeviceInformation devInfo = new DeviceInformation("Demo");
+        DeviceInformation devInfo = new DeviceInformation("USB-4750");
+//        DeviceInformation devInfo = new DeviceInformation("Demo");
         InstantDiCtrl instantDiCtrl = new InstantDiCtrl();
 
         // Set the selected device
@@ -64,10 +64,12 @@ public class StatusService {
             int bitIndex = i % 8;  // Determina a posição do bit dentro do byte
             boolean estado = ((portData[byteIndex] >> bitIndex) & 0x01) == 1;
             status_ = statusController.getStatusTestCell(spm[i]);
-            if(status_.get().getStatus()==1){
+            Integer actStat;
+            actStat = estado ? 0 : 1; //valores de actStat são invertidos 0->rodando e 1->parado
+            if(status_.get().getStatus()==1 && actStat==1){
                 registroCausaisController.createAguardandoCausal(spm[i]);
                 statusController.updateStatusWithTestCell(spm[i],(estado ? 0 : 1));
-            }else{
+            }else if(status_.get().getStatus()==0 && actStat==0){
                 registroCausaisController.updateAguardandoCausal(spm[i]);
                 statusController.updateStatusWithTestCell(spm[i],(estado ? 0 : 1));
             }
