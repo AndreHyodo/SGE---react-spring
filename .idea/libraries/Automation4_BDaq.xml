@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Automation4.BDaq">
+    <CLASSES />
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/../../../../../Advantech/DAQNavi/Automation.BDaq/4.0.0.0" />
+      <root url="file://$PROJECT_DIR$/../../../../../Advantech/DAQNavi/Automation.BDaq/1.0.0.0" />
+    </NATIVE>
+    <SOURCES />
+  </library>
+</component>

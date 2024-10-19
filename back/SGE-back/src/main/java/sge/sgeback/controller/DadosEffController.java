@@ -99,7 +99,7 @@ public class DadosEffController {
             turno = 1;
         } else if ((agora.isAfter(LocalTime.of(15, 48)))&&(agora.isBefore(LocalTime.of(23, 59, 59)))) {
             turno = 2;
-        } else if ((agora.isAfter(LocalTime.of(0, 0)))&&(agora.isBefore(LocalTime.of(1, 9)))){
+        } else if ((agora.isAfter(LocalTime.of(0, 0)))&&(agora.isBefore(LocalTime.of(5, 59,59)))){
             turno = 3;
         }else{
             turno = 100;
@@ -113,7 +113,7 @@ public class DadosEffController {
                     dadosEff.setTestCell(status.getTestCell());
                     dadosEff.setEff(status.getEff());
                     dadosEff.setHora(status.getTime()); // Hora atual
-                    if(turno == 2){
+                    if(turno == 3){
                         dadosEff.setDate(ontem);
                     }else{
                         dadosEff.setDate(hoje);

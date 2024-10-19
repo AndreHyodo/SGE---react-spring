@@ -12,6 +12,7 @@ import java.util.ArrayList;
 //import Automation.BDaq.DeviceTreeNode;
 //import Automation.BDaq.ErrorCode;
 //import Automation.BDaq.InstantDiCtrl;
+import Automation.BDaq.DaqException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class Scheduler {
     @Autowired
     private StatusController statusController;
 
+    @Autowired
     private StatusService statusService;
 
     @Autowired
@@ -83,7 +85,9 @@ public class Scheduler {
         dadosController.atualizaTxtDados(); //Atualiza com dados dos arquivos .txt
     }
 
-
-
+    @Scheduled(cron = "*/5 * * * * ?") // Ação agendada para uma vez a cada segundo
+    public void testeAdvantech() throws DaqException {
+        statusService.AtualizaStatusTempoReal();
+    }
 
 }

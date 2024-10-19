@@ -1,67 +1,63 @@
 //package sge.sgeback.testeAdvantech;
 //
-//import Automation.BDaq.*;
+//
+//import Automation.BDaq.*;  // Certifique-se de que esta biblioteca está no classpath
+//import Automation.BDaq.DeviceInformation;
 //
 //public class testeAdvantech {
 //
-//    private InstantDiCtrl instantDiCtrl;
-//    private byte[] data;
-//    private int portCount;
+//    private InstantDiCtrl device;
 //
-//    public testeAdvantech() {
-//        // Inicializa o controlador DI
-//        instantDiCtrl = new InstantDiCtrl();
-//        data = null;
+//    public void initializeDevice() throws Exception {
+//        // Inicialize o dispositivo com DeviceInformation
+//        DeviceInformation deviceInfo = new DeviceInformation("DEMO");
+//        device = new InstantDiCtrl();
+//        device.setSelectedDevice(deviceInfo);
+//
+//        // Configuração do dispositivo
+//        device.loadProfile(""); // Carregar o perfil padrão ou especificar um caminho de perfil
 //    }
 //
-//    public void initialize(String deviceName) {
+//    public int[] readDigitalInputs() throws Exception {
+//        if (device == null) {
+//            throw new IllegalStateException("Device not initialized. Call initializeDevice() first.");
+//        }
+//
+//        // Leia os dados dos sinais digitais DI
+//        int startPort = 0; // Porta inicial, ajuste conforme necessário
+//        int portCount = 1; // Número de portas, ajuste conforme necessário
+//        byte[] data = new byte[portCount];
+//
+//        device.Read(startPort, portCount, data);
+//
+//        // Converta os bytes para int e retorne
+//        int[] intData = new int[data.length];
+//        for (int i = 0; i < data.length; i++) {
+//            intData[i] = data[i];
+//        }
+//        return intData;
+//    }
+//
+//    public void closeDevice() throws Exception {
+//        if (device != null) {
+//            device.Cleanup();
+//            device.Dispose();
+//        }
+//    }
+//
+//    public static void main(String[] args) {
 //        try {
-//            instantDiCtrl.setSelectedDevice(new DeviceInformation(deviceName));
-//            portCount = instantDiCtrl.getPortCount();
-//            System.out.println("Número de portas: " + portCount);
-//            data = new byte[portCount];
+//            testeAdvantech advantech = new testeAdvantech();
+//            advantech.initializeDevice();
+//            int[] data = advantech.readDigitalInputs();
+//
+//            for (int value : data) {
+//                System.out.println("Valor do DI: " + value);
+//            }
+//
+//            advantech.closeDevice();
 //        } catch (Exception e) {
-//            System.out.println("Erro ao inicializar o dispositivo: " + e.getMessage());
+//            e.printStackTrace();
 //        }
 //    }
-//
-//    public void readDigitalSignals() {
-//        while (true) {
-//            // Lê os sinais digitais
-//            ErrorCode errorCode = instantDiCtrl.Read(0, portCount, data);
-//            if (!Global.BioFaild(errorCode)) {
-//                for (int i = 0; i < portCount; i++) {
-//                    // Imprime o estado de cada porta
-//                    System.out.println("Estado da porta " + (i + 1) + ": " + ((data[i] == 1) ? "Alto" : "Baixo"));
-//                }
-//            } else {
-//                System.out.println("Erro ao ler os sinais digitais. Código de erro: " + errorCode.toString());
-//            }
-//            try {
-//                // Aguarda 1 segundo antes da próxima leitura
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                System.out.println("Erro no thread sleep: " + e.getMessage());
-//            }
-//        }
-//    }
-//
-//    public void cleanup() {
-//        if (instantDiCtrl != null) {
-//            instantDiCtrl.Cleanup();
-//        }
-//    }
-//
-//    testeAdvantechreader = new testeAdvantech();
-//
-//    // Insira o nome do dispositivo conforme configurado
-//    String deviceName = "SeuDispositivo"; // Exemplo: "USB-4716"
-//        reader.initialize(deviceName);
-//
-//    // Inicia a leitura dos sinais digitais
-//        reader.readDigitalSignals();
-//
-//    // Limpeza ao finalizar (nunca será alcançado devido ao loop infinito)
-//    // reader.cleanup();
-//
 //}

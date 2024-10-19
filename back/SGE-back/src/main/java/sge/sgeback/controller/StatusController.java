@@ -45,15 +45,8 @@ public class StatusController {
 
     @GetMapping
     public @ResponseBody Iterable<Status> getAllStatus() {
-        // This returns a JSON or XML with the users
         return statusRepository.findAll();
     }
-
-//    @GetMapping(path="/SpmList")
-//    public @ResponseBody List<String> getAllTestCells() {
-//        // This returns a JSON or XML with the users
-//        return statusRepository.findAllTestCell();
-//    }
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Status> getStatus() {
@@ -214,6 +207,19 @@ public class StatusController {
     @PutMapping(path="/update/{id}/{status}")
     public ResponseEntity<Status> updateStatus(@PathVariable Integer id, @PathVariable int status) {
         Optional<Status> statusData = statusRepository.findById(id);
+
+        if (statusData.isPresent()) {
+            Status _status = statusData.get();
+            _status.setStatus(status);
+            return new ResponseEntity<>(statusRepository.save(_status), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping(path="/update/{testCell}/{status}")
+    public ResponseEntity<Status> updateStatusWithTestCell(@PathVariable String testCell, @PathVariable int status) {
+        Optional<Status> statusData = statusRepository.findStatusByTestCell(testCell);
 
         if (statusData.isPresent()) {
             Status _status = statusData.get();
