@@ -198,6 +198,63 @@ public class RegistroCausaisController {
         }
     }
 
+    @PutMapping(path="/updateCausalSalaRodando/{testCell}")
+    public ResponseEntity<Registro_Causal> updateAguardandoCausal(@PathVariable String testCell) {
+
+        Registro_Causal lastCausal = CausaisRepository.findTopByTestCellOrderByIdDesc(testCell);
+
+        Optional<Status> status_ = statusRepository.findStatusByTestCell(testCell);
+
+        LocalTime hora_final = LocalTime.now();
+
+        LocalTime zero = LocalTime.parse("00:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+        Float codeAusencia = 2.1F;
+
+        Registro_Causal attCausal = new Registro_Causal();
+
+        if(lastCausal.getCausal().equals("Aguardando Causal")){
+            lastCausal.setCausal("Ausência de Operador");
+            lastCausal.setCode(codeAusencia);
+            lastCausal.setHora_final(hora_final);
+            lastCausal.setObs("Operador não registrou causal");
+            statusController.updateStatusCausal(status_.get().getId(),lastCausal);
+            return new ResponseEntity<>(CausaisRepository.save(lastCausal), HttpStatus.OK);
+        }else{
+            lastCausal.setHora_final(hora_final);
+            statusController.updateStatusCausal(status_.get().getId(),lastCausal);
+            return new ResponseEntity<>(CausaisRepository.save(lastCausal), HttpStatus.OK);
+        }
+    }
+
+    @PostMapping(path="/insertAguardando/{testCell}")
+    public ResponseEntity<Registro_Causal> createAguardandoCausal(@PathVariable String testCell) {
+
+        LocalTime hora_atual = LocalTime.now();
+
+        LocalTime zero = LocalTime.parse("00:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+        LocalDate Data_atual = LocalDate.now();
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        java.util.Date date = Date.from(Data_atual.atStartOfDay(defaultZoneId).toInstant());
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+        Optional<Status> status_ = statusRepository.findStatusByTestCell(testCell);
+
+        Registro_Causal registroCausal = new Registro_Causal();
+
+        registroCausal.setCausal("Aguardando Causal");
+        registroCausal.setCode(null);
+        registroCausal.setHora_inicio(Time.valueOf(hora_atual));
+        registroCausal.setTestCell(testCell);
+        registroCausal.setHora_final(zero);
+        registroCausal.setData(sqlDate);
+        Registro_Causal newRegistro = CausaisRepository.save(registroCausal);
+        statusController.updateStatusCausal(status_.get().getId(),registroCausal);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
+
+    }
+
 
 
     @PostMapping(path="/insertCausal")
