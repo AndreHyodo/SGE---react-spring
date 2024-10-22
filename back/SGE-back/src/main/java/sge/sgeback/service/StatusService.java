@@ -59,20 +59,30 @@ public class StatusService {
         Optional<Status> status_ = Optional.of(new Status());
 
         // Processa e exibe os estados dos 12 canais DI
-        for (int i = 0; i < 12; i++) {
+        int aux=0;
+        for (int i = 11; i >= 0; i--) {
+
             int byteIndex = i / 8; // Determina qual byte contém o bit do canal
             int bitIndex = i % 8;  // Determina a posição do bit dentro do byte
             boolean estado = ((portData[byteIndex] >> bitIndex) & 0x01) == 1;
+            boolean check=true;
             status_ = statusController.getStatusTestCell(spm[i]);
+
+            Integer actPast = status_.get().getStatus();
             Integer actStat;
             actStat = estado ? 0 : 1; //valores de actStat são invertidos 0->rodando e 1->parado
-            if(status_.get().getStatus()==1 && actStat==1){
-                registroCausaisController.createAguardandoCausal(spm[i]);
-                statusController.updateStatusWithTestCell(spm[i],(estado ? 0 : 1));
-            }else if(status_.get().getStatus()==0 && actStat==0){
-                registroCausaisController.updateAguardandoCausal(spm[i]);
-                statusController.updateStatusWithTestCell(spm[i],(estado ? 0 : 1));
+//            System.out.println("i: " + i + " Sala "+ status_.get().getTestCell()+ "Bit -> " + bitIndex + " & Byte->  "+ byteIndex + " ---- " + actStat);
+            statusController.updateStatusWithTestCell(status_.get().getTestCell(),actStat);
+            if(actPast==1 && actStat==0){
+//                System.out.println("fazendo aguardandoCausal da sala "+ status_.get().getTestCell());
+//                statusController.updateStatusWithTestCell(status_.get().getTestCell(),0);
+                registroCausaisController.createAguardandoCausal(status_.get().getTestCell());
+            }else if(actPast==0 && actStat==1){
+//                System.out.println("atualizando aguardandoCausal da sala "+ status_.get().getTestCell());
+//                statusController.updateStatusWithTestCell(status_.get().getTestCell(),1); //actStat é direto com relação ao Status
+                registroCausaisController.updateAguardandoCausal(status_.get().getTestCell());
             }
+
         }
     }
 }

@@ -269,7 +269,7 @@ public class RegistroCausaisController {
         LocalTime zero = LocalTime.parse("00:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
         registroCausal.setHora_final(zero); //Ajusta hora_final do novo causal para 00:00:00 para evitar valor null
 
-        if(lastCausal.getCausal().equals("Aguardando causal")){
+        if(lastCausal.getCausal().equals("Aguardando Causal")){
             Optional<Status> status_ = statusRepository.findStatusByTestCell(registroCausal.getTestCell());
             System.out.println("Procurando status para : " + status_.get().getTestCell());
             statusController.updateStatusCausal(status_.get().getId(),registroCausal);

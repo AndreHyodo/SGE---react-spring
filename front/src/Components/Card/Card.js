@@ -16,7 +16,7 @@ class MyComponent extends Component {
                 return "card-header-cooling";
             }else if(status_actual === 3){
                 return "card-header-inactive";
-            }else if(status === "Aguardando causal"){
+            }else if(status === "Aguardando Causal"){
                 return "card-header-wait";
             }else if(status_actual === 0){
                 return "card-header-stop";

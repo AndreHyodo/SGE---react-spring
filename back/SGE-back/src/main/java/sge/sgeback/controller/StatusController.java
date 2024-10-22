@@ -217,7 +217,7 @@ public class StatusController {
         }
     }
 
-    @PutMapping(path="/update/{testCell}/{status}")
+    @PutMapping(path="/updateTestCell/{testCell}/{status}")
     public ResponseEntity<Status> updateStatusWithTestCell(@PathVariable String testCell, @PathVariable int status) {
         Optional<Status> statusData = statusRepository.findStatusByTestCell(testCell);
 
