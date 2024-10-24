@@ -27,6 +27,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.StreamSupport;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 
 @Controller
@@ -120,7 +123,7 @@ public class RegistroCausaisController {
         ZoneId defaultZoneId = ZoneId.systemDefault();
         Date date = Date.from(Data_atual.atStartOfDay(defaultZoneId).toInstant());
 
-        LocalTime hora_atual = LocalTime.now().plusSeconds(1);
+        LocalTime hora_atual = LocalTime.now().plusSeconds(11); //adianta o hora_inicio em 11s para executar a rotina fora dos horários de atualização de daods das salas
 
         LocalTime zero = LocalTime.parse("00:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
 
@@ -243,15 +246,37 @@ public class RegistroCausaisController {
 
         Registro_Causal registroCausal = new Registro_Causal();
 
-        registroCausal.setCausal("Aguardando Causal");
-        registroCausal.setCode(null);
-        registroCausal.setHora_inicio(Time.valueOf(hora_atual));
-        registroCausal.setTestCell(testCell);
-        registroCausal.setHora_final(zero);
-        registroCausal.setData(sqlDate);
-        Registro_Causal newRegistro = CausaisRepository.save(registroCausal);
-        statusController.updateStatusCausal(status_.get().getId(),registroCausal);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
+        Registro_Causal lastCausal = CausaisRepository.findTopByTestCellOrderByIdDesc(testCell);
+
+        LocalTime horaAtual = LocalTime.now();
+        LocalTime horaFinalLastCausal = lastCausal.getHora_final();
+
+        // Verifique a diferença em segundos entre a hora atual e a hora final do último causal
+        long diferencaSegundos = ChronoUnit.SECONDS.between(horaFinalLastCausal, horaAtual);
+
+        if (diferencaSegundos < 16) {
+            registroCausal.setCausal(lastCausal.getCausal());
+            registroCausal.setCode(lastCausal.getCode());
+            registroCausal.setHora_inicio(Time.valueOf(horaAtual));
+            registroCausal.setTestCell(testCell);
+            registroCausal.setHora_final(zero);
+            registroCausal.setData(sqlDate);
+
+            Registro_Causal newRegistro = CausaisRepository.save(registroCausal);
+            statusController.updateStatusCausal(status_.get().getId(), registroCausal);
+            return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
+        }else{
+            registroCausal.setCausal("Aguardando Causal");
+            registroCausal.setCode(null);
+            registroCausal.setHora_inicio(Time.valueOf(LocalTime.now()));
+            registroCausal.setTestCell(testCell);
+            registroCausal.setHora_final(zero);
+            registroCausal.setData(sqlDate);
+
+            Registro_Causal newRegistro = CausaisRepository.save(registroCausal);
+            statusController.updateStatusCausal(status_.get().getId(), registroCausal);
+            return ResponseEntity.status(HttpStatus.CREATED).body(newRegistro);
+        }
 
     }
 

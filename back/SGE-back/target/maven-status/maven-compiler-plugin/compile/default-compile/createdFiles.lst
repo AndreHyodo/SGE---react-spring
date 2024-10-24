@@ -2,6 +2,7 @@ sge\sgeback\Component\Scheduler.class
 sge\sgeback\repository\DadosEffRepository.class
 sge\sgeback\service\RegistroCausais_service.class
 sge\sgeback\controller\Dados_SalaController.class
+sge\sgeback\model\Eixos.class
 sge\sgeback\controller\FilesController.class
 sge\sgeback\controller\RegistroCausaisController$TotalTimeResponse.class
 sge\sgeback\controller\StatusController.class

@@ -113,13 +113,13 @@
       <recent name="C:\Users\SC22381\Desktop\NEW SGE\SGE web\front\bk" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="sge.sgeback.service" />
-      <recent name="sge.sgeback.controller" />
       <recent name="sge.sgeback.repository" />
+      <recent name="sge.sgeback.controller" />
+      <recent name="sge.sgeback.service" />
       <recent name="sge.sgeback.model" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="Spring Boot.SgeBackApplication">
     <configuration name="SgeBackApplication | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/SgeBackApplication.http" requestIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -317,7 +317,10 @@
       <workItem from="1729334690280" duration="14629000" />
       <workItem from="1729468514596" duration="599000" />
       <workItem from="1729529787620" duration="8159000" />
-      <workItem from="1729593990393" duration="3655000" />
+      <workItem from="1729593990393" duration="4326000" />
+      <workItem from="1729636743658" duration="602000" />
+      <workItem from="1729680602243" duration="9596000" />
+      <workItem from="1729767251469" duration="813000" />
     </task>
     <servers />
   </component>

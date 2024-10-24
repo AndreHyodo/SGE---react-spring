@@ -1,9 +1,5 @@
 package sge.sgeback.controller;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -14,18 +10,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import sge.sgeback.model.Dados;
-import sge.sgeback.model.Registro_Causal;
 import sge.sgeback.model.Status;
 import sge.sgeback.repository.DadosRepository;
 
-import java.awt.*;
 import java.io.*;
-import java.sql.Array;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 import java.util.stream.StreamSupport;
@@ -91,7 +85,7 @@ public class DadosController {
     }
 
     @GetMapping(path = "/dadosTxt/{testCell}")
-    public @ResponseBody void getTxtData(@PathVariable String testCell) throws IOException{
+    public @ResponseBody ResponseEntity<String> getTxtData(@PathVariable String testCell) throws IOException{
         int cell=0;
         switch (testCell){
             case "A01":
@@ -137,32 +131,21 @@ public class DadosController {
 //        String filePath = "C:/Users/CENTRAL/Desktop/SGE/Controle_dados_teste/"+ testCell +".txt"; //Oficial PC Central
         String filePath = "\\\\"+ spm[cell] +"\\ExcelPuma\\"+ testCell +".txt";
 
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
-            String linha = "";
+        if (!Files.exists(Paths.get(filePath))) {
+            System.out.println("Arquivo não encontrado: " + filePath);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Arquivo não encontrado: " + filePath);
+        }
 
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
+            String linha;
             Dados dados_prova = new Dados();
-
             int num = 0;
-            while (num>=0){
-                linha = bufferedReader.readLine();
-                if(linha!=null){
-                    switch (num){
-                        case 0:
-                            dados_prova.setTestCell(linha);
-                            break;
-                        case 1:
-                            dados_prova.setMotor(Integer.valueOf(linha));
-                            break;
-                        case 2:
-                            dados_prova.setProjeto(linha);
-                            break;
-                        case 3:
-                            dados_prova.setTeste(linha);
-                            break;
-                    }
-                }else{
-                    break;
+            while ((linha = bufferedReader.readLine()) != null) {
+                switch (num) {
+                    case 0: dados_prova.setTestCell(linha); break;
+                    case 1: dados_prova.setMotor(Integer.valueOf(linha)); break;
+                    case 2: dados_prova.setProjeto(linha); break;
+                    case 3: dados_prova.setTeste(linha); break;
                 }
                 num++;
             }
@@ -170,20 +153,22 @@ public class DadosController {
             Date now = new Date();
             SimpleDateFormat data_formatada = new SimpleDateFormat("dd/MM/yyyy");
             LocalTime hora_atual = LocalTime.now();
-
-
             dados_prova.setHora_inicio(Time.valueOf(hora_atual));
             dados_prova.setDATE(data_formatada.parse(data_formatada.format(now)));
             insertDados(dados_prova);
 
             bufferedReader.close();
 
-        }catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+            return ResponseEntity.status(HttpStatus.OK).body("Dados inseridos com sucesso");
 
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro de leitura do arquivo: " + filePath);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao analisar a data");
+        }
 
     }
 

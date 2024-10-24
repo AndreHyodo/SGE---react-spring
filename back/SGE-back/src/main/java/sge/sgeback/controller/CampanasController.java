@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sge.sgeback.Component.enums.StatusComponentsRole;
 import sge.sgeback.model.Campanas;
 import sge.sgeback.model.Dados_sala;
 import sge.sgeback.model.Registro_Causal;
@@ -46,7 +47,7 @@ public class CampanasController {
             _campana.setLocal(dadosSala.getTestCell());
             _campana.setDataEntrada(dadosSala.getData());
             _campana.setDataSaida(null);
-            _campana.setStatus(0);
+            _campana.setStatus(StatusComponentsRole.EM_USO);
             return new ResponseEntity<>(campanasRepository.save(_campana), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

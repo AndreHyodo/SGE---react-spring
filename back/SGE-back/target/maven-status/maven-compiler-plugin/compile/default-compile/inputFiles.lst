@@ -1,42 +1,42 @@
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\repository\DadosEffRepository.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\model\UpdateStatus.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\service\FileService.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\service\StatusService.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\repository\Dados_salaRepository.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\controller\Dados_SalaController.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\Component\Scheduler.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\securingweb\CorsConfiguration.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\model\Dados.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\model\Users.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\repository\CausaisRepository.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\testeAdvantech\testeAdvantech.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\model\Dados_sala.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\repository\DadosRepository.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\controller\DadosEffController.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\controller\RegistroCausaisController.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\repository\StatusRepository.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\controller\UsersController.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\repository\CampanasRepository.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\controller\CampanasController.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\model\Eff_atual.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\repository\FilesRepository.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\service\RegistroCausais_service.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\controller\DadosController.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\model\Campanas.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\model\Causais.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\securingweb\WebSecurityConfig.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\controller\Eff_atualController.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\controller\StatusController.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\repository\Eff_atualRepository.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\model\Files.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\model\Status.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\controller\FilesController.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\model\Advantech.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\repository\RegistroCausaisRepository.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\controller\CausaisController.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\repository\UsersRepository.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\model\Dados_Eff.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\model\Registro_Causal.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\projection\SearchDataProjection.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\securingweb\MvcConfig.java
-C:\Users\NEW-CENTRAL\Desktop\SGE\SGE---react-spring\back\SGE-back\src\main\java\sge\sgeback\SgeBackApplication.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\controller\CampanasController.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\controller\CausaisController.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\controller\Dados_SalaController.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\Causais.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\Advantech.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\repository\Dados_salaRepository.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\securingweb\WebSecurityConfig.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\repository\CampanasRepository.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\repository\StatusRepository.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\service\RegistroCausais_service.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\controller\DadosController.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\controller\FilesController.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\securingweb\MvcConfig.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\securingweb\CorsConfiguration.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\UpdateStatus.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\service\StatusService.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\Component\Scheduler.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\Eixos.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\service\FileService.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\controller\StatusController.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\Registro_Causal.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\Eff_atual.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\Status.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\repository\FilesRepository.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\Users.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\controller\Eff_atualController.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\Campanas.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\repository\UsersRepository.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\repository\RegistroCausaisRepository.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\repository\CausaisRepository.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\projection\SearchDataProjection.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\controller\DadosEffController.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\repository\DadosRepository.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\Dados_Eff.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\repository\DadosEffRepository.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\controller\UsersController.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\SgeBackApplication.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\Files.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\Dados.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\model\Dados_sala.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\repository\Eff_atualRepository.java
+C:\Users\SC22381\Desktop\NEW SGE\SGE - react + spring\back\SGE-back\src\main\java\sge\sgeback\controller\RegistroCausaisController.java
